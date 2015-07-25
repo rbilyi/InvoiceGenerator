@@ -3804,8 +3804,9 @@
 		<row><td>ID_STRING3</td><td>1033</td><td>Roma Bily</td><td>0</td><td/><td>-878488924</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td/><td>0</td><td/><td>-1012697548</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>UNINST~1|Uninstall Invoice</td><td>0</td><td/><td>-1012717996</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>Invoice</td><td>0</td><td/><td>-878482840</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>Invoice</td><td>0</td><td/><td>-878476696</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1012693548</td></row>
-		<row><td>UNINST|Uninstall InvoicesInstaller</td><td>1033</td><td>UNINST~1|Uninstall Invoice</td><td>0</td><td/><td>-1012668876</td></row>
 	</table>
 
 	<table name="ISSwidtagProperty">
@@ -3913,7 +3914,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
-		<row><td>UNINST_Uninstall_I_9F4FEFA7E37A4521A583E4DE36E6A1A4.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2013LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>NewShortcut11_5C2803740FB145DA8A77A8415262750A.exe</td><td/><td>C:\Users\Roman\Pictures\1.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_0B368321F74540E6B0F129FC7189C9C5.exe</td><td/><td>C:\Users\Roman\Pictures\1.ico</td><td>0</td></row>
 		<row><td>UNINST_Uninstall_I_A6E5BC3A53014D359099DC5CBF9FC5EA.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2013LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 	</table>
 
@@ -4500,6 +4502,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>NewShortcut1</td><td>Nakladna.Primary_output</td><td/><td>invoicesinstaller</td><td>2</td></row>
 		<row><td>UNINST_Uninstall_InvoicesInstaller</td><td>NewComponent1</td><td/><td>invoicesinstaller</td><td>2</td></row>
 	</table>
 
@@ -4586,8 +4589,9 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>NewShortcut1</td><td>invoicesinstaller</td><td>##ID_STRING6##</td><td>Nakladna.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_0B368321F74540E6B0F129FC7189C9C5.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut11</td><td>DesktopFolder</td><td>##ID_STRING7##</td><td>Nakladna.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut11_5C2803740FB145DA8A77A8415262750A.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>UNINST_Uninstall_InvoicesInstaller</td><td>invoicesinstaller</td><td>UNINST|Uninstall InvoicesInstaller</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {944581B6-2A67-4293-947A-A088DCEDDD02}</td><td/><td/><td>UNINST_Uninstall_I_A6E5BC3A53014D359099DC5CBF9FC5EA.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>UNINST_Uninstall_InvoicesInstaller1</td><td>DesktopFolder</td><td>UNINST|Uninstall InvoicesInstaller</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {944581B6-2A67-4293-947A-A088DCEDDD02}</td><td/><td/><td>UNINST_Uninstall_I_9F4FEFA7E37A4521A583E4DE36E6A1A4.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
