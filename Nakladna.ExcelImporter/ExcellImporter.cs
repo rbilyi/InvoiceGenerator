@@ -115,6 +115,8 @@ namespace Nakladna.ExcelImporter
                 sales.Add(sale);
             }
 
+            Settings.Save();
+
             return sales;
         }
     }

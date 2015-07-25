@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace Innvoice.Generator
 
 		public void CreateInOneDocument(IEnumerable<Invoice> invoices,string docSavePath)
 		{
-            var tempPath = Nakladna.Settings.TemplatePath;
             string fileName = docSavePath;
+            var tempPath = CopyToTemp(Nakladna.Settings.TemplatePath);
 
 			int invNum = 1;
 			DocX resultDoc = null;
@@ -85,5 +86,12 @@ namespace Innvoice.Generator
 				Process.Start(fileName);
 			}
 		}
+
+        private static string CopyToTemp(string originalFile)
+        {
+            var tempFileName = Path.GetTempFileName() + Path.GetExtension(originalFile);
+            File.Copy(originalFile, tempFileName, true);
+            return tempFileName;
+        }
 	}
 }

@@ -49,15 +49,15 @@ namespace Nakladna
             var startDate = dateTimePicker1.Value;
             var endDate = dateTimePicker2.Value;
 
-            var producer = producerName.Text;
-
-            if (string.IsNullOrEmpty(producer))
-                throw new ArgumentException("Введіть поставщика!");
-
-            Settings.Producer = producer;
-
             try
             {
+                var producer = producerName.Text;
+
+                if (string.IsNullOrEmpty(producer))
+                    throw new ArgumentException("Введіть поставщика!");
+
+                Settings.Producer = producer;
+
                 var saveDlg = new SaveFileDialog();
                 saveDlg.Filter = ".docx|*.docx";
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
@@ -68,6 +68,10 @@ namespace Nakladna
             catch (NoSalesException)
             {
                 MessageBox.Show(string.Format("Немає продаж за {0}-{1}", startDate.ToShortDateString(), endDate.ToShortDateString()));
+            }
+            catch (Exception ex)
+            {
+                ShowErrorBox(ex);
             }
         }
 
