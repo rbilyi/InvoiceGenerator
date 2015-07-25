@@ -92,20 +92,20 @@ namespace Nakladna.Core
             return GenerateInvoices(sales);
         }
 
-        public void SaveInvoices(IEnumerable<Invoice> invoices, string path)
+        public void SaveInvoices(IEnumerable<Invoice> invoices, string path, string runningPath)
         {
             var generator = new InvoiceGenerator();
-            generator.CreateInOneDocument(invoices, path);
+            generator.CreateInOneDocument(invoices, path, runningPath);
         }
 
-        public void ExportToDoc(DateTime startDate, DateTime endDate, string savePath)
+        public void ExportToDoc(DateTime startDate, DateTime endDate, string savePath, string runningPath)
         {
             var inv = GetInvoicesByDatesRange(startDate, endDate);
 
             if (inv.Count() == 0)
                 throw new NoSalesException();
 
-            SaveInvoices(inv, savePath);
+            SaveInvoices(inv, savePath, runningPath);
         }
 
         public IEnumerable<Sale> ImportSalesFromXLS(string path, GoodType type, string producer, bool saveToDb = true)

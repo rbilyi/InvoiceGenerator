@@ -23,11 +23,10 @@ namespace Innvoice.Generator
 			Process.Start(fileName);
 		}
 
-		public void CreateInOneDocument(IEnumerable<Invoice> invoices,string docSavePath)
+		public void CreateInOneDocument(IEnumerable<Invoice> invoices,string docSavePath, string runningPath)
 		{
             string fileName = docSavePath;
-            var tempPath = CopyToTemp(Nakladna.Settings.TemplatePath);
-
+            var tempPath = CopyToTemp(Path.Combine(runningPath, Nakladna.Settings.TemplateFileName));
 			int invNum = 1;
 			DocX resultDoc = null;
 

@@ -63,7 +63,8 @@ namespace Nakladna
                 saveDlg.Filter = ".docx|*.docx";
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    InvoiceCore.Instance.ExportToDoc(startDate, endDate, saveDlg.FileName);
+                    var runningPath = Application.StartupPath;
+                    InvoiceCore.Instance.ExportToDoc(startDate, endDate, saveDlg.FileName, runningPath);
                 }
             }
             catch (NoSalesException)

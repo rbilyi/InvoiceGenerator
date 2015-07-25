@@ -81,7 +81,7 @@ namespace Nakladna
             }
 		}
 
-        public static string TemplatePath
+        public static string TemplateFileName
         {
             get
             {
