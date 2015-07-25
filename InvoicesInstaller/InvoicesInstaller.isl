@@ -340,7 +340,20 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>DocX.dll</td><td>{EBA03FC8-6F27-4186-B57D-E22D0BB8633D}</td><td>INSTALLDIR</td><td>2</td><td/><td>docx.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ICSharpCode.SharpZipLib.dll</td><td>{02810BBF-1D8C-4F39-8D1B-AD0C54FECC98}</td><td>INSTALLDIR</td><td>2</td><td/><td>icsharpcode.sharpziplib.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{23D7FD8B-84B3-4A96-A8DC-46C4A90AB1A1}</td><td>DATABASEDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{0A31B4AD-5684-45A3-8806-627DD98A254E}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>NPOI.OOXML.dll</td><td>{18CD2B1F-BE6D-4B79-A186-3E099C89A2B9}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.ooxml.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>NPOI.OpenXml4Net.dll</td><td>{A0BA78C4-8EF2-478F-B5BD-92F41FA5FCA1}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.openxml4net.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>NPOI.OpenXmlFormats.dll</td><td>{B98D2BE6-F9BC-4398-86A8-36267286D3BE}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.openxmlformats.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>NPOI.dll</td><td>{7EA4A602-A08B-4E62-91D4-72A7F9A90D3C}</td><td>INSTALLDIR</td><td>2</td><td/><td>npoi.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.CommonData.Primary_output</td><td>{3AD5EF2B-4BCB-4525-A0DB-D053428FAAB9}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.commondata.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.Core.Primary_output</td><td>{2FC2795B-A1A8-437C-B2FE-7B44C0BAC42F}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.core.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.DAL.Primary_output</td><td>{BA22765C-0694-44F9-8C1C-BFC73668DA8D}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.dal.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.ExcelImporter.Primary_output</td><td>{D491F5E0-A5E7-4ECF-817C-0DC289F622CD}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.excelimporter.prima</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.Generator.Primary_output</td><td>{C32D7D62-9FBD-4D3F-BF56-B067446AC4E7}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.generator.primary_o</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Nakladna.Primary_output</td><td>{FC999703-B5A5-41B9-AFFB-9485D4B2C1F8}</td><td>INSTALLDIR</td><td>2</td><td/><td>nakladna.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NewComponent1</td><td>{71CBEB4D-606D-4457-BF5B-06A614F7C65B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1050,6 +1063,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>DATABASEDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>NewComponent1</td></row>
 	</table>
 
@@ -1862,7 +1876,20 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>DocX.dll</td></row>
+		<row><td>AlwaysInstall</td><td>ICSharpCode.SharpZipLib.dll</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>NPOI.OOXML.dll</td></row>
+		<row><td>AlwaysInstall</td><td>NPOI.OpenXml4Net.dll</td></row>
+		<row><td>AlwaysInstall</td><td>NPOI.OpenXmlFormats.dll</td></row>
+		<row><td>AlwaysInstall</td><td>NPOI.dll</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.CommonData.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.Core.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.DAL.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.ExcelImporter.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.Generator.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Nakladna.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>NewComponent1</td></row>
 	</table>
 
@@ -1878,7 +1905,19 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>template.docx</td><td>ISX_DEFAULTCOMPONENT</td><td>TEMPLA~1.DOC|template.docx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\template.docx</td><td>1</td><td/></row>
+		<row><td>docx.dll</td><td>DocX.dll</td><td>DocX.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\DocX.dll</td><td>1</td><td/></row>
+		<row><td>icsharpcode.sharpziplib.dll</td><td>ICSharpCode.SharpZipLib.dll</td><td>ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\ICSharpCode.SharpZipLib.dll</td><td>1</td><td/></row>
+		<row><td>nakladna.commondata.primary_</td><td>Nakladna.CommonData.Primary_output</td><td>Nakladna.CommonData.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna.CommonData&gt;|Built</td><td>3</td><td/></row>
+		<row><td>nakladna.core.primary_output</td><td>Nakladna.Core.Primary_output</td><td>Nakladna.Core.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna.Core&gt;|Built</td><td>3</td><td/></row>
+		<row><td>nakladna.dal.primary_output</td><td>Nakladna.DAL.Primary_output</td><td>Nakladna.DAL.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna.DAL&gt;|Built</td><td>3</td><td/></row>
+		<row><td>nakladna.excelimporter.prima</td><td>Nakladna.ExcelImporter.Primary_output</td><td>Nakladna.ExcelImporter.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna.ExcelImporter&gt;|Built</td><td>3</td><td/></row>
+		<row><td>nakladna.generator.primary_o</td><td>Nakladna.Generator.Primary_output</td><td>Nakladna.Generator.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna.Generator&gt;|Built</td><td>3</td><td/></row>
+		<row><td>nakladna.primary_output</td><td>Nakladna.Primary_output</td><td>Nakladna.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Nakladna&gt;|Built</td><td>3</td><td/></row>
+		<row><td>npoi.dll</td><td>NPOI.dll</td><td>NPOI.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\NPOI.dll</td><td>1</td><td/></row>
+		<row><td>npoi.ooxml.dll</td><td>NPOI.OOXML.dll</td><td>NPOIOO~1.DLL|NPOI.OOXML.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\NPOI.OOXML.dll</td><td>1</td><td/></row>
+		<row><td>npoi.openxml4net.dll</td><td>NPOI.OpenXml4Net.dll</td><td>NPOIOP~1.DLL|NPOI.OpenXml4Net.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\NPOI.OpenXml4Net.dll</td><td>1</td><td/></row>
+		<row><td>npoi.openxmlformats.dll</td><td>NPOI.OpenXmlFormats.dll</td><td>NPOIOP~1.DLL|NPOI.OpenXmlFormats.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\NPOI.OpenXmlFormats.dll</td><td>1</td><td/></row>
+		<row><td>template.docx</td><td>ISX_DEFAULTCOMPONENT1</td><td>TEMPLA~1.DOC|template.docx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ISProjectFolder&gt;\..\thirdparty\template.docx</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2022,7 +2061,20 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>DocX.dll</td><td/><td/><td>_150164EC_D5BA_4385_AC1A_F00409790F43_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ICSharpCode.SharpZipLib.dll</td><td/><td/><td>_A3B56B36_D492_42EE_875E_556646EDF950_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_4ED9153B_AD87_4C4C_8C44_3170ABF91AB1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_0D1915DC_0F15_459A_9092_7ECDF05E56AD_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>NPOI.OOXML.dll</td><td/><td/><td>_3A9323B8_DB2A_4E7D_AC4B_B4A15A76B4BB_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>NPOI.OpenXml4Net.dll</td><td/><td/><td>_D2D0F3DD_981A_4DA5_AE56_13B2C06E36A3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>NPOI.OpenXmlFormats.dll</td><td/><td/><td>_EEA2CB0C_F383_40A3_8E94_87380DA89C26_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>NPOI.dll</td><td/><td/><td>_B3276D74_F00C_426D_A3A5_2C2A2247A501_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.CommonData.Primary_output</td><td/><td/><td>_C7DC9D80_544F_4040_844B_AA0288E5FE5C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.Core.Primary_output</td><td/><td/><td>_F7090534_78FB_434F_9F61_E0AE56F439F6_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.DAL.Primary_output</td><td/><td/><td>_94210329_C06F_4815_A017_DEE92F3E7705_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.ExcelImporter.Primary_output</td><td/><td/><td>_DC5293AC_66EC_458A_B6A3_D1230782281B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.Generator.Primary_output</td><td/><td/><td>_BEF064F9_57EA_47A9_893A_A7E6D5E74615_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Nakladna.Primary_output</td><td/><td/><td>_7E671C16_D1C2_4D72_96A4_CC18419B3C6B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NewComponent1</td><td/><td/><td>_7EA78177_3D00_4681_9950_8FC8F56BA297_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2329,6 +2381,12 @@
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
+		<row><td>Nakladna</td><td>Nakladna\Nakladna.csproj</td><td/><td>2</td></row>
+		<row><td>Nakladna.CommonData</td><td>Nakladna.CommonData\Nakladna.CommonData.csproj</td><td/><td>2</td></row>
+		<row><td>Nakladna.Core</td><td>Nakladna.Core\Nakladna.Core.csproj</td><td/><td>2</td></row>
+		<row><td>Nakladna.DAL</td><td>Nakladna.DAL\Nakladna.DAL.csproj</td><td/><td>2</td></row>
+		<row><td>Nakladna.ExcelImporter</td><td>Nakladna.ExcelImporter\Nakladna.ExcelImporter.csproj</td><td/><td>2</td></row>
+		<row><td>Nakladna.Generator</td><td>Nakladna.Generator\Nakladna.Generator.csproj</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
