@@ -1,0 +1,8 @@
+bin
+InvoicesInstaller/InvoicesInstaller/Express/DVD-5/LogFiles/
+InvoicesInstaller/InvoicesInstaller/Express/DVD-5/Reports/
+InvoicesInstaller/InvoicesInstaller/Express/SingleImage/LogFiles/
+InvoicesInstaller/InvoicesInstaller/Express/SingleImage/Reports/
+obj
+*.suo
+ bin
