@@ -79,7 +79,7 @@ namespace Nakladna.Core
             IEnumerable<Sale> sales = Repository.Instance
                 .Get<Sale>(s => s.DateTime >= startDate && s.DateTime <= endDate);
 
-            return GenerateInvoices(sales.ToList());
+            return GenerateInvoices(sales).ToList();
         }
 
         public IEnumerable<Invoice> GenerateInvoicesByDate(DateTime date)
@@ -108,10 +108,10 @@ namespace Nakladna.Core
             SaveInvoices(inv, savePath);
         }
 
-        public IEnumerable<Sale> ImportSalesFromXLS(string path, GoodType type, bool saveToDb = true)
+        public IEnumerable<Sale> ImportSalesFromXLS(string path, GoodType type, string producer, bool saveToDb = true)
         {
             var importer = new ExcellImporter();
-            var sales = importer.ImportFromFile(path, type);
+            var sales = importer.ImportFromFile(path, type, producer);
             var result = new List<Sale>();
             NewCustomers = 0;
 
@@ -129,39 +129,24 @@ namespace Nakladna.Core
             return result;
         }
 
-        public IEnumerable<Invoice> GenerateInvoicesFromXLS(string path, GoodType type)
+        private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer = null)
         {
-            var sales = ImportSalesFromXLS(path, type);
-
+            var list = new List<Invoice>();
             foreach (var s in sales)
             {
-                var supplies = new Dictionary<GoodType, int>();
-                supplies.Add(s.GoodType, s.Quantity);
-
-                yield return new Invoice()
+                list.Add(new Invoice()
                 {
                     Customer = s.Customer,
-                    DateTime = s.DateTime,
-                    Supplies = supplies
-                };
-            }
-        }
-
-        private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales)
-        {
-            foreach (var s in sales)
-            {
-                yield return new Invoice()
-                {
-                    Customer = s.Customer,
-                    Producer = s.Producer,
+                    Producer = (producer == null || string.IsNullOrEmpty(s.Producer)) ? Settings.Producer : s.Producer,
                     DateTime = s.DateTime,
                     Supplies = new Dictionary<GoodType, int>() 
 					{
 						{s.GoodType, s.Quantity}
 					}
-                };
+                });
             }
+
+            return list;
         }
 
     }

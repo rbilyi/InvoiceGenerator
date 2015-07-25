@@ -25,7 +25,8 @@ namespace Nakladna.Core
                 Producer = s.Producer,
                 DateTime = s.DateTime,
                 GoodType = s.GoodType,
-                Quantity = s.Quantity
+                Quantity = s.Quantity,
+                Return = s.Return
             };
         }
     }

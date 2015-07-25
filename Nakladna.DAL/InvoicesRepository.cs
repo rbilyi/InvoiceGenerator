@@ -49,6 +49,14 @@ namespace Nakladna.DAL
             return context.Set<T>();
         }
 
+        //public IEnumerable<Sale> GetSales(Expression<Func<Sale, bool>> predicate = null) 
+        //{
+        //    if (predicate == null)
+        //        return context.Set<Sale>();
+
+        //    return context.Set<Sale>().Where(predicate).Include(s => s.Customer).ToList();
+        //}
+
         public IEnumerable<T> Get<T>(Expression<Func<T, bool>> predicate = null) where T : EntityBase
         {
             if (predicate == null)

@@ -12,7 +12,7 @@ namespace Nakladna.ExcelImporter
 {
     public class ExcellImporter
     {
-        public Dictionary<DateTime, IEnumerable<SaleParsed>> ImportFromFile(string path, GoodType type)
+        public Dictionary<DateTime, IEnumerable<SaleParsed>> ImportFromFile(string path, GoodType type, string producer)
         {
             var result = new List<SaleParsed>();
 
@@ -26,7 +26,7 @@ namespace Nakladna.ExcelImporter
 
                 DateTime startDate = GetStartDate(datesCell);
 
-                return ParseSales(sheet, datesCell, startDate, type);
+                return ParseSales(sheet, datesCell, startDate, type, producer);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Nakladna.ExcelImporter
             }
         }
 
-        private Dictionary<DateTime, IEnumerable<SaleParsed>> ParseSales(ISheet sheet, ICell firstDateCell, DateTime startDate, GoodType type)
+        private Dictionary<DateTime, IEnumerable<SaleParsed>> ParseSales(ISheet sheet, ICell firstDateCell, DateTime startDate, GoodType type, string producer)
         {
             var sales = new Dictionary<DateTime, IEnumerable<SaleParsed>>();
 
@@ -64,7 +64,7 @@ namespace Nakladna.ExcelImporter
                 if (dateCell.DateCellValue <= startDate)
                     continue;
 
-                var dSales = ParseDailySale(sheet, dateCell, type, dateCell.ColumnIndex, customerColumn, startRow);
+                var dSales = ParseDailySale(sheet, dateCell, type, dateCell.ColumnIndex, customerColumn, startRow, producer);
 
                 if (dSales.Any())
                     sales.Add(dSales.First().DateTime, dSales);
@@ -73,7 +73,7 @@ namespace Nakladna.ExcelImporter
             return sales;
         }
 
-        private static IEnumerable<SaleParsed> ParseDailySale(ISheet sheet, ICell datesCell, GoodType type, int columnIndex, int customerColumn, int startRow)
+        private static IEnumerable<SaleParsed> ParseDailySale(ISheet sheet, ICell datesCell, GoodType type, int columnIndex, int customerColumn, int startRow, string producer)
         {
             var sales = new List<SaleParsed>();
             DateTime date;
@@ -102,7 +102,7 @@ namespace Nakladna.ExcelImporter
                 sale.GoodType = type;
                 sale.DateTime = date;
                 sale.Customer = customer;
-                sale.Producer = Settings.Producer;
+                sale.Producer = producer;
 
                 var qtyCell = sheet.GetRow(r).GetCell(columnIndex);
                 if (qtyCell != null)

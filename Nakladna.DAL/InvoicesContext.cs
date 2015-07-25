@@ -8,7 +8,6 @@ namespace Nakladna.DAL
 		public InvoicesContext()
 			: base()
 		{
-            this.Configuration.LazyLoadingEnabled = false;
             Database.SetInitializer<InvoicesContext>(new InvoicesInitializer());
 		}
 		public DbSet<Sale> Sales{ get; set; }

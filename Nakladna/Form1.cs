@@ -57,6 +57,7 @@ namespace Nakladna
                     throw new ArgumentException("Введіть поставщика!");
 
                 Settings.Producer = producer;
+                Settings.Save();
 
                 var saveDlg = new SaveFileDialog();
                 saveDlg.Filter = ".docx|*.docx";
@@ -85,7 +86,14 @@ namespace Nakladna
                     if (string.IsNullOrWhiteSpace(openDlg.FileName))
                         return;
 
-                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(openDlg.FileName, comboBoxGoodType.SelectedValue as GoodType);
+                    var producer = producerName.Text;
+                    if (string.IsNullOrEmpty(producer))
+                        throw new ArgumentException("Введіть поставщика!");
+
+                    Settings.Producer = producer;
+                    Settings.Save();
+
+                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(openDlg.FileName, comboBoxGoodType.SelectedValue as GoodType, producer);
                     MessageBox.Show(string.Format("Імпортовано {0} продажів. {1} нових клієнтів.",
                         inv.Count(), InvoiceCore.Instance.NewCustomers));
                 }
@@ -101,7 +109,6 @@ namespace Nakladna
             try
             {
                 var producer = producerName.Text;
-
                 if (string.IsNullOrEmpty(producer))
                     throw new ArgumentException("Введіть поставщика!");
 

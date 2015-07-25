@@ -14,7 +14,7 @@ namespace Nakladna.CommonData
 
         public string Producer { get; set; }
 
-		public Customer Customer { get; set; }
-		public GoodType GoodType { get; set; }
+		public virtual Customer Customer { get; set; }
+		public virtual GoodType GoodType { get; set; }
 	}
 }

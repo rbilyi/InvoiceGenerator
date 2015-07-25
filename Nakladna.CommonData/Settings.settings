@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastImportedDate" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">2015-01-01</Value>
     </Setting>
     <Setting Name="CustomersColumn" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
