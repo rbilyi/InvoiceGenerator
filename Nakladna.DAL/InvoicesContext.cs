@@ -5,8 +5,8 @@ namespace Nakladna.DAL
 {
 	public class InvoicesContext: DbContext
 	{
-		public InvoicesContext()
-			: base()
+		public InvoicesContext(string connectionString)
+			: base(connectionString)
 		{
             Database.SetInitializer<InvoicesContext>(new InvoicesInitializer());
 		}

@@ -42,6 +42,7 @@
             this.savePriceButton = new System.Windows.Forms.Button();
             this.producerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,13 +103,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
             this.groupBox1.Controls.Add(this.toDocButton);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 141);
+            this.groupBox1.Location = new System.Drawing.Point(0, 94);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(374, 78);
             this.groupBox1.TabIndex = 9;
@@ -150,9 +152,9 @@
             // 
             // savePriceButton
             // 
-            this.savePriceButton.Location = new System.Drawing.Point(12, 112);
+            this.savePriceButton.Location = new System.Drawing.Point(213, 63);
             this.savePriceButton.Name = "savePriceButton";
-            this.savePriceButton.Size = new System.Drawing.Size(157, 23);
+            this.savePriceButton.Size = new System.Drawing.Size(102, 23);
             this.savePriceButton.TabIndex = 12;
             this.savePriceButton.Text = "Зберегти зміни";
             this.savePriceButton.UseVisualStyleBackColor = true;
@@ -174,11 +176,21 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Поставщик:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(297, 50);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 22);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Настройки";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 219);
+            this.ClientSize = new System.Drawing.Size(374, 172);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.producerName);
             this.Controls.Add(this.savePriceButton);
@@ -213,6 +225,7 @@
         private System.Windows.Forms.Button savePriceButton;
         private System.Windows.Forms.TextBox producerName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
 
     }
 }

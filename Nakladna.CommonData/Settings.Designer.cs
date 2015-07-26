@@ -130,5 +130,18 @@ namespace Nakladna.CommonData {
                 this["Producer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=.\\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;user" +
+            " id=su;password=***********;MultipleActiveResultSets=True;App=EntityFramework")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+            set {
+                this["ConnectionString"] = value;
+            }
+        }
     }
 }

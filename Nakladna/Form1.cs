@@ -142,5 +142,11 @@ namespace Nakladna
                 ShowErrorBox(ex);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var set = new SettingsWindow();
+            set.ShowDialog(this);
+        }
     }
 }

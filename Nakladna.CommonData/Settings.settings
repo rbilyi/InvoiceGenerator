@@ -29,5 +29,8 @@
     <Setting Name="Producer" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;user id=su;password=***********;MultipleActiveResultSets=True;App=EntityFramework</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

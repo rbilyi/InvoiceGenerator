@@ -18,7 +18,7 @@ namespace Nakladna.DAL
 
         protected Repository()
         {
-            context = new InvoicesContext();
+            context = new InvoicesContext(Settings.ConnectionString);
         }
 
         public static Repository Instance
