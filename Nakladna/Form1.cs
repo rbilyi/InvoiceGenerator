@@ -21,6 +21,8 @@ namespace Nakladna
         {
             InitializeComponent();
 
+            this.Text += " " + Application.ProductVersion.ToString();
+
             try
             {
                 goodTypes = InvoiceCore.Instance.GetGoods().ToArray();

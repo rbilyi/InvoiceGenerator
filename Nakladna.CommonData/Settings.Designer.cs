@@ -134,7 +134,7 @@ namespace Nakladna.CommonData {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("data source=.\\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;user" +
-            " id=su;password=***********;MultipleActiveResultSets=True;App=EntityFramework")]
+            " id=sa;password=123456\r\n;MultipleActiveResultSets=True;App=EntityFramework")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

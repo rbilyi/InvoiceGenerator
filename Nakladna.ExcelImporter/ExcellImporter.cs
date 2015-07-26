@@ -23,13 +23,15 @@ namespace Nakladna.ExcelImporter
                 for (int sheetIdx = 0; sheetIdx < workbook.NumberOfSheets; sheetIdx++)
                 {
 
-                    ISheet sheet = workbook.GetSheetAt(0);
+                    ISheet sheet = workbook.GetSheetAt(sheetIdx);
 
                     var datesCell = sheet.GetRow(Settings.DatesRow).GetCell(Settings.DatesColumn);
 
                     DateTime startDate = GetStartDate(datesCell);
 
-                    result.Concat(ParseSales(sheet, datesCell, startDate, type, producer));
+                    var sales = ParseSales(sheet, datesCell, startDate, type, producer);
+                    foreach (var s in sales)
+                        result.Add(s.Key, s.Value);
                 }
             }
 
@@ -64,10 +66,7 @@ namespace Nakladna.ExcelImporter
                 if (dateCell == null)
                     break;
 
-                if (dateCell.CellType == CellType.Blank)
-                    continue;
-
-                if (dateCell.DateCellValue <= startDate)
+                if (dateCell.CellType != CellType.Numeric || dateCell.DateCellValue <= startDate)
                     continue;
 
                 var dSales = ParseDailySale(sheet, dateCell, type, dateCell.ColumnIndex, customerColumn, startRow, producer);

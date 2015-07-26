@@ -110,7 +110,7 @@
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 94);
+            this.groupBox1.Location = new System.Drawing.Point(0, 89);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(374, 78);
             this.groupBox1.TabIndex = 9;
@@ -190,7 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 172);
+            this.ClientSize = new System.Drawing.Size(374, 167);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.producerName);
             this.Controls.Add(this.savePriceButton);
