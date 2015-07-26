@@ -14,20 +14,26 @@ namespace Nakladna.ExcelImporter
     {
         public Dictionary<DateTime, IEnumerable<SaleParsed>> ImportFromFile(string path, GoodType type, string producer)
         {
-            var result = new List<SaleParsed>();
+            var result = new Dictionary<DateTime, IEnumerable<SaleParsed>>();
 
             using (var fs = File.OpenRead(path))
             {
                 var workbook = new XSSFWorkbook(fs);
 
-                ISheet sheet = workbook.GetSheetAt(0);
+                for (int sheetIdx = 0; sheetIdx < workbook.NumberOfSheets; sheetIdx++)
+                {
 
-                var datesCell = sheet.GetRow(Settings.DatesRow).GetCell(Settings.DatesColumn);
+                    ISheet sheet = workbook.GetSheetAt(0);
 
-                DateTime startDate = GetStartDate(datesCell);
+                    var datesCell = sheet.GetRow(Settings.DatesRow).GetCell(Settings.DatesColumn);
 
-                return ParseSales(sheet, datesCell, startDate, type, producer);
+                    DateTime startDate = GetStartDate(datesCell);
+
+                    result.Concat(ParseSales(sheet, datesCell, startDate, type, producer));
+                }
             }
+
+            return result;
         }
 
         private DateTime GetStartDate(ICell datesCell)
@@ -106,11 +112,21 @@ namespace Nakladna.ExcelImporter
 
                 var qtyCell = sheet.GetRow(r).GetCell(columnIndex);
                 if (qtyCell != null)
+                {
+                    if (qtyCell.CellType != CellType.Numeric)
+                        continue;
+
                     sale.Quantity = (int)qtyCell.NumericCellValue;
+                }
 
                 var retCell = sheet.GetRow(r).GetCell(columnIndex + 1);
                 if (retCell != null)
+                {
+                    if (qtyCell.CellType != CellType.Numeric)
+                        continue;
+
                     sale.Return = (int)retCell.NumericCellValue;
+                }
 
                 sales.Add(sale);
             }
