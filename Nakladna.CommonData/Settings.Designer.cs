@@ -121,7 +121,7 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("П.П. Оганесян")]
         public string Producer {
             get {
                 return ((string)(this["Producer"]));

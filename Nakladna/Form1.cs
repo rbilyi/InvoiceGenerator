@@ -119,7 +119,9 @@ namespace Nakladna
                 Settings.Save();
 
                 var goodType = comboBoxGoodType.SelectedValue as GoodType;
-                goodType.Price = double.Parse(priceTextBox.Text.Replace(',', '.'));
+                priceTextBox.Text = priceTextBox.Text.Replace(",", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
+                priceTextBox.Text = priceTextBox.Text.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
+                goodType.Price = double.Parse(priceTextBox.Text);
                 InvoiceCore.Instance.SaveEntitiesChanges();
             }
             catch (Exception ex)
@@ -130,7 +132,7 @@ namespace Nakladna
 
         private void ShowErrorBox(Exception ex)
         {
-            MessageBox.Show(ex.Message, "Помилка");
+            MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace, "Помилка");
         }
 
         private void comboBoxGoodType_SelectedIndexChanged(object sender, EventArgs e)

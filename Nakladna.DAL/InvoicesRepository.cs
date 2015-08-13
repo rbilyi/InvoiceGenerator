@@ -77,7 +77,16 @@ namespace Nakladna.DAL
                 Add(s.GoodType, saveChanges);
             }
 
-            Add(s, saveChanges);
+            var existed = context.Sales.FirstOrDefault(e => e.DateTime == s.DateTime && e.Customer.Id == s.Customer.Id);
+            if (existed != null)
+            {
+                existed.Quantity = s.Quantity;
+                existed.Return = s.Return;
+            }
+            else
+            {
+                Add(s, saveChanges);
+            }
         }
 
         private void Add<T>(T t, bool saveChanges = true) where T : EntityBase
@@ -88,7 +97,7 @@ namespace Nakladna.DAL
                 context.SaveChanges();
         }
 
-        public void Delete<T>(T t) where T: EntityBase
+        public void Delete<T>(T t) where T : EntityBase
         {
             context.Set<T>().Remove(t);
         }

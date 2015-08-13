@@ -15,7 +15,7 @@ namespace Nakladna.DAL
 			var lavash = new GoodType
 				{
 					Name = "Лаваш",
-					Price = 10
+					Price = 5.8
 				};
 
 			context.GoodTypes.Add(lavash);

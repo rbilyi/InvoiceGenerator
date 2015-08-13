@@ -25,7 +25,15 @@ namespace Nakladna.ExcelImporter
 
                     ISheet sheet = workbook.GetSheetAt(sheetIdx);
 
-                    var datesCell = sheet.GetRow(Settings.DatesRow).GetCell(Settings.DatesColumn);
+                    var datesRow = sheet.GetRow(Settings.DatesRow);
+
+                    if (datesRow == null)
+                        continue;
+
+                    var datesCell = datesRow.GetCell(Settings.DatesColumn);
+
+                    if (datesCell == null)
+                        continue;
 
                     DateTime startDate = GetStartDate(datesCell);
 
@@ -58,13 +66,22 @@ namespace Nakladna.ExcelImporter
 
             int customerColumn = Settings.CustomersColumn;
             int startRow = Settings.SalesStartRow;
+            var datesEmptyLimit = 3;
 
             for (int c = firstDateCell.ColumnIndex; ; c++)
             {
                 var dateCell = sheet.GetRow(firstDateCell.RowIndex).GetCell(c);
 
                 if (dateCell == null)
-                    break;
+                {
+                    if (--datesEmptyLimit == 0)
+                        break;
+                    continue;
+                }
+                else
+                {
+                    datesEmptyLimit = 3;
+                }
 
                 if (dateCell.CellType != CellType.Numeric || dateCell.DateCellValue <= startDate)
                     continue;
@@ -116,15 +133,16 @@ namespace Nakladna.ExcelImporter
                         continue;
 
                     sale.Quantity = (int)qtyCell.NumericCellValue;
+
+                    if (sale.Quantity <= 0)
+                        continue;
                 }
 
                 var retCell = sheet.GetRow(r).GetCell(columnIndex + 1);
                 if (retCell != null)
                 {
-                    if (qtyCell.CellType != CellType.Numeric)
-                        continue;
-
-                    sale.Return = (int)retCell.NumericCellValue;
+                    if (retCell.CellType == CellType.Numeric)
+                        sale.Return = (int)retCell.NumericCellValue;
                 }
 
                 sales.Add(sale);

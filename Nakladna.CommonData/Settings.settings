@@ -27,7 +27,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="Producer" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">П.П. Оганесян</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;user id=sa;password=123456
