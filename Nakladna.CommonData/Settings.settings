@@ -30,7 +30,7 @@
       <Value Profile="(Default)">П.П. Оганесян</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;user id=sa;password=123456
+      <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;Integrated Security=SSPI
 ;MultipleActiveResultSets=True;App=EntityFramework</Value>
     </Setting>
   </Settings>
