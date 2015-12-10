@@ -30,8 +30,7 @@
       <Value Profile="(Default)">П.П. Оганесян</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;Integrated Security=SSPI
-;MultipleActiveResultSets=True;App=EntityFramework</Value>
+      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=db.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
   </Settings>
 </SettingsFile>
