@@ -25,9 +25,11 @@ namespace Nakladna
 
             try
             {
+                InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
+
                 goodTypes = InvoiceCore.Instance.GetGoods().ToArray();
 
-                if (goodTypes == null || goodTypes.Count() == 0)
+                if (goodTypes == null || !goodTypes.Any())
                 {
                     MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
                     throw new ArgumentException("goodTypes");
@@ -39,11 +41,18 @@ namespace Nakladna
 
                 if (Settings.LastImportedDate.HasValue)
                     dateTimePicker1.Value = Settings.LastImportedDate.Value;
+
+                CleanToolStrip();
             }
             catch (Exception ex)
             {
                 ShowErrorBox(ex);
             }
+        }
+
+        void Instance_InitializationNotification(object sender, NotificationEventArgs e)
+        {
+            ShowInToolsStrip(e.Message);
         }
 
         private void toDocButton_Click(object sender, EventArgs e)
@@ -151,6 +160,20 @@ namespace Nakladna
         {
             var set = new SettingsWindow();
             set.ShowDialog(this);
+        }
+
+        protected void ShowInToolsStrip(string message)
+        {
+            toolStripProgressBar.Visible = true;
+            toolStripProgressBar.Step = 1;
+            toolStripStatusLabel.Text = message;
+            toolStripStatusLabel.Visible = true;
+        }
+
+        protected void CleanToolStrip()
+        {
+            toolStripProgressBar.Visible = false;
+            toolStripStatusLabel.Visible = false;
         }
     }
 }

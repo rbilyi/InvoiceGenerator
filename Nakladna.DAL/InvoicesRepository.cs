@@ -11,27 +11,27 @@ namespace Nakladna.DAL
     public class Repository
     {
         #region repository
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
 
-        private static Repository _repository;
-        private static InvoicesContext context;
+        private static volatile Repository _repository;
+        private static InvoicesContext _context;
 
         protected Repository()
         {
-            context = new InvoicesContext(Settings.ConnectionString);
+            CheckSqlServices();
+            _context = new InvoicesContext(Settings.ConnectionString);
         }
 
         public static Repository Instance
         {
             get
             {
-                if (_repository == null)
+                if (_repository != null) return _repository;
+
+                lock (_lock)
                 {
-                    lock (_lock)
-                    {
-                        if (_repository == null)
-                            _repository = new Repository();
-                    }
+                    if (_repository == null)
+                        _repository = new Repository();
                 }
                 return _repository;
             }
@@ -39,14 +39,36 @@ namespace Nakladna.DAL
 
         #endregion
 
+        public event EventHandler<DbNotificationEventArgs> DbNotification;
+
+        public void CheckSqlServices()
+        {
+            var checker = new SQLServiceChecker(Settings.SQLServiceName);
+            checker.SQLServiceStarting += (s, e) => { InvokeDbNotification("SQLServer's service is stopped. Attempting to start."); };
+            checker.SQLServiceStarted += (s, e) => { InvokeDbNotification("SQLServer's service is started."); };
+            var status = checker.CheckAndStartService();
+
+            switch (status)
+            {
+                case ServiceCheckResult.StartingError:
+                    throw new ApplicationException("Error while starting sql service.");
+                case ServiceCheckResult.NotFound:
+                    throw new ApplicationException("Can't find SQL service:" + Settings.SQLServiceName);
+                case ServiceCheckResult.Running:
+                    return;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public T Get<T>(int id) where T : EntityBase
         {
-            return context.Set<T>().Find(id);
+            return _context.Set<T>().Find(id);
         }
 
         public IEnumerable<T> GetAll<T>() where T : EntityBase
         {
-            return context.Set<T>();
+            return _context.Set<T>();
         }
 
         //public IEnumerable<Sale> GetSales(Expression<Func<Sale, bool>> predicate = null) 
@@ -60,9 +82,9 @@ namespace Nakladna.DAL
         public IEnumerable<T> Get<T>(Expression<Func<T, bool>> predicate = null) where T : EntityBase
         {
             if (predicate == null)
-                return context.Set<T>();
+                return _context.Set<T>();
 
-            return context.Set<T>().Where(predicate).ToList();
+            return _context.Set<T>().Where(predicate).ToList();
         }
 
         public void AddSale(Sale s, bool saveChanges = true)
@@ -77,7 +99,7 @@ namespace Nakladna.DAL
                 Add(s.GoodType, saveChanges);
             }
 
-            var existed = context.Sales.FirstOrDefault(e => e.DateTime == s.DateTime && e.Customer.Id == s.Customer.Id);
+            var existed = _context.Sales.FirstOrDefault(e => e.DateTime == s.DateTime && e.Customer.Id == s.Customer.Id);
             if (existed != null)
             {
                 existed.Quantity = s.Quantity;
@@ -91,20 +113,26 @@ namespace Nakladna.DAL
 
         private void Add<T>(T t, bool saveChanges = true) where T : EntityBase
         {
-            context.Set<T>().Add(t);
+            _context.Set<T>().Add(t);
 
             if (saveChanges)
-                context.SaveChanges();
+                _context.SaveChanges();
         }
 
         public void Delete<T>(T t) where T : EntityBase
         {
-            context.Set<T>().Remove(t);
+            _context.Set<T>().Remove(t);
         }
 
         public void SaveChanges()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
+        }
+
+        protected virtual void InvokeDbNotification(string message)
+        {
+            var handler = DbNotification;
+            if (handler != null) handler(this, new DbNotificationEventArgs(message));
         }
     }
 }

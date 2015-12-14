@@ -127,5 +127,23 @@ namespace Nakladna
             get { return InnerSettings.Default.ConnectionString; }
             set { InnerSettings.Default.ConnectionString = value; }
         }
+
+        public static string ExcellFilePath
+        {
+            get { return InnerSettings.Default.ExcellFilePath; }
+            set { InnerSettings.Default.ExcellFilePath = value; }
+        }
+
+        public static byte[] LastExcellFileHash
+        {
+            get { return InnerSettings.Default.LastExcellFileHash; }
+            set { InnerSettings.Default.LastExcellFileHash = value; }
+        }
+
+        public static string SQLServiceName
+        {
+            get { return InnerSettings.Default.SQLServiceName; }
+            set { InnerSettings.Default.SQLServiceName = value; }
+        }
     }
 }

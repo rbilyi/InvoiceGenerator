@@ -143,5 +143,41 @@ namespace Nakladna.CommonData {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ExcellFilePath {
+            get {
+                return ((string)(this["ExcellFilePath"]));
+            }
+            set {
+                this["ExcellFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public byte[] LastExcellFileHash {
+            get {
+                return ((byte[])(this["LastExcellFileHash"]));
+            }
+            set {
+                this["LastExcellFileHash"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MSSQL$SQLEXPRESS")]
+        public string SQLServiceName {
+            get {
+                return ((string)(this["SQLServiceName"]));
+            }
+            set {
+                this["SQLServiceName"] = value;
+            }
+        }
     }
 }

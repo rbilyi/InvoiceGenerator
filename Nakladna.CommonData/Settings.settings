@@ -33,5 +33,14 @@
       <Value Profile="(Default)">data source=.\SQLEXPRESS;initial catalog=Nakladna;persist security info=True;Integrated Security=SSPI
 ;MultipleActiveResultSets=True;App=EntityFramework</Value>
     </Setting>
+    <Setting Name="ExcellFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastExcellFileHash" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLServiceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MSSQL$SQLEXPRESS</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

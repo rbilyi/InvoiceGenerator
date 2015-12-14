@@ -1184,7 +1184,7 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
-		<row><td>invoicesinstaller</td><td>StartupFolder</td><td>Invoice</td><td/><td>1</td><td/></row>
+		<row><td>invoicesinstaller</td><td>ProgramMenuFolder</td><td>Invoice</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -4032,8 +4032,8 @@
 		<col def="S0">Value</col>
 		<row><td>ActiveLanguage</td><td>1033</td></row>
 		<row><td>Comments</td><td/></row>
-		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="a4f66fafb30885f14d732b73e196bba0">
-RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
+		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="de9f554a3bc05c12be9c31b998217995">
+UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 			</td></row>
 		<row><td>DefaultProductConfiguration</td><td>Express</td></row>
 		<row><td>EnableSwidtag</td><td>1</td></row>
@@ -4050,7 +4050,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{2023A650-BAB0-4F85-8E1D-3C6E3937191E}</td></row>
 		<row><td>ISUSSignature</td><td>{7F833602-D3CE-4D33-8E22-5262ECD770B1}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewSetupDesign,viewShortcuts,viewProject,viewRealSetupDesign,viewSetupTypes,viewUpgradePaths,viewUpdateService,viewSystemSearch,viewInstallScriptStd,viewCustomActions,viewSupportFiles,viewRelease,viewAppFiles,viewISToday</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewSetupDesign,viewShortcuts,viewProject,viewRealSetupDesign,viewSetupTypes,viewUpgradePaths,viewUpdateService,viewSystemSearch,viewInstallScriptStd,viewCustomActions,viewSupportFiles,viewRelease,viewAppFiles,viewISToday,viewFeatureFiles,viewDesignPatches</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
