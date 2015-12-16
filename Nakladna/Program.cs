@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Nakladna
@@ -16,7 +14,13 @@ namespace Nakladna
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //string path = (System.IO.Path.GetDirectoryName(executable));
+            //AppDomain.CurrentDomain.SetData("DataDirectory", path;)
+            //SpreadSheet.Go();
+            AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            Application.Run(new StartForm());
+            Application.Run(new MainForm());
         }
     }
 }
