@@ -15,20 +15,25 @@ namespace Nakladna.Core
         private static InvoiceCore _instance;
         protected InvoiceCore()
         {
+            Repository.Instance.DbNotification += (s, e) => { OnInitializationNotification(e); };
         }
 
         public static InvoiceCore Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new InvoiceCore();
-
-                return _instance;
+                return _instance ?? (_instance = new InvoiceCore());
             }
         }
         #endregion Singleton
+
+        public Action<GoodType, string, string> FileRenamed;
+        public Action<GoodType, string> FileChanged;
+
         public int NewCustomers { get; set; }
+
+        public event EventHandler<NotificationEventArgs> InitializationNotification; 
+
         public void SaveEntitiesChanges()
         {
             Repository.Instance.SaveChanges();
@@ -102,7 +107,7 @@ namespace Nakladna.Core
         {
             var inv = GetInvoicesByDatesRange(startDate, endDate);
 
-            if (inv.Count() == 0)
+            if (!inv.Any())
                 throw new NoSalesException();
 
             SaveInvoices(inv, savePath, runningPath);
@@ -129,6 +134,32 @@ namespace Nakladna.Core
             return result;
         }
 
+        public void StartAutoUpdating(GoodType goodType, string filePath, string producer)
+        {
+            var updater = new AutoDBUpdater(goodType, filePath, producer);
+
+            var updateCheck = updater.ChechFileModified(Settings.ExcellFilePath, Settings.LastExcellFileHash);
+
+            if (updateCheck.Item1)
+                FileChanged(goodType, filePath); 
+
+            updater.FileChanged = (path) =>
+            {
+                Settings.LastExcellFileHash = updateCheck.Item2;
+                ImportSalesFromXLS(path, goodType, producer, true);
+                FileChanged(goodType, filePath);
+            };
+
+            updater.FileRenamed = (path) =>
+            {
+                Settings.ExcellFilePath = path;
+                Settings.LastExcellFileHash = updateCheck.Item2;
+                FileRenamed(goodType, filePath, path);
+            };
+
+            updater.StartWatchingFile();
+        }
+
         private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer = null)
         {
             var list = new List<Invoice>();
@@ -149,5 +180,10 @@ namespace Nakladna.Core
             return list;
         }
 
+        protected virtual void OnInitializationNotification(NotificationEventArgs e)
+        {
+            var handler = InitializationNotification;
+            if (handler != null) handler(this, e);
+        }
     }
 }

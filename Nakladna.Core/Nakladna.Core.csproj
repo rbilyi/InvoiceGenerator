@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoDBUpdater.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="InvoiceCore.cs" />
     <Compile Include="NoSalesException.cs" />
