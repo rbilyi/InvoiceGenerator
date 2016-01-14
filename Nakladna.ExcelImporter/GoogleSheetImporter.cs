@@ -11,7 +11,7 @@ using Nakladna.CommonData;
 using Google.Spreadsheets;
 using NPOI.SS.UserModel;
 
-namespace Nakladna.ExcelImporter
+namespace Nakladna.DataSheetImporter
 {
     public class GoogleSheetImporter
     {

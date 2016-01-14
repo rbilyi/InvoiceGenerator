@@ -9,10 +9,17 @@ using Nakladna.CommonData;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace Nakladna.ExcelImporter
+namespace Nakladna.DataSheetImporter
 {
     public class ExcellImporter
     {
+        IEnumerable<PurchaseUnit> pUnits;
+
+        public ExcellImporter(IEnumerable<PurchaseUnit> pUnits)
+        {
+            this.pUnits = pUnits;
+        }
+
         public Dictionary<DateTime, IEnumerable<SaleParsed>> ImportFromFile(string path, GoodType type, string producer)
         {
             var result = new Dictionary<DateTime, IEnumerable<SaleParsed>>();

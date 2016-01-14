@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using Innvoice.Generator;
 using Nakladna.CommonData;
 using Nakladna.DAL;
-using Nakladna.ExcelImporter;
+using Nakladna.DataSheetImporter;
 
 namespace Nakladna.Core
 {
@@ -115,7 +115,7 @@ namespace Nakladna.Core
 
         public IEnumerable<Sale> ImportSalesFromXLS(string path, GoodType type, string producer, bool saveToDb = true)
         {
-            var importer = new ExcellImporter();
+            var importer = new DataSheetImporter.ExcellImporter();
             var sales = importer.ImportFromFile(path, type, producer);
             var result = new List<Sale>();
             NewCustomers = 0;
