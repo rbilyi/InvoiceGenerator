@@ -31,11 +31,11 @@ namespace Nakladna.DataSheetImporter
             return result;
         }
 
-        public Dictionary<DateTime, IEnumerable<SaleParsed>> ImportFromSheet(string path, DateTime dateTime, IEnumerable<int> sheetNumbers, IEnumerable<GoodType> goodTypes, string producer)
+        public Dictionary<DateTime, List<SaleParsed>> ImportFromSheet(string path, DateTime dateTime, IEnumerable<int> sheetNumbers, IEnumerable<GoodType> goodTypes, string producer)
         {
             this.goodTypes = goodTypes;
             this.producer = producer;
-            var result = new Dictionary<DateTime, IEnumerable<SaleParsed>>();
+            var result = new Dictionary<DateTime, List<SaleParsed>>();
 
             using (var fs = File.OpenRead(path))
             {
@@ -47,26 +47,46 @@ namespace Nakladna.DataSheetImporter
 
                     var sales = ParseSales(sheet, dateTime);
                     foreach (var s in sales)
-                        result.Add(s.Key, s.Value);
+                    {
+                        if (result.ContainsKey(s.Key))
+                        {
+                            result[s.Key].AddRange(s.Value);
+                        }
+                        else
+                        {
+                            result.Add(s.Key, s.Value);
+                        }
+                    }
                 }
             }
 
             return result;
         }
 
-        private Dictionary<DateTime, IEnumerable<SaleParsed>> ParseSales(ISheet sheet, DateTime dateTime)
+        private Dictionary<DateTime, List<SaleParsed>> ParseSales(ISheet sheet, DateTime dateTime)
         {
-            var sales = new Dictionary<DateTime, IEnumerable<SaleParsed>>();
+            var sales = new Dictionary<DateTime, List<SaleParsed>>();
 
             int customerColumn = Settings.CustomersColumn;
-            int startRow = Settings.SalesStartRow;
+            int startRow = Settings.StartRow;
 
             foreach (var good in goodTypes)
             {
-                var dSales = ParseGoodSale(sheet, good, dateTime, customerColumn, startRow);
+                var dSales = ParseGoodSale(sheet, good, dateTime, customerColumn, startRow).ToList();
 
                 if (dSales.Any())
-                    sales.Add(dSales.First().DateTime, dSales);
+                {
+                    var date = dSales.First().DateTime;
+
+                    if (sales.ContainsKey(date))
+                    {
+                        sales[date].AddRange(dSales);
+                    }
+                    else
+                    {
+                        sales.Add(dSales.First().DateTime, dSales);
+                    }
+                }
             }
 
             return sales;
@@ -78,41 +98,46 @@ namespace Nakladna.DataSheetImporter
 
             for (int r = startRow; ; r++)
             {
-                var customerCell = sheet.GetRow(r).GetCell(customerColumn);
+                var row = sheet.GetRow(r);
+                if (row == null)
+                    break;
+
+                var customerCell = row.GetCell(customerColumn);
                 if (customerCell == null)
                     break;
 
                 var customer = customerCell.StringCellValue.Trim();
 
-                var sale = new SaleParsed();
-                sale.GoodType = good;
-                sale.DateTime = dateTime;
-                sale.Customer = customer;
-                sale.Producer = producer;
-
+                int qty = 0, ret = 0;
                 var qtyCell = sheet.GetRow(r).GetCell(good.ColumnInDocument);
-                if (qtyCell != null)
+                if (qtyCell != null && qtyCell.CellType == CellType.Numeric
+                    && qtyCell.NumericCellValue > 0)
                 {
-                    if (qtyCell.CellType != CellType.Numeric)
-                        continue;
-
-                    sale.Quantity = (int)qtyCell.NumericCellValue;
-
-                    if (sale.Quantity <= 0)
-                        continue;
+                    qty = (int)qtyCell.NumericCellValue;
                 }
 
-                var retCell = sheet.GetRow(r).GetCell(good.ColumnInDocument + 1);
-                if (retCell != null)
+                if (good.HasReturn)
                 {
-                    if (retCell.CellType == CellType.Numeric)
-                        sale.Return = (int)retCell.NumericCellValue;
+                    var retCell = sheet.GetRow(r).GetCell(good.ReturnColumn.Value);
+                    if (retCell != null && retCell.CellType == CellType.Numeric
+                        && retCell.NumericCellValue > 0)
+                    {
+                        ret = (int)retCell.NumericCellValue;
+                    }
                 }
 
-                sales.Add(sale);
+                if (qty > 0 || ret > 0)
+                {
+                    var sale = new SaleParsed();
+                    sale.GoodType = good;
+                    sale.DateTime = dateTime;
+                    sale.Customer = customer;
+                    sale.Producer = producer;
+                    sale.Quantity = qty;
+                    sale.Return = ret;
+                    sales.Add(sale);
+                }
             }
-
-            Settings.Save();
 
             return sales;
         }

@@ -23,8 +23,14 @@ namespace Nakladna
 
             this.Text += " " + Application.ProductVersion.ToString();
 
+            RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
             try
             {
+                dataGridView1.Rows.Clear();
                 InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
 
                 goodTypes = InvoiceCore.Instance.GetGoods().ToArray();
@@ -34,12 +40,14 @@ namespace Nakladna
                     MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
                     throw new ArgumentException("goodTypes");
                 }
+
                 if (!goodTypes.Any())
                     MessageBox.Show("Немає ні одного типу товару.");
 
                 foreach (var gt in goodTypes)
                 {
                     var row = new DataGridViewRow();
+
                     var textCell = new DataGridViewTextBoxCell();
                     textCell.Value = gt.Name;
                     textCell.ValueType = typeof(string);
@@ -48,13 +56,9 @@ namespace Nakladna
                     priceCell.Value = gt.Price;
                     priceCell.ValueType = typeof(double);
 
-                    var editCell = new DataGridViewButtonCell();
-                    var removeCell = new DataGridViewButtonCell();
-
-                    var tagCell = new DataGridViewTextBoxCell();
-                    tagCell.Value = gt;
-                    row.Cells.AddRange(textCell, priceCell, editCell, removeCell, tagCell);
-                    dataGridView1.Rows.Add();
+                    row.Cells.AddRange(textCell, priceCell);
+                    dataGridView1.Rows.Add(row);
+                    row.Tag = gt;
                 }
 
                 dateTimePicker1.Value = DateTime.Now;
@@ -142,38 +146,51 @@ namespace Nakladna
             toolStripStatusLabel.Visible = false;
         }
 
-        private void importButton_Click_1(object sender, EventArgs e)
-        {
-            var selectSheetForm = new SelectSheetsDialog(Settings.ExcellFilePath);
-            selectSheetForm.Show();
-        }
-
         private void btnAddGood_Click(object sender, EventArgs e)
         {
             var form = new GoodTypeForm();
             form.ShowDialog();
 
             if (form.GoodType != null)
+            {
                 InvoiceCore.Instance.SaveGoodType(form.GoodType);
+                RefreshGrid();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var good = dataGridView1.Rows[e.RowIndex].Cells[GoodTagColumn.Index].Value as GoodType;
-            if (good == null)
+            GoodType good;
+            try
+            {
+                good = dataGridView1.Rows[e.RowIndex].Tag as GoodType;
+                if (good == null)
+                    return;
+            }
+            catch
+            {
                 return;
+            }
 
-            if (e.ColumnIndex == RemoveColumn.Index)
+            if (e.ColumnIndex == ColumnRemove.Index)
             {
                 if (MessageBox.Show("Видалити " + good.Name + "?", "Видалення", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     InvoiceCore.Instance.RemoveGoodType(good);
+                    RefreshGrid();
                 }
             }
 
-            if (e.ColumnIndex == EditGoodColumn.Index)
+            if (e.ColumnIndex == ColumnEditGood.Index)
             {
                 var form = new GoodTypeForm(good);
+                form.ShowDialog();
+
+                if (form.GoodType != null)
+                {
+                    InvoiceCore.Instance.SaveGoodType(form.GoodType);
+                    RefreshGrid();
+                }
             }
         }
 

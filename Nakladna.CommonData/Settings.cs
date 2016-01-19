@@ -26,8 +26,8 @@ namespace Nakladna
 
         public static int CustomersRow
         {
-            get { return InnerSettings.Default.CustomersRow; }
-            set { InnerSettings.Default.CustomersRow = value; }
+            get { return InnerSettings.Default.StartRow; }
+            set { InnerSettings.Default.StartRow = value; }
         }
 
         public static int CustomersColumn
@@ -48,15 +48,15 @@ namespace Nakladna
             }
         }
 
-        public static int SalesStartRow
+        public static int StartRow
         {
             get
             {
-                return InnerSettings.Default.SalesStartRow;
+                return InnerSettings.Default.StartRow;
             }
             set
             {
-                InnerSettings.Default.SalesStartRow = value;
+                InnerSettings.Default.StartRow = value;
             }
         }
 

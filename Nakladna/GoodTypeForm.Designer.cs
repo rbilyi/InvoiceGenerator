@@ -112,6 +112,7 @@
             // 
             // txtReturnColumn
             // 
+            this.txtReturnColumn.Enabled = false;
             this.txtReturnColumn.Location = new System.Drawing.Point(62, 17);
             this.txtReturnColumn.Name = "txtReturnColumn";
             this.txtReturnColumn.Size = new System.Drawing.Size(75, 20);
@@ -138,7 +139,7 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // AddGoodForm
+            // GoodTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,7 +152,7 @@
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTitle);
-            this.Name = "AddGoodForm";
+            this.Name = "GoodTypeForm";
             this.Text = "Товар";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

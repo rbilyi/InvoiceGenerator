@@ -26,12 +26,12 @@ namespace Nakladna.CommonData {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int CustomersRow {
+        public int StartRow {
             get {
-                return ((int)(this["CustomersRow"]));
+                return ((int)(this["StartRow"]));
             }
             set {
-                this["CustomersRow"] = value;
+                this["StartRow"] = value;
             }
         }
         
@@ -56,18 +56,6 @@ namespace Nakladna.CommonData {
             }
             set {
                 this["TemplatePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int SalesStartRow {
-            get {
-                return ((int)(this["SalesStartRow"]));
-            }
-            set {
-                this["SalesStartRow"] = value;
             }
         }
         

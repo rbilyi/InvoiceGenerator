@@ -17,7 +17,7 @@ namespace Nakladna.DAL
 					Name = "Лаваш",
 					Price = 5.8,
                     ColumnInDocument = 1,
-                    ReturnColumnt = 2
+                    ReturnColumn = 2
 				};
 
 			context.GoodTypes.Add(lavash);

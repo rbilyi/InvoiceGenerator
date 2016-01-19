@@ -16,9 +16,9 @@ namespace Nakladna.Core
             Repository.Instance.SaveChanges();
         }
 
-        public void Remove(GoodType goodType)
+        public void Remove(EntityBase entity)
         {
-            Repository.Instance.Delete(goodType);
+            Repository.Instance.Delete(entity);
         }
 
         public IEnumerable<GoodType> GetGoods()
@@ -66,9 +66,9 @@ namespace Nakladna.Core
                 && s.DateTime.Year == date.Year);
         }
 
-        internal void SaveEntitiesChanges(GoodType goodType)
+        internal void SaveEntity(EntityBase entity)
         {
-            Repository.Instance.SaveGoodType(goodType);
+            Repository.Instance.SaveEntity(entity);
         }
     }
 }

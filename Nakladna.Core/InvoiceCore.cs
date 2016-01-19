@@ -42,7 +42,7 @@ namespace Nakladna.Core
         public IEnumerable<Invoice> GetInvoicesByDatesRange(DateTime startDate, DateTime endDate)
         {
             startDate = startDate.Date;
-            endDate = endDate.Date;
+            endDate = endDate.Date.AddDays(1).AddSeconds(-1);
             if (startDate > endDate)
             {
                 var t = endDate;
@@ -155,7 +155,7 @@ namespace Nakladna.Core
 
         public void SaveGoodType(GoodType goodType)
         {
-            new DataProvider().SaveEntitiesChanges(goodType);
+            new DataProvider().SaveEntity(goodType);
         }
 
         protected virtual void OnInitializationNotification(NotificationEventArgs e)

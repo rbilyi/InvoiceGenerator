@@ -14,13 +14,10 @@ namespace Nakladna
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            //string path = (System.IO.Path.GetDirectoryName(executable));
-            //AppDomain.CurrentDomain.SetData("DataDirectory", path;)
-            //SpreadSheet.Go();
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
             Application.Run(new StartForm());
             Application.Run(new MainForm());
+            Core.InvoiceCore.Instance.SaveDataChanges();
         }
     }
 }

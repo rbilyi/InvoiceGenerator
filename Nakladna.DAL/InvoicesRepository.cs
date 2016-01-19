@@ -61,38 +61,32 @@ namespace Nakladna.DAL
             }
         }
 
-        public void SaveGoodType(GoodType entity)
+        public void SaveEntity(EntityBase entity)
         {
             if (entity.Id == null)
-                _context.GoodTypes.Add(entity);
+                Add(entity);
 
             SaveChanges();
         }
 
-        public T Get<T>(int id) where T : EntityBase
+        public T Get<T>(int id, bool includeDeleted = false) where T : EntityBase
         {
-            return _context.Set<T>().Find(id);
+            return _context.Set<T>().FirstOrDefault(e => e.Id == id && (!e.IsDeleted || includeDeleted));
         }
 
-        public IEnumerable<T> GetAll<T>() where T : EntityBase
+        public IEnumerable<T> GetAll<T>(bool includeDeleted = false) where T : EntityBase
         {
-            return _context.Set<T>();
+            return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted);
         }
 
-        //public IEnumerable<Sale> GetSales(Expression<Func<Sale, bool>> predicate = null) 
-        //{
-        //    if (predicate == null)
-        //        return context.Set<Sale>();
-
-        //    return context.Set<Sale>().Where(predicate).Include(s => s.Customer).ToList();
-        //}
-
-        public IEnumerable<T> Get<T>(Expression<Func<T, bool>> predicate = null) where T : EntityBase
+        public IEnumerable<T> Get<T>(Expression<Func<T, bool>> predicate = null, bool includeDeleted = false) where T : EntityBase
         {
             if (predicate == null)
-                return _context.Set<T>();
+                return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted);
 
-            return _context.Set<T>().Where(predicate).ToList();
+            return _context.Set<T>()
+                .Where(e => !e.IsDeleted || includeDeleted)
+                .Where(predicate).ToList();
         }
 
         public void AddSale(Sale s, bool saveChanges = true)
@@ -121,7 +115,7 @@ namespace Nakladna.DAL
 
         private void Add<T>(T t, bool saveChanges = true) where T : EntityBase
         {
-            _context.Set<T>().Add(t);
+            _context.Set(t.GetType()).Add(t);
 
             if (saveChanges)
                 _context.SaveChanges();
@@ -129,7 +123,9 @@ namespace Nakladna.DAL
 
         public void Delete<T>(T t) where T : EntityBase
         {
-            _context.Set<T>().Remove(t);
+            //_context.Set(t.GetType()).Remove(t);
+            t.IsDeleted = true;
+            _context.SaveChanges();
         }
 
         public void SaveChanges()

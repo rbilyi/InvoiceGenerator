@@ -13,7 +13,7 @@ namespace Nakladna.CommonData
         public int ColumnInDocument { get; set; }
         public bool HasReturn { get; set; }
 
-        public int? ReturnColumnt { get; set; }
+        public int? ReturnColumn { get; set; }
 
         public virtual IEnumerable<Sale> Sales { get; set; }
 

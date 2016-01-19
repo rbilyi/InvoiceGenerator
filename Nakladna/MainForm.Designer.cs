@@ -34,11 +34,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddGood = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.GoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GoodPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditGood = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.RemoveColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.GoodTag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnGoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnGoodPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEditGood = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnGoodTag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -109,17 +109,18 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.GoodType,
-            this.GoodPrice,
-            this.EditGood,
-            this.RemoveColumn,
-            this.GoodTag});
+            this.ColumnGoodType,
+            this.ColumnGoodPrice,
+            this.ColumnEditGood,
+            this.ColumnRemove,
+            this.ColumnGoodTag});
             this.dataGridView1.Location = new System.Drawing.Point(6, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -127,44 +128,44 @@
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // GoodType
+            // ColumnGoodType
             // 
-            this.GoodType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.GoodType.HeaderText = "Товар";
-            this.GoodType.Name = "GoodType";
-            this.GoodType.ReadOnly = true;
-            this.GoodType.Width = 63;
+            this.ColumnGoodType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnGoodType.HeaderText = "Товар";
+            this.ColumnGoodType.Name = "ColumnGoodType";
+            this.ColumnGoodType.ReadOnly = true;
+            this.ColumnGoodType.Width = 63;
             // 
-            // GoodPrice
+            // ColumnGoodPrice
             // 
-            this.GoodPrice.HeaderText = "Ціна";
-            this.GoodPrice.Name = "GoodPrice";
-            this.GoodPrice.ReadOnly = true;
+            this.ColumnGoodPrice.HeaderText = "Ціна";
+            this.ColumnGoodPrice.Name = "ColumnGoodPrice";
+            this.ColumnGoodPrice.ReadOnly = true;
             // 
-            // EditGood
+            // ColumnEditGood
             // 
-            this.EditGood.HeaderText = "Змінити";
-            this.EditGood.Name = "EditGood";
-            this.EditGood.ReadOnly = true;
-            this.EditGood.Text = "Змінити";
-            this.EditGood.UseColumnTextForButtonValue = true;
-            this.EditGood.Width = 70;
+            this.ColumnEditGood.HeaderText = "Змінити";
+            this.ColumnEditGood.Name = "ColumnEditGood";
+            this.ColumnEditGood.ReadOnly = true;
+            this.ColumnEditGood.Text = "Змінити";
+            this.ColumnEditGood.UseColumnTextForButtonValue = true;
+            this.ColumnEditGood.Width = 70;
             // 
-            // RemoveColumn
+            // ColumnRemove
             // 
-            this.RemoveColumn.HeaderText = "Видалити";
-            this.RemoveColumn.Name = "RemoveColumn";
-            this.RemoveColumn.ReadOnly = true;
-            this.RemoveColumn.Text = "Видалити";
-            this.RemoveColumn.UseColumnTextForButtonValue = true;
-            this.RemoveColumn.Width = 70;
+            this.ColumnRemove.HeaderText = "Видалити";
+            this.ColumnRemove.Name = "ColumnRemove";
+            this.ColumnRemove.ReadOnly = true;
+            this.ColumnRemove.Text = "Видалити";
+            this.ColumnRemove.UseColumnTextForButtonValue = true;
+            this.ColumnRemove.Width = 70;
             // 
-            // GoodTag
+            // ColumnGoodTag
             // 
-            this.GoodTag.HeaderText = "GoodTag";
-            this.GoodTag.Name = "GoodTag";
-            this.GoodTag.ReadOnly = true;
-            this.GoodTag.Visible = false;
+            this.ColumnGoodTag.HeaderText = "GoodTag";
+            this.ColumnGoodTag.Name = "ColumnGoodTag";
+            this.ColumnGoodTag.ReadOnly = true;
+            this.ColumnGoodTag.Visible = false;
             // 
             // groupBox2
             // 
@@ -216,7 +217,7 @@
             this.importButton.TabIndex = 18;
             this.importButton.Text = "Імпорт з файлу";
             this.importButton.UseVisualStyleBackColor = true;
-            this.importButton.Click += new System.EventHandler(this.importButton_Click_1);
+            this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
             // statusStrip1
             // 
@@ -281,15 +282,11 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAddGood;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodTypeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodPriceColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn EditGoodColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn RemoveColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodTagColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodTag;
-        private System.Windows.Forms.DataGridViewButtonColumn EditGood;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodPrice;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnEditGood;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodTag;
     }
 }
 

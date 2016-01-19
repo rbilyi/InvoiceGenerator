@@ -21,21 +21,23 @@ namespace Nakladna
         }
 
         public GoodTypeForm(GoodType goodType)
-            :this()
         {
+            InitializeComponent();
+
+            GoodType = goodType;
             fillGood(goodType);
         }
 
         private void fillGood(GoodType goodType)
         {
-            txtColumn.Text = goodType.ColumnInDocument.ToString();
+            txtColumn.Text = GetExcelColumnName(goodType.ColumnInDocument);
             txtPrice.Text = goodType.Price.ToString();
             txtTitle.Text = goodType.Name;
 
             if (goodType.HasReturn)
             {
                 checkBox1.Checked = true;
-                txtReturnColumn.Text = goodType.ReturnColumnt.ToString();
+                txtReturnColumn.Text = GetExcelColumnName(goodType.ReturnColumn.Value);
             }
             else
             {
@@ -47,15 +49,16 @@ namespace Nakladna
         {
             try
             {
-                var goodType = new GoodType();
+                if (GoodType == null)
+                    GoodType = new GoodType();
+
                 txtPrice.Text = txtPrice.Text.Replace(",", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
                 txtPrice.Text = txtPrice.Text.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
-                goodType.Name = txtTitle.Text;
-                goodType.Price = double.Parse(txtPrice.Text.Trim());
-                goodType.ColumnInDocument = int.Parse(txtColumn.Text.Trim());
-                goodType.HasReturn = checkBox1.Checked;
-                goodType.ReturnColumnt = int.Parse(txtReturnColumn.Text.Trim());
-                GoodType = goodType;
+                GoodType.Name = txtTitle.Text;
+                GoodType.Price = double.Parse(txtPrice.Text.Trim());
+                GoodType.ColumnInDocument = GetColumnNumber(txtColumn.Text.Trim());
+                GoodType.HasReturn = checkBox1.Checked;
+                GoodType.ReturnColumn = GetColumnNumber(txtReturnColumn.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -75,6 +78,35 @@ namespace Nakladna
         {
             if (buildGood())
                 Close();
+        }
+
+        public static int GetColumnNumber(string name)
+        {
+            int number = 0;
+            int pow = 1;
+            for (int i = name.Length - 1; i >= 0; i--)
+            {
+                number += (name[i] - 'A' + 1) * pow;
+                pow *= 26;
+            }
+
+            return number;
+        }
+
+        private string GetExcelColumnName(int columnNumber)
+        {
+            int dividend = columnNumber;
+            string columnName = String.Empty;
+            int modulo;
+
+            while (dividend > 0)
+            {
+                modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                dividend = (int)((dividend - modulo) / 26);
+            }
+
+            return columnName;
         }
     }
 }

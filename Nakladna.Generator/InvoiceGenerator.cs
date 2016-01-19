@@ -72,7 +72,6 @@ namespace Innvoice.Generator
 						resultDoc.InsertDocument(t);
 					}
 				}
-				resultDoc.InsertSectionPageBreak();
 
 				invNum++;
 			}

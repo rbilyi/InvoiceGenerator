@@ -12,14 +12,16 @@ namespace Nakladna
 {
     public partial class SelectSheetsDialog : Form
     {
-        private string filePath;
+        private string _filePath;
         public string FilePath
         {
-            get { return filePath; }
+            get { return _filePath; }
             private set
             {
-                filePath = value;
+                _filePath = value;
                 txtFilePath.Text = value;
+                Settings.ExcellFilePath = value;
+                Settings.Save();
             }
         }
 
@@ -32,25 +34,20 @@ namespace Nakladna
             InitializeComponent();
 
             dateTimePicker1.Value = DateTime.Now;
-        }
+            FilePath = Settings.ExcellFilePath;
 
-        public SelectSheetsDialog(string filePath)
-            : this()
-        {
-            if (string.IsNullOrEmpty(filePath))
-            {
-                BrowseFile();
-            }
-            else
-            {
-                FilePath = filePath;
-            }
+            if (string.IsNullOrEmpty(FilePath))
+                FilePath = BrowseFile();
 
             FillShets();
         }
 
         private void FillShets()
         {
+            if (string.IsNullOrEmpty(FilePath))
+                return;
+
+            listBox1.Items.Clear();
             var sheets = Core.InvoiceCore.Instance.GetSheets(FilePath);
             foreach (var sheet in sheets.OrderByDescending(s => s.Key))
             {
@@ -58,26 +55,35 @@ namespace Nakladna
             }
         }
 
-        private void BrowseFile()
+        private string BrowseFile()
         {
             using (var openDialog = new OpenFileDialog())
             {
                 if (openDialog.ShowDialog() == DialogResult.OK)
                 {
-                    FilePath = openDialog.FileName;
+                    return openDialog.FileName;
                 }
             }
+
+            return null;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Sheets = listBox1.SelectedItems.Cast<SheetItemInListBox>().Select(i => i.Index);
             DateTime = dateTimePicker1.Value;
+            Close();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            BrowseFile();
+            var path = BrowseFile();
+            if (string.IsNullOrEmpty(path))
+                return;
+
+            FilePath = path;
+            FillShets();
         }
 
         internal class SheetItemInListBox
@@ -88,6 +94,7 @@ namespace Nakladna
             public SheetItemInListBox(int index, string text)
             {
                 Index = index;
+                this.text = text;
             }
 
             public override string ToString()
