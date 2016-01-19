@@ -21,9 +21,6 @@ namespace Nakladna
                 connectionStringTxt.Text = Settings.ConnectionString;
                 custColTxt.Text = Settings.CustomersColumn.ToString();
                 custRowTxt.Text = Settings.CustomersRow.ToString();
-                dateColTxt.Text = Settings.DatesColumn.ToString();
-                dateRowTxt.Text = Settings.DatesRow.ToString();
-                lastImportDateDTP.Value = Settings.LastImportedDate.Value;
                 producerTxt.Text = Settings.Producer;
             }
             catch
@@ -39,9 +36,6 @@ namespace Nakladna
                 Settings.ConnectionString = connectionStringTxt.Text;
                 Settings.CustomersColumn = int.Parse(custColTxt.Text);
                 Settings.CustomersRow = int.Parse(custRowTxt.Text);
-                Settings.DatesColumn = int.Parse(dateColTxt.Text);
-                Settings.DatesRow = int.Parse(dateRowTxt.Text);
-                Settings.LastImportedDate = lastImportDateDTP.Value;
                 Settings.Producer = producerTxt.Text;
             }
             catch

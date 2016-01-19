@@ -8,11 +8,11 @@ namespace Nakladna.DAL.Entitties
 {
 	public static class EnumsConverter
 	{
-		public static string GetString(GoodType type)
+		public static string GetString(GoodTypes type)
 		{
 			switch (type)
 			{
-				case GoodType.Lavash:
+				case GoodTypes.Lavash:
 					return "Лаваш";
 				default:
 					throw new ArgumentNullException("type");
@@ -20,7 +20,7 @@ namespace Nakladna.DAL.Entitties
 		}
 	}
 
-	public enum GoodType
+	public enum GoodTypes
 	{
 		Lavash
 	}

@@ -8,14 +8,16 @@ using Nakladna.CommonData;
 
 namespace Nakladna.DAL
 {
-	public class InvoicesInitializer : CreateDatabaseIfNotExists<InvoicesContext>
+	public class InvoicesInitializer : DropCreateDatabaseIfModelChanges<InvoicesContext>
 	{
 		protected override void Seed(InvoicesContext context)
 		{
 			var lavash = new GoodType
 				{
 					Name = "Лаваш",
-					Price = 5.8
+					Price = 5.8,
+                    ColumnInDocument = 1,
+                    ReturnColumnt = 2
 				};
 
 			context.GoodTypes.Add(lavash);

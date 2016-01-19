@@ -24,18 +24,6 @@ namespace Nakladna
             InnerSettings.Default.Reset();
         }
 
-        public static int DatesRow
-        {
-            get { return InnerSettings.Default.DatesRow; }
-            set { InnerSettings.Default.DatesRow = value; }
-        }
-
-        public static int DatesColumn
-        {
-            get { return InnerSettings.Default.DatesColumn; }
-            set { InnerSettings.Default.DatesColumn = value; }
-        }
-
         public static int CustomersRow
         {
             get { return InnerSettings.Default.CustomersRow; }
@@ -46,44 +34,6 @@ namespace Nakladna
         {
             get { return InnerSettings.Default.CustomersColumn; }
             set { InnerSettings.Default.CustomersColumn = value; }
-        }
-
-        public static string LastImportedXLS
-        {
-            get
-            {
-                try
-                {
-                    return InnerSettings.Default.LastImportedXLS;
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                InnerSettings.Default.LastImportedXLS = value;
-            }
-        }
-
-        public static DateTime? LastImportedDate
-        {
-            get
-            {
-                try
-                {
-                    return InnerSettings.Default.LastImportedDate;
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                InnerSettings.Default.LastImportedDate = value.Value;
-            }
         }
 
         public static string TemplateFileName
@@ -130,14 +80,8 @@ namespace Nakladna
 
         public static string ExcellFilePath
         {
-            get { return InnerSettings.Default.ExcellFilePath; }
-            set { InnerSettings.Default.ExcellFilePath = value; }
-        }
-
-        public static byte[] LastExcellFileHash
-        {
-            get { return InnerSettings.Default.LastExcellFileHash; }
-            set { InnerSettings.Default.LastExcellFileHash = value; }
+            get { return InnerSettings.Default.LastImportedXLS; }
+            set { InnerSettings.Default.LastImportedXLS = value; }
         }
 
         public static string SQLServiceName

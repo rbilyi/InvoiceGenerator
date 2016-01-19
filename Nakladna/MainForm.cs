@@ -29,18 +29,36 @@ namespace Nakladna
 
                 goodTypes = InvoiceCore.Instance.GetGoods().ToArray();
 
-                if (goodTypes == null || !goodTypes.Any())
+                if (goodTypes == null)
                 {
                     MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
                     throw new ArgumentException("goodTypes");
                 }
-                comboBoxGoodType.DataSource = goodTypes;
-                comboBoxGoodType.SelectedItem = comboBoxGoodType.Items[0];
+                if (!goodTypes.Any())
+                    MessageBox.Show("Немає ні одного типу товару.");
 
-                producerName.Text = Settings.Producer;
+                foreach (var gt in goodTypes)
+                {
+                    var row = new DataGridViewRow();
+                    var textCell = new DataGridViewTextBoxCell();
+                    textCell.Value = gt.Name;
+                    textCell.ValueType = typeof(string);
 
-                if (Settings.LastImportedDate.HasValue)
-                    dateTimePicker1.Value = Settings.LastImportedDate.Value;
+                    var priceCell = new DataGridViewTextBoxCell();
+                    priceCell.Value = gt.Price;
+                    priceCell.ValueType = typeof(double);
+
+                    var editCell = new DataGridViewButtonCell();
+                    var removeCell = new DataGridViewButtonCell();
+
+                    var tagCell = new DataGridViewTextBoxCell();
+                    tagCell.Value = gt;
+                    row.Cells.AddRange(textCell, priceCell, editCell, removeCell, tagCell);
+                    dataGridView1.Rows.Add();
+                }
+
+                dateTimePicker1.Value = DateTime.Now;
+                dateTimePicker2.Value = DateTime.Now;
 
                 CleanToolStrip();
             }
@@ -62,14 +80,6 @@ namespace Nakladna
 
             try
             {
-                var producer = producerName.Text;
-
-                if (string.IsNullOrEmpty(producer))
-                    throw new ArgumentException("Введіть поставщика!");
-
-                Settings.Producer = producer;
-                Settings.Save();
-
                 var saveDlg = new SaveFileDialog();
                 saveDlg.Filter = ".docx|*.docx";
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
@@ -92,20 +102,11 @@ namespace Nakladna
         {
             try
             {
-                var openDlg = new OpenFileDialog();
-                if (openDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                var sheetDialog = new SelectSheetsDialog();
+                if (sheetDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (string.IsNullOrWhiteSpace(openDlg.FileName))
-                        return;
 
-                    var producer = producerName.Text;
-                    if (string.IsNullOrEmpty(producer))
-                        throw new ArgumentException("Введіть поставщика!");
-
-                    Settings.Producer = producer;
-                    Settings.Save();
-
-                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(openDlg.FileName, comboBoxGoodType.SelectedValue as GoodType, producer);
+                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(sheetDialog.FilePath, sheetDialog.Sheets, sheetDialog.DateTime);
                     MessageBox.Show(string.Format("Імпортовано {0} продажів. {1} нових клієнтів.",
                         inv.Count(), InvoiceCore.Instance.NewCustomers));
                 }
@@ -116,44 +117,9 @@ namespace Nakladna
             }
         }
 
-        private void savePriceButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var producer = producerName.Text;
-                if (string.IsNullOrEmpty(producer))
-                    throw new ArgumentException("Введіть поставщика!");
-
-                Settings.Producer = producer;
-                Settings.Save();
-
-                var goodType = comboBoxGoodType.SelectedValue as GoodType;
-                priceTextBox.Text = priceTextBox.Text.Replace(",", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
-                priceTextBox.Text = priceTextBox.Text.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
-                goodType.Price = double.Parse(priceTextBox.Text);
-                InvoiceCore.Instance.SaveEntitiesChanges();
-            }
-            catch (Exception ex)
-            {
-                ShowErrorBox(ex);
-            }
-        }
-
         private void ShowErrorBox(Exception ex)
         {
             MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace, "Помилка");
-        }
-
-        private void comboBoxGoodType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                priceTextBox.Text = string.Format("{0:f2}", (comboBoxGoodType.SelectedValue as GoodType).Price);
-            }
-            catch (Exception ex)
-            {
-                ShowErrorBox(ex);
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -174,6 +140,46 @@ namespace Nakladna
         {
             toolStripProgressBar.Visible = false;
             toolStripStatusLabel.Visible = false;
+        }
+
+        private void importButton_Click_1(object sender, EventArgs e)
+        {
+            var selectSheetForm = new SelectSheetsDialog(Settings.ExcellFilePath);
+            selectSheetForm.Show();
+        }
+
+        private void btnAddGood_Click(object sender, EventArgs e)
+        {
+            var form = new GoodTypeForm();
+            form.ShowDialog();
+
+            if (form.GoodType != null)
+                InvoiceCore.Instance.SaveGoodType(form.GoodType);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var good = dataGridView1.Rows[e.RowIndex].Cells[GoodTagColumn.Index].Value as GoodType;
+            if (good == null)
+                return;
+
+            if (e.ColumnIndex == RemoveColumn.Index)
+            {
+                if (MessageBox.Show("Видалити " + good.Name + "?", "Видалення", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    InvoiceCore.Instance.RemoveGoodType(good);
+                }
+            }
+
+            if (e.ColumnIndex == EditGoodColumn.Index)
+            {
+                var form = new GoodTypeForm(good);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            InvoiceCore.Instance.SaveDataChanges();
         }
     }
 }

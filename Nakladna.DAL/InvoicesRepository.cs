@@ -61,6 +61,14 @@ namespace Nakladna.DAL
             }
         }
 
+        public void SaveGoodType(GoodType entity)
+        {
+            if (entity.Id == null)
+                _context.GoodTypes.Add(entity);
+
+            SaveChanges();
+        }
+
         public T Get<T>(int id) where T : EntityBase
         {
             return _context.Set<T>().Find(id);

@@ -10,6 +10,10 @@ namespace Nakladna.CommonData
 	{
 		public string Name { get; set; }
 		public double Price { get; set; }
+        public int ColumnInDocument { get; set; }
+        public bool HasReturn { get; set; }
+
+        public int? ReturnColumnt { get; set; }
 
         public virtual IEnumerable<Sale> Sales { get; set; }
 

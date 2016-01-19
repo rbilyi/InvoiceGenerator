@@ -34,40 +34,9 @@ namespace Nakladna.Core
 
         public event EventHandler<NotificationEventArgs> InitializationNotification; 
 
-        public void SaveEntitiesChanges()
+        public IReadOnlyDictionary<int, string> GetSheets(string filePath)
         {
-            Repository.Instance.SaveChanges();
-        }
-
-        public IEnumerable<GoodType> GetGoods()
-        {
-            var rep = Repository.Instance;
-            return rep.GetAll<GoodType>();
-        }
-
-        public IEnumerable<Customer> GetCustomers()
-        {
-            var rep = Repository.Instance;
-            return rep.GetAll<Customer>();
-        }
-
-        public IEnumerable<Customer> GetCustomers(Expression<Func<Customer, bool>> predicate)
-        {
-            var rep = Repository.Instance;
-            return rep.Get(predicate);
-        }
-
-        public Customer GetCustomer(Expression<Func<Customer, bool>> predicate)
-        {
-            return Repository.Instance.Get(predicate).FirstOrDefault();
-        }
-
-        public void AddSales(IEnumerable<Sale> sales)
-        {
-            foreach (var s in sales)
-                Repository.Instance.AddSale(s, false);
-
-            Repository.Instance.SaveChanges();
+            return new ExcellImporter().GetSheets(filePath);
         }
 
         public IEnumerable<Invoice> GetInvoicesByDatesRange(DateTime startDate, DateTime endDate)
@@ -81,18 +50,14 @@ namespace Nakladna.Core
                 startDate = t;
             }
 
-            IEnumerable<Sale> sales = Repository.Instance
-                .Get<Sale>(s => s.DateTime >= startDate && s.DateTime <= endDate);
+            IEnumerable<Sale> sales = new DataProvider().GetSales(startDate, endDate);
 
-            return GenerateInvoices(sales).ToList();
+            return GenerateInvoices(sales);
         }
 
         public IEnumerable<Invoice> GenerateInvoicesByDate(DateTime date)
         {
-            IEnumerable<Sale> sales = Repository.Instance
-                .Get<Sale>(s => s.DateTime.Day == date.Day
-                && s.DateTime.Month == date.Month
-                && s.DateTime.Year == date.Year);
+            IEnumerable<Sale> sales = new DataProvider().GetSales(date);
 
             return GenerateInvoices(sales);
         }
@@ -101,6 +66,11 @@ namespace Nakladna.Core
         {
             var generator = new InvoiceGenerator();
             generator.CreateInOneDocument(invoices, path, runningPath);
+        }
+
+        public IEnumerable<GoodType> GetGoods()
+        {
+            return new DataProvider().GetGoods();
         }
 
         public void ExportToDoc(DateTime startDate, DateTime endDate, string savePath, string runningPath)
@@ -113,10 +83,13 @@ namespace Nakladna.Core
             SaveInvoices(inv, savePath, runningPath);
         }
 
-        public IEnumerable<Sale> ImportSalesFromXLS(string path, GoodType type, string producer, bool saveToDb = true)
+        public IEnumerable<Sale> ImportSalesFromXLS(string path, IEnumerable<int> sheets, DateTime dateTime, bool saveToDb = true)
         {
-            var importer = new DataSheetImporter.ExcellImporter();
-            var sales = importer.ImportFromFile(path, type, producer);
+            var goods = new DataProvider().GetGoods();
+            var producer = Settings.Producer;
+            var importer = new ExcellImporter();
+            var sales = importer.ImportFromSheet(path, dateTime, sheets, goods, producer);
+
             var result = new List<Sale>();
             NewCustomers = 0;
 
@@ -126,7 +99,7 @@ namespace Nakladna.Core
                 NewCustomers += salesByDay.Count(s => !s.Customer.Id.HasValue);
 
                 if (saveToDb)
-                    AddSales(salesByDay);
+                    new DataProvider().AddSales(salesByDay);
 
                 result.AddRange(salesByDay);
             }
@@ -136,28 +109,28 @@ namespace Nakladna.Core
 
         public void StartAutoUpdating(GoodType goodType, string filePath, string producer)
         {
-            var updater = new AutoDBUpdater(goodType, filePath, producer);
+            //var updater = new AutoDBUpdater(goodType, filePath, producer);
 
-            var updateCheck = updater.ChechFileModified(Settings.ExcellFilePath, Settings.LastExcellFileHash);
+            //var updateCheck = updater.ChechFileModified(Settings.ExcellFilePath, Settings.LastExcellFileHash);
 
-            if (updateCheck.Item1)
-                FileChanged(goodType, filePath); 
+            //if (updateCheck.Item1)
+            //    FileChanged(goodType, filePath); 
 
-            updater.FileChanged = (path) =>
-            {
-                Settings.LastExcellFileHash = updateCheck.Item2;
-                ImportSalesFromXLS(path, goodType, producer, true);
-                FileChanged(goodType, filePath);
-            };
+            //updater.FileChanged = (path) =>
+            //{
+            //    Settings.LastExcellFileHash = updateCheck.Item2;
+            //    ImportSalesFromXLS(path, goodType, producer, true);
+            //    FileChanged(goodType, filePath);
+            //};
 
-            updater.FileRenamed = (path) =>
-            {
-                Settings.ExcellFilePath = path;
-                Settings.LastExcellFileHash = updateCheck.Item2;
-                FileRenamed(goodType, filePath, path);
-            };
+            //updater.FileRenamed = (path) =>
+            //{
+            //    Settings.ExcellFilePath = path;
+            //    Settings.LastExcellFileHash = updateCheck.Item2;
+            //    FileRenamed(goodType, filePath, path);
+            //};
 
-            updater.StartWatchingFile();
+            //updater.StartWatchingFile();
         }
 
         private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer = null)
@@ -180,10 +153,25 @@ namespace Nakladna.Core
             return list;
         }
 
+        public void SaveGoodType(GoodType goodType)
+        {
+            new DataProvider().SaveEntitiesChanges(goodType);
+        }
+
         protected virtual void OnInitializationNotification(NotificationEventArgs e)
         {
             var handler = InitializationNotification;
             if (handler != null) handler(this, e);
+        }
+
+        public void RemoveGoodType(GoodType good)
+        {
+            new DataProvider().Remove(good);
+        }
+
+        public void SaveDataChanges()
+        {
+            new DataProvider().SaveEntitiesChanges();
         }
     }
 }

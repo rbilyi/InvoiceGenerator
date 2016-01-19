@@ -25,18 +25,6 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int DatesRow {
-            get {
-                return ((int)(this["DatesRow"]));
-            }
-            set {
-                this["DatesRow"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int CustomersRow {
             get {
@@ -49,30 +37,6 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastImportedXLS {
-            get {
-                return ((string)(this["LastImportedXLS"]));
-            }
-            set {
-                this["LastImportedXLS"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2015-01-01")]
-        public global::System.DateTime LastImportedDate {
-            get {
-                return ((global::System.DateTime)(this["LastImportedDate"]));
-            }
-            set {
-                this["LastImportedDate"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int CustomersColumn {
             get {
@@ -80,18 +44,6 @@ namespace Nakladna.CommonData {
             }
             set {
                 this["CustomersColumn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int DatesColumn {
-            get {
-                return ((int)(this["DatesColumn"]));
-            }
-            set {
-                this["DatesColumn"] = value;
             }
         }
         
@@ -146,30 +98,6 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ExcellFilePath {
-            get {
-                return ((string)(this["ExcellFilePath"]));
-            }
-            set {
-                this["ExcellFilePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public byte[] LastExcellFileHash {
-            get {
-                return ((byte[])(this["LastExcellFileHash"]));
-            }
-            set {
-                this["LastExcellFileHash"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("MSSQL$SQLEXPRESS")]
         public string SQLServiceName {
             get {
@@ -177,6 +105,18 @@ namespace Nakladna.CommonData {
             }
             set {
                 this["SQLServiceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastImportedXLS {
+            get {
+                return ((string)(this["LastImportedXLS"]));
+            }
+            set {
+                this["LastImportedXLS"] = value;
             }
         }
     }

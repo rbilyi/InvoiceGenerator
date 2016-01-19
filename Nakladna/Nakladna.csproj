@@ -109,6 +109,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoodTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodTypeForm.Designer.cs">
+      <DependentUpon>GoodTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectSheetsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSheetsDialog.Designer.cs">
+      <DependentUpon>SelectSheetsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +142,9 @@
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StartingStep.cs" />
+    <EmbeddedResource Include="GoodTypeForm.resx">
+      <DependentUpon>GoodTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,6 +157,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectSheetsDialog.resx">
+      <DependentUpon>SelectSheetsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsWindow.resx">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
     </EmbeddedResource>

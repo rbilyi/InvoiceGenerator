@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\PurchaseUnit.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="NotificationEventArgs.cs" />
     <Compile Include="SaleParsed.cs" />
