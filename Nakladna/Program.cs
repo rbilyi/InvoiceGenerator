@@ -17,7 +17,6 @@ namespace Nakladna
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
             Application.Run(new StartForm());
             Application.Run(new MainForm());
-            Core.InvoiceCore.Instance.SaveDataChanges();
         }
     }
 }

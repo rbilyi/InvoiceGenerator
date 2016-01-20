@@ -86,18 +86,6 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MSSQL$SQLEXPRESS")]
-        public string SQLServiceName {
-            get {
-                return ((string)(this["SQLServiceName"]));
-            }
-            set {
-                this["SQLServiceName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LastImportedXLS {
             get {

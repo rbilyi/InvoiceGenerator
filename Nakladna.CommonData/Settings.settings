@@ -17,9 +17,6 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\database.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
-    <Setting Name="SQLServiceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MSSQL$SQLEXPRESS</Value>
-    </Setting>
     <Setting Name="LastImportedXLS" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

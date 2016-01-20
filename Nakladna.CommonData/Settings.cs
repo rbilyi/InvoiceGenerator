@@ -83,11 +83,5 @@ namespace Nakladna
             get { return InnerSettings.Default.LastImportedXLS; }
             set { InnerSettings.Default.LastImportedXLS = value; }
         }
-
-        public static string SQLServiceName
-        {
-            get { return InnerSettings.Default.SQLServiceName; }
-            set { InnerSettings.Default.SQLServiceName = value; }
-        }
     }
 }

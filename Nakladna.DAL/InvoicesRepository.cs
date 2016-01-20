@@ -18,7 +18,7 @@ namespace Nakladna.DAL
 
         protected Repository()
         {
-            CheckSqlServices();
+            //CheckSqlServices();
             _context = new InvoicesContext(Settings.ConnectionString);
         }
 
@@ -26,14 +26,16 @@ namespace Nakladna.DAL
         {
             get
             {
-                if (_repository != null) return _repository;
-
                 lock (_lock)
                 {
+                    if (_repository != null)
+                        return _repository;
+
                     if (_repository == null)
                         _repository = new Repository();
+
+                    return _repository;
                 }
-                return _repository;
             }
         }
 
@@ -41,25 +43,25 @@ namespace Nakladna.DAL
 
         public event EventHandler<DbNotificationEventArgs> DbNotification;
 
-        public void CheckSqlServices()
-        {
-            var checker = new SQLServiceChecker(Settings.SQLServiceName);
-            checker.SQLServiceStarting += (s, e) => { InvokeDbNotification("SQLServer's service is stopped. Attempting to start."); };
-            checker.SQLServiceStarted += (s, e) => { InvokeDbNotification("SQLServer's service is started."); };
-            var status = checker.CheckAndStartService();
+        //public void CheckSqlServices()
+        //{
+        //    var checker = new SQLServiceChecker(Settings.SQLServiceName);
+        //    checker.SQLServiceStarting += (s, e) => { InvokeDbNotification("SQLServer's service is stopped. Attempting to start."); };
+        //    checker.SQLServiceStarted += (s, e) => { InvokeDbNotification("SQLServer's service is started."); };
+        //    var status = checker.CheckAndStartService();
 
-            switch (status)
-            {
-                case ServiceCheckResult.StartingError:
-                    throw new ApplicationException("Error while starting sql service.");
-                case ServiceCheckResult.NotFound:
-                    throw new ApplicationException("Can't find SQL service:" + Settings.SQLServiceName);
-                case ServiceCheckResult.Running:
-                    return;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+        //    switch (status)
+        //    {
+        //        case ServiceCheckResult.StartingError:
+        //            throw new ApplicationException("Error while starting sql service.");
+        //        case ServiceCheckResult.NotFound:
+        //            throw new ApplicationException("Can't find SQL service:" + Settings.SQLServiceName);
+        //        case ServiceCheckResult.Running:
+        //            return;
+        //        default:
+        //            throw new ArgumentOutOfRangeException();
+        //    }
+        //}
 
         public void SaveEntity(EntityBase entity)
         {

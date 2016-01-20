@@ -8,7 +8,7 @@ using Nakladna.CommonData;
 
 namespace Nakladna.DAL
 {
-	public class InvoicesInitializer : DropCreateDatabaseIfModelChanges<InvoicesContext>
+	public class InvoicesInitializer : DropCreateDatabaseAlways<InvoicesContext>
 	{
 		protected override void Seed(InvoicesContext context)
 		{
