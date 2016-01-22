@@ -226,7 +226,7 @@ namespace Nakladna
             }
         }
 
-        private async void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             //var date1 = dateTimePicker1.Value;
             //var date2 = dateTimePicker2.Value;
