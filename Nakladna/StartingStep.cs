@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Nakladna
@@ -20,12 +21,17 @@ namespace Nakladna
             Action = action;
         }
 
+        /// <summary>
+        /// Runs the step asynchronously.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> RunAsync()
         {
             try
             {
-                var r = await Task.Run(Action);
-                Failed = !r;
+                var result = await Task.Run(Action);
+
+                Failed = !result;
             }
             catch (Exception ex)
             {

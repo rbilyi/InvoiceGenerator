@@ -32,7 +32,7 @@ namespace Nakladna.Core
 
         public int NewCustomers { get; set; }
 
-        public event EventHandler<NotificationEventArgs> InitializationNotification; 
+        public event EventHandler<NotificationEventArgs> InitializationNotification;
 
         public IReadOnlyDictionary<int, string> GetSheets(string filePath)
         {
@@ -40,6 +40,11 @@ namespace Nakladna.Core
         }
 
         public IEnumerable<Invoice> GetInvoicesByDatesRange(DateTime startDate, DateTime endDate)
+        {
+            return GenerateInvoices(GetSales(startDate, endDate), Settings.Producer);
+        }
+
+        public IEnumerable<Sale> GetSales(DateTime startDate, DateTime endDate)
         {
             startDate = startDate.Date;
             endDate = endDate.Date.AddDays(1).AddSeconds(-1);
@@ -50,16 +55,14 @@ namespace Nakladna.Core
                 startDate = t;
             }
 
-            IEnumerable<Sale> sales = new DataProvider().GetSales(startDate, endDate);
-
-            return GenerateInvoices(sales);
+            return new DataProvider().GetSales(startDate, endDate);
         }
 
         public IEnumerable<Invoice> GenerateInvoicesByDate(DateTime date)
         {
             IEnumerable<Sale> sales = new DataProvider().GetSales(date);
 
-            return GenerateInvoices(sales);
+            return GenerateInvoices(sales, Settings.Producer);
         }
 
         public void SaveInvoices(IEnumerable<Invoice> invoices, string path, string runningPath)
@@ -133,23 +136,37 @@ namespace Nakladna.Core
             //updater.StartWatchingFile();
         }
 
-        private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer = null)
+        private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer)
         {
             var list = new List<Invoice>();
-            foreach (var s in sales)
-            {
-                list.Add(new Invoice()
-                {
-                    Customer = s.Customer,
-                    Producer = (producer == null || string.IsNullOrEmpty(s.Producer)) ? Settings.Producer : s.Producer,
-                    DateTime = s.DateTime,
-                    Supplies = new Dictionary<GoodType, int>() 
-					{
-						{s.GoodType, s.Quantity}
-					}
-                });
-            }
 
+            var dates = sales.Select(s => s.DateTime).Distinct();
+            var customers = sales.Select(s => s.Customer).Distinct();
+
+            foreach (var d in dates)
+            {
+                foreach (var c in customers)
+                {
+                    var salesByCustomer = sales.Where(s => s.Customer.Name == c.Name && s.DateTime.Date == d.Date);
+                    if (!salesByCustomer.Any())
+                        continue;
+
+                    var invoice = new Invoice();
+                    invoice.Customer = c;
+                    invoice.Producer = producer;
+                    invoice.DateTime = d;
+                    invoice.Supplies = new Dictionary<GoodType, int>();
+
+                    foreach (var s in salesByCustomer)
+                    {
+                        var qt = (s.Quantity - s.Return) > 0 ? (s.Quantity - s.Return) : 0;
+                        invoice.Supplies.Add(s.GoodType, qt);
+                    }
+
+                    list.Add(invoice);
+                }
+
+            }
             return list;
         }
 
@@ -172,6 +189,11 @@ namespace Nakladna.Core
         public void SaveDataChanges()
         {
             new DataProvider().SaveEntitiesChanges();
+        }
+
+        public void ClearSales()
+        {
+            new DataProvider().ClearSales();
         }
     }
 }

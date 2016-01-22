@@ -50,10 +50,10 @@ namespace Innvoice.Generator
 						var c = itemsTable.Rows[row].Cells;
 						c[0].Paragraphs.First().InsertText(row.ToString());
 						c[1].Paragraphs.First().InsertText(s.Key.Name);
-						c[2].Paragraphs.First().InsertText("уп.");
 						c[3].Paragraphs.First().InsertText(s.Value.ToString());
 						c[4].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Key.Price));
 						c[5].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Key.Price * s.Value));
+                        row++;
 					}
 
 					t.ReplaceText("#totPrc", string.Format("{0:f2}", invoice.TotalPrice));

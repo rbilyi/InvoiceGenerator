@@ -56,7 +56,18 @@ namespace Nakladna
                     priceCell.Value = gt.Price;
                     priceCell.ValueType = typeof(double);
 
-                    row.Cells.AddRange(textCell, priceCell);
+
+                    var columnCell = new DataGridViewTextBoxCell();
+                    columnCell.Value = Utils.Excell.GetExcelColumnName(gt.ColumnInDocument);
+                    columnCell.ValueType = typeof(string);
+
+
+                    var retCell = new DataGridViewTextBoxCell();
+                    retCell.Value = Utils.Excell.GetExcelColumnName(gt.ReturnColumn.HasValue ? gt.ReturnColumn.Value : 0);
+                    retCell.ValueType = typeof(double);
+
+
+                    row.Cells.AddRange(textCell, priceCell, columnCell, retCell);
                     dataGridView1.Rows.Add(row);
                     row.Tag = gt;
                 }
@@ -77,7 +88,7 @@ namespace Nakladna
             ShowInToolsStrip(e.Message);
         }
 
-        private void toDocButton_Click(object sender, EventArgs e)
+        private async void toDocButton_Click(object sender, EventArgs e)
         {
             var startDate = dateTimePicker1.Value;
             var endDate = dateTimePicker2.Value;
@@ -89,7 +100,13 @@ namespace Nakladna
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     var runningPath = Application.StartupPath;
-                    InvoiceCore.Instance.ExportToDoc(startDate, endDate, saveDlg.FileName, runningPath);
+                    statusProgress("Генеримо документ...", true);
+
+                    await Task.Run(() =>
+                    InvoiceCore.Instance.ExportToDoc(startDate, endDate, saveDlg.FileName, runningPath));
+
+                    statusProgress("Документ готовий", false);
+                    return;
                 }
             }
             catch (NoSalesException)
@@ -100,6 +117,8 @@ namespace Nakladna
             {
                 ShowErrorBox(ex);
             }
+
+            statusProgress("", false);
         }
 
         private void importButton_Click(object sender, EventArgs e)
@@ -197,6 +216,35 @@ namespace Nakladna
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             InvoiceCore.Instance.SaveDataChanges();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Очистити всі продажі?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                InvoiceCore.Instance.ClearSales();
+            }
+        }
+
+        private async void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            //var date1 = dateTimePicker1.Value;
+            //var date2 = dateTimePicker2.Value;
+            //statusProgress("Пошук продажів за " + date1.ToShortDateString()
+            //    + " -- " + date2.ToShortDateString(), true);
+
+
+            //var salesCount = await Task.Run(() =>
+            //InvoiceCore.Instance.GetSales(date1, date2));
+
+            //statusProgress("Знайдено " + salesCount.Count() + " продажів.", false);
+        }
+
+        private void statusProgress(string text, bool showProgress)
+        {
+            toolStripStatusLabel.Text = text;
+            toolStripStatusLabel.Visible = !(string.IsNullOrWhiteSpace(text));
+            toolStripProgressBar.Visible = showProgress;
         }
     }
 }

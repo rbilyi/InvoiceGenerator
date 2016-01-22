@@ -30,14 +30,14 @@ namespace Nakladna
 
         private void fillGood(GoodType goodType)
         {
-            txtColumn.Text = GetExcelColumnName(goodType.ColumnInDocument);
+            txtColumn.Text = Utils.Excell.GetExcelColumnName(goodType.ColumnInDocument);
             txtPrice.Text = goodType.Price.ToString();
             txtTitle.Text = goodType.Name;
 
             if (goodType.HasReturn)
             {
                 checkBox1.Checked = true;
-                txtReturnColumn.Text = GetExcelColumnName(goodType.ReturnColumn.Value);
+                txtReturnColumn.Text = Utils.Excell.GetExcelColumnName(goodType.ReturnColumn.Value);
             }
             else
             {
@@ -56,9 +56,9 @@ namespace Nakladna
                 txtPrice.Text = txtPrice.Text.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
                 GoodType.Name = txtTitle.Text;
                 GoodType.Price = double.Parse(txtPrice.Text.Trim());
-                GoodType.ColumnInDocument = GetColumnNumber(txtColumn.Text.Trim());
+                GoodType.ColumnInDocument = Utils.Excell.GetColumnNumber(txtColumn.Text.Trim());
                 GoodType.HasReturn = checkBox1.Checked;
-                GoodType.ReturnColumn = GetColumnNumber(txtReturnColumn.Text.Trim());
+                GoodType.ReturnColumn = Utils.Excell.GetColumnNumber(txtReturnColumn.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -78,35 +78,6 @@ namespace Nakladna
         {
             if (buildGood())
                 Close();
-        }
-
-        public static int GetColumnNumber(string name)
-        {
-            int number = 0;
-            int pow = 1;
-            for (int i = name.Length - 1; i >= 0; i--)
-            {
-                number += (name[i] - 'A' + 1) * pow;
-                pow *= 26;
-            }
-
-            return number;
-        }
-
-        private string GetExcelColumnName(int columnNumber)
-        {
-            int dividend = columnNumber;
-            string columnName = String.Empty;
-            int modulo;
-
-            while (dividend > 0)
-            {
-                modulo = (dividend - 1) % 26;
-                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
-                dividend = (int)((dividend - modulo) / 26);
-            }
-
-            return columnName;
         }
     }
 }

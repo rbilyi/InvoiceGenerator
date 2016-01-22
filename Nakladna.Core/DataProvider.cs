@@ -33,13 +33,13 @@ namespace Nakladna.Core
             return rep.GetAll<Customer>();
         }
 
-        public IEnumerable<Customer> GetCustomers(Expression<Func<Customer, bool>> predicate)
+        public IEnumerable<Customer> GetCustomers(Func<Customer, bool> predicate)
         {
             var rep = Repository.Instance;
             return rep.Get(predicate);
         }
 
-        public Customer GetCustomer(Expression<Func<Customer, bool>> predicate)
+        public Customer GetCustomer(Func<Customer, bool> predicate)
         {
             return Repository.Instance.Get(predicate).FirstOrDefault();
         }
@@ -69,6 +69,13 @@ namespace Nakladna.Core
         internal void SaveEntity(EntityBase entity)
         {
             Repository.Instance.SaveEntity(entity);
+        }
+
+        internal void ClearSales()
+        {
+            var sales = Repository.Instance.GetAll<Sale>();
+            foreach (var s in sales)
+                s.IsDeleted = true;
         }
     }
 }

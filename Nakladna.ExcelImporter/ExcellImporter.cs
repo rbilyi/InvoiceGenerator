@@ -109,7 +109,7 @@ namespace Nakladna.DataSheetImporter
                 var customer = customerCell.StringCellValue.Trim();
 
                 int qty = 0, ret = 0;
-                var qtyCell = sheet.GetRow(r).GetCell(good.ColumnInDocument);
+                var qtyCell = sheet.GetRow(r).GetCell(good.ColumnInDocument - 1);
                 if (qtyCell != null && qtyCell.CellType == CellType.Numeric
                     && qtyCell.NumericCellValue > 0)
                 {
@@ -118,7 +118,7 @@ namespace Nakladna.DataSheetImporter
 
                 if (good.HasReturn)
                 {
-                    var retCell = sheet.GetRow(r).GetCell(good.ReturnColumn.Value);
+                    var retCell = sheet.GetRow(r).GetCell(good.ReturnColumn.Value - 1);
                     if (retCell != null && retCell.CellType == CellType.Numeric
                         && retCell.NumericCellValue > 0)
                     {
@@ -126,7 +126,7 @@ namespace Nakladna.DataSheetImporter
                     }
                 }
 
-                if (qty > 0 || ret > 0)
+                if (qty > 0 && qty > ret)
                 {
                     var sale = new SaleParsed();
                     sale.GoodType = good;

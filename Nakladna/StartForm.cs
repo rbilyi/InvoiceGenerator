@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nakladna.Core;
@@ -30,7 +31,7 @@ namespace Nakladna
             }
         }
 
-        private async Task RunStep(StartingStep step, ListViewItem item)
+        private async void RunStep(StartingStep step, ListViewItem item)
         {
             bool r = await step.RunAsync();
             if (r)

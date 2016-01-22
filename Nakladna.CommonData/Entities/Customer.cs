@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nakladna.CommonData
 {
-	public class Customer: EntityBase
+	public partial class Customer: EntityBase
 	{
 		public string Name { get; set; }
 		public string Address { get; set; }

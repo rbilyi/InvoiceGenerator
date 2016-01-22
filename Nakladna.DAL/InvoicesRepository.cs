@@ -14,7 +14,7 @@ namespace Nakladna.DAL
         private static readonly object _lock = new object();
 
         private static volatile Repository _repository;
-        private static InvoicesContext _context;
+        private static volatile InvoicesContext _context;
 
         protected Repository()
         {
@@ -78,17 +78,16 @@ namespace Nakladna.DAL
 
         public IEnumerable<T> GetAll<T>(bool includeDeleted = false) where T : EntityBase
         {
-            return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted);
+            return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted).ToList();
         }
 
-        public IEnumerable<T> Get<T>(Expression<Func<T, bool>> predicate = null, bool includeDeleted = false) where T : EntityBase
+        public IEnumerable<T> Get<T>(Func<T, bool> predicate = null, bool includeDeleted = false) where T : EntityBase
         {
             if (predicate == null)
-                return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted);
+                return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted).ToList();
 
             return _context.Set<T>()
-                .Where(e => !e.IsDeleted || includeDeleted)
-                .Where(predicate).ToList();
+                .Where(e => !e.IsDeleted || includeDeleted).ToList().Where(predicate);
         }
 
         public void AddSale(Sale s, bool saveChanges = true)

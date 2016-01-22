@@ -32,13 +32,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnAddGood = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColumnGoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnGoodPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEditGood = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnGoodTag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,7 +57,8 @@
             // 
             // toDocButton
             // 
-            this.toDocButton.Location = new System.Drawing.Point(345, 20);
+            this.toDocButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.toDocButton.Location = new System.Drawing.Point(512, 58);
             this.toDocButton.Name = "toDocButton";
             this.toDocButton.Size = new System.Drawing.Size(75, 20);
             this.toDocButton.TabIndex = 4;
@@ -70,6 +73,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(110, 20);
             this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // label2
             // 
@@ -85,6 +89,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnAddGood);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -92,14 +97,25 @@
             this.groupBox1.Controls.Add(this.importButton);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(470, 406);
+            this.groupBox1.Size = new System.Drawing.Size(602, 375);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(394, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 22);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Очистити продажі";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnAddGood
             // 
             this.btnAddGood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGood.Location = new System.Drawing.Point(389, 321);
+            this.btnAddGood.Location = new System.Drawing.Point(521, 259);
             this.btnAddGood.Name = "btnAddGood";
             this.btnAddGood.Size = new System.Drawing.Size(75, 23);
             this.btnAddGood.TabIndex = 26;
@@ -118,13 +134,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnGoodType,
             this.ColumnGoodPrice,
+            this.Column,
+            this.ReturnColumn,
             this.ColumnEditGood,
-            this.ColumnRemove,
-            this.ColumnGoodTag});
+            this.ColumnRemove});
             this.dataGridView1.Location = new System.Drawing.Point(6, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(377, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(509, 241);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -138,9 +155,27 @@
             // 
             // ColumnGoodPrice
             // 
+            this.ColumnGoodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ColumnGoodPrice.HeaderText = "Ціна";
             this.ColumnGoodPrice.Name = "ColumnGoodPrice";
             this.ColumnGoodPrice.ReadOnly = true;
+            this.ColumnGoodPrice.Width = 54;
+            // 
+            // Column
+            // 
+            this.Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column.HeaderText = "Колонка";
+            this.Column.Name = "Column";
+            this.Column.ReadOnly = true;
+            this.Column.Width = 75;
+            // 
+            // ReturnColumn
+            // 
+            this.ReturnColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ReturnColumn.HeaderText = "Поверн. кол.";
+            this.ReturnColumn.Name = "ReturnColumn";
+            this.ReturnColumn.ReadOnly = true;
+            this.ReturnColumn.Width = 97;
             // 
             // ColumnEditGood
             // 
@@ -160,13 +195,6 @@
             this.ColumnRemove.UseColumnTextForButtonValue = true;
             this.ColumnRemove.Width = 70;
             // 
-            // ColumnGoodTag
-            // 
-            this.ColumnGoodTag.HeaderText = "GoodTag";
-            this.ColumnGoodTag.Name = "ColumnGoodTag";
-            this.ColumnGoodTag.ReadOnly = true;
-            this.ColumnGoodTag.Visible = false;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label2);
@@ -175,24 +203,25 @@
             this.groupBox2.Controls.Add(this.dateTimePicker2);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(3, 350);
+            this.groupBox2.Location = new System.Drawing.Point(3, 288);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(464, 53);
+            this.groupBox2.Size = new System.Drawing.Size(596, 84);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(229, 20);
+            this.dateTimePicker2.Location = new System.Drawing.Point(83, 46);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(110, 20);
             this.dateTimePicker2.TabIndex = 8;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(199, 26);
+            this.label3.Location = new System.Drawing.Point(53, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 9;
@@ -201,7 +230,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(389, 12);
+            this.button1.Location = new System.Drawing.Point(521, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 22);
             this.button1.TabIndex = 15;
@@ -224,31 +253,30 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.toolStripProgressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 409);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 378);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(470, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(602, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
-            this.toolStripStatusLabel.Visible = false;
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(45, 17);
+            this.toolStripStatusLabel.Text = "Готово";
             // 
             // toolStripProgressBar
             // 
             this.toolStripProgressBar.Name = "toolStripProgressBar";
             this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.toolStripProgressBar.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 431);
+            this.ClientSize = new System.Drawing.Size(602, 400);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(465, 233);
@@ -282,11 +310,13 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAddGood;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnEditGood;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodTag;
     }
 }
 

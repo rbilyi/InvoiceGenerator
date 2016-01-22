@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace Nakladna
         {
             InitializeComponent();
 
-            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker1.Value = DateTime.Now.Date;
             FilePath = Settings.ExcellFilePath;
 
             if (string.IsNullOrEmpty(FilePath))
@@ -48,10 +49,18 @@ namespace Nakladna
                 return;
 
             listBox1.Items.Clear();
-            var sheets = Core.InvoiceCore.Instance.GetSheets(FilePath);
-            foreach (var sheet in sheets.OrderByDescending(s => s.Key))
+
+            try
             {
-                listBox1.Items.Add(new SheetItemInListBox(sheet.Key, sheet.Value));
+                var sheets = Core.InvoiceCore.Instance.GetSheets(FilePath);
+                foreach (var sheet in sheets.OrderByDescending(s => s.Key))
+                {
+                    listBox1.Items.Add(new SheetItemInListBox(sheet.Key, sheet.Value));
+                }
+            }
+            catch (IOException)
+            {
+                return;
             }
         }
 
