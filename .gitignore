@@ -1,5 +1,3 @@
 bin
 obj
 *.suo
-Setup/Debug/
-Setup/Release/
