@@ -15,7 +15,8 @@ namespace Nakladna
 {
     public partial class MainForm : Form
     {
-        GoodType[] goodTypes;
+        private Action GoodTypesLoaded;
+        List<GoodType> goodTypes;
 
         public MainForm()
         {
@@ -23,58 +24,44 @@ namespace Nakladna
 
             this.Text += " " + Application.ProductVersion.ToString();
 
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
+            GoodTypesLoaded = () => BindGrid();
+
+
             RefreshGrid();
         }
 
-        private void RefreshGrid()
+        private async void RefreshGrid()
+        {
+            var g = await InvoiceCore.Instance.GetGoodsAsync();
+
+            if (g == null)
+            {
+                MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
+                throw new ArgumentException("goodTypes");
+            }
+
+            goodTypes = g.ToList();
+            GoodTypesLoaded();
+        }
+
+        private void BindGrid()
         {
             try
             {
-                dataGridView1.Rows.Clear();
-                InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
-
-                goodTypes = InvoiceCore.Instance.GetGoods().ToArray();
-
                 if (goodTypes == null)
-                {
-                    MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
-                    throw new ArgumentException("goodTypes");
-                }
+                    return;
 
-                if (!goodTypes.Any())
-                    MessageBox.Show("Немає ні одного типу товару.");
+                dataGridView1.AutoGenerateColumns = false;
+                ColumnGoodType.DataPropertyName = "Name";
+                ColumnGoodPrice.DataPropertyName = "Price";
+                ColumnColumn.DataPropertyName = "ColumnName";
+                ColumnReturn.DataPropertyName = "ReturnColumnName";
+                ColumnHasReturn.DataPropertyName = "HasReturn";
 
-                foreach (var gt in goodTypes)
-                {
-                    var row = new DataGridViewRow();
-
-                    var textCell = new DataGridViewTextBoxCell();
-                    textCell.Value = gt.Name;
-                    textCell.ValueType = typeof(string);
-
-                    var priceCell = new DataGridViewTextBoxCell();
-                    priceCell.Value = gt.Price;
-                    priceCell.ValueType = typeof(double);
-
-
-                    var columnCell = new DataGridViewTextBoxCell();
-                    columnCell.Value = Utils.Excell.GetExcelColumnName(gt.ColumnInDocument);
-                    columnCell.ValueType = typeof(string);
-
-
-                    var retCell = new DataGridViewTextBoxCell();
-                    retCell.Value = Utils.Excell.GetExcelColumnName(gt.ReturnColumn.HasValue ? gt.ReturnColumn.Value : 0);
-                    retCell.ValueType = typeof(double);
-
-
-                    row.Cells.AddRange(textCell, priceCell, columnCell, retCell);
-                    dataGridView1.Rows.Add(row);
-                    row.Tag = gt;
-                }
-
-                dateTimePicker1.Value = DateTime.Now;
-                dateTimePicker2.Value = DateTime.Now;
-
+                dataGridView1.DataSource = goodTypes;
                 CleanToolStrip();
             }
             catch (Exception ex)
@@ -179,10 +166,13 @@ namespace Nakladna
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+                return;
+
             GoodType good;
             try
             {
-                good = dataGridView1.Rows[e.RowIndex].Tag as GoodType;
+                good = dataGridView1.Rows[e.RowIndex].DataBoundItem as GoodType;
                 if (good == null)
                     return;
             }
@@ -196,20 +186,14 @@ namespace Nakladna
                 if (MessageBox.Show("Видалити " + good.Name + "?", "Видалення", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     InvoiceCore.Instance.RemoveGoodType(good);
-                    RefreshGrid();
+                    BindGrid();
                 }
             }
-
-            if (e.ColumnIndex == ColumnEditGood.Index)
+            else if (e.ColumnIndex == ColumnSpecialPrice.Index)
             {
-                var form = new GoodTypeForm(good);
-                form.ShowDialog();
-
-                if (form.GoodType != null)
-                {
-                    InvoiceCore.Instance.SaveGoodType(form.GoodType);
-                    RefreshGrid();
-                }
+                var form = new SpecialPricesForm();
+                form.Show();
+                form.Init(good);
             }
         }
 

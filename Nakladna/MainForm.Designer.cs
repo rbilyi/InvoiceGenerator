@@ -35,12 +35,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnAddGood = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnGoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnGoodPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnEditGood = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +43,13 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.ColumnGoodType = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnGoodPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHasReturn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnReturn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnSpecialPrice = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -115,7 +116,7 @@
             // btnAddGood
             // 
             this.btnAddGood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGood.Location = new System.Drawing.Point(521, 259);
+            this.btnAddGood.Location = new System.Drawing.Point(521, 41);
             this.btnAddGood.Name = "btnAddGood";
             this.btnAddGood.Size = new System.Drawing.Size(75, 23);
             this.btnAddGood.TabIndex = 26;
@@ -125,8 +126,7 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -134,66 +134,16 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnGoodType,
             this.ColumnGoodPrice,
-            this.Column,
-            this.ReturnColumn,
-            this.ColumnEditGood,
-            this.ColumnRemove});
+            this.ColumnColumn,
+            this.ColumnHasReturn,
+            this.ColumnReturn,
+            this.ColumnRemove,
+            this.ColumnSpecialPrice});
             this.dataGridView1.Location = new System.Drawing.Point(6, 41);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(509, 241);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ColumnGoodType
-            // 
-            this.ColumnGoodType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnGoodType.HeaderText = "Товар";
-            this.ColumnGoodType.Name = "ColumnGoodType";
-            this.ColumnGoodType.ReadOnly = true;
-            this.ColumnGoodType.Width = 63;
-            // 
-            // ColumnGoodPrice
-            // 
-            this.ColumnGoodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnGoodPrice.HeaderText = "Ціна";
-            this.ColumnGoodPrice.Name = "ColumnGoodPrice";
-            this.ColumnGoodPrice.ReadOnly = true;
-            this.ColumnGoodPrice.Width = 54;
-            // 
-            // Column
-            // 
-            this.Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column.HeaderText = "Колонка";
-            this.Column.Name = "Column";
-            this.Column.ReadOnly = true;
-            this.Column.Width = 75;
-            // 
-            // ReturnColumn
-            // 
-            this.ReturnColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ReturnColumn.HeaderText = "Поверн. кол.";
-            this.ReturnColumn.Name = "ReturnColumn";
-            this.ReturnColumn.ReadOnly = true;
-            this.ReturnColumn.Width = 97;
-            // 
-            // ColumnEditGood
-            // 
-            this.ColumnEditGood.HeaderText = "Змінити";
-            this.ColumnEditGood.Name = "ColumnEditGood";
-            this.ColumnEditGood.ReadOnly = true;
-            this.ColumnEditGood.Text = "Змінити";
-            this.ColumnEditGood.UseColumnTextForButtonValue = true;
-            this.ColumnEditGood.Width = 70;
-            // 
-            // ColumnRemove
-            // 
-            this.ColumnRemove.HeaderText = "Видалити";
-            this.ColumnRemove.Name = "ColumnRemove";
-            this.ColumnRemove.ReadOnly = true;
-            this.ColumnRemove.Text = "Видалити";
-            this.ColumnRemove.UseColumnTextForButtonValue = true;
-            this.ColumnRemove.Width = 70;
             // 
             // groupBox2
             // 
@@ -272,6 +222,60 @@
             this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.toolStripProgressBar.Visible = false;
             // 
+            // ColumnGoodType
+            // 
+            this.ColumnGoodType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnGoodType.HeaderText = "Товар";
+            this.ColumnGoodType.Name = "ColumnGoodType";
+            this.ColumnGoodType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnGoodType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnGoodType.Width = 63;
+            // 
+            // ColumnGoodPrice
+            // 
+            this.ColumnGoodPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnGoodPrice.HeaderText = "Ціна";
+            this.ColumnGoodPrice.Name = "ColumnGoodPrice";
+            this.ColumnGoodPrice.Width = 54;
+            // 
+            // ColumnColumn
+            // 
+            this.ColumnColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnColumn.HeaderText = "Колонка";
+            this.ColumnColumn.Name = "ColumnColumn";
+            this.ColumnColumn.Width = 75;
+            // 
+            // ColumnHasReturn
+            // 
+            this.ColumnHasReturn.HeaderText = "Повернення";
+            this.ColumnHasReturn.Name = "ColumnHasReturn";
+            // 
+            // ColumnReturn
+            // 
+            this.ColumnReturn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnReturn.HeaderText = "Поверн.";
+            this.ColumnReturn.Name = "ColumnReturn";
+            this.ColumnReturn.Width = 73;
+            // 
+            // ColumnRemove
+            // 
+            this.ColumnRemove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnRemove.HeaderText = "Видалити";
+            this.ColumnRemove.Name = "ColumnRemove";
+            this.ColumnRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnRemove.Text = "Видалити";
+            this.ColumnRemove.UseColumnTextForButtonValue = true;
+            this.ColumnRemove.Width = 61;
+            // 
+            // ColumnSpecialPrice
+            // 
+            this.ColumnSpecialPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnSpecialPrice.HeaderText = "Ціни";
+            this.ColumnSpecialPrice.Name = "ColumnSpecialPrice";
+            this.ColumnSpecialPrice.Text = "Ціни";
+            this.ColumnSpecialPrice.UseColumnTextForButtonValue = true;
+            this.ColumnSpecialPrice.Width = 35;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,12 +315,13 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAddGood;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodType;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnGoodType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnGoodPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnEditGood;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnHasReturn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReturn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnRemove;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnSpecialPrice;
     }
 }
 

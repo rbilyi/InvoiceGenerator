@@ -30,14 +30,14 @@ namespace Nakladna
 
         private void fillGood(GoodType goodType)
         {
-            txtColumn.Text = Utils.Excell.GetExcelColumnName(goodType.ColumnInDocument);
+            txtColumn.Text = goodType.ColumnName;
             txtPrice.Text = goodType.Price.ToString();
             txtTitle.Text = goodType.Name;
 
             if (goodType.HasReturn)
             {
                 checkBox1.Checked = true;
-                txtReturnColumn.Text = Utils.Excell.GetExcelColumnName(goodType.ReturnColumn.Value);
+                txtReturnColumn.Text = goodType.ReturnColumnName;
             }
             else
             {
@@ -56,9 +56,8 @@ namespace Nakladna
                 txtPrice.Text = txtPrice.Text.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
                 GoodType.Name = txtTitle.Text;
                 GoodType.Price = double.Parse(txtPrice.Text.Trim());
-                GoodType.ColumnInDocument = Utils.Excell.GetColumnNumber(txtColumn.Text.Trim());
-                GoodType.HasReturn = checkBox1.Checked;
-                GoodType.ReturnColumn = Utils.Excell.GetColumnNumber(txtReturnColumn.Text.Trim());
+                GoodType.ColumnName = txtColumn.Text.Trim();
+                GoodType.ReturnColumnName = txtReturnColumn.Text.Trim();
             }
             catch (Exception ex)
             {

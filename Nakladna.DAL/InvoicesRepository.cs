@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Nakladna.CommonData;
 
 namespace Nakladna.DAL
@@ -19,7 +20,7 @@ namespace Nakladna.DAL
         protected Repository()
         {
             //CheckSqlServices();
-            _context = new InvoicesContext(Settings.ConnectionString);
+            _context = new InvoicesContext(/*Settings.ConnectionString*/);
         }
 
         public static Repository Instance
@@ -37,6 +38,11 @@ namespace Nakladna.DAL
                     return _repository;
                 }
             }
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : EntityBase
+        {
+            return await _context.Set<T>().ToListAsync();
         }
 
         #endregion
@@ -67,8 +73,6 @@ namespace Nakladna.DAL
         {
             if (entity.Id == null)
                 Add(entity);
-
-            SaveChanges();
         }
 
         public T Get<T>(int id, bool includeDeleted = false) where T : EntityBase

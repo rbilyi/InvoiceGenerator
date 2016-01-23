@@ -13,5 +13,6 @@ namespace Nakladna.CommonData
 		public string Phone { get; set; }
 
 		public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<SpecialPrice> SepicalPrices { get; set; }
 	}
 }

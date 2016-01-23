@@ -27,6 +27,12 @@ namespace Nakladna.Core
             return rep.GetAll<GoodType>();
         }
 
+        public Task<IEnumerable<GoodType>> GetGoodsAsync()
+        {
+            var rep = Repository.Instance;
+            return rep.GetAllAsync<GoodType>();
+        }
+
         public IEnumerable<Customer> GetCustomers()
         {
             var rep = Repository.Instance;
@@ -66,6 +72,15 @@ namespace Nakladna.Core
                 && s.DateTime.Year == date.Year);
         }
 
+        internal void AddSpecialPrice(GoodType good, Customer client, double price)
+        {
+            var spPrice = new SpecialPrice();
+            spPrice.GoodType = good;
+            spPrice.Customer = client;
+            spPrice.Price = price;
+            SaveEntity(spPrice);
+        }
+
         internal void SaveEntity(EntityBase entity)
         {
             Repository.Instance.SaveEntity(entity);
@@ -76,6 +91,11 @@ namespace Nakladna.Core
             var sales = Repository.Instance.GetAll<Sale>();
             foreach (var s in sales)
                 s.IsDeleted = true;
+        }
+
+        internal IEnumerable<SpecialPrice> GetSpecialSales()
+        {
+            return Repository.Instance.GetAll<SpecialPrice>();
         }
     }
 }

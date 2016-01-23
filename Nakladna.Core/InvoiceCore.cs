@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Innvoice.Generator;
 using Nakladna.CommonData;
 using Nakladna.DAL;
@@ -58,6 +59,16 @@ namespace Nakladna.Core
             return new DataProvider().GetSales(startDate, endDate);
         }
 
+        public IEnumerable<Customer> GetCustomers()
+        {
+            return new DataProvider().GetCustomers();
+        }
+
+        public void AddSpecialPrice(GoodType good, Customer client, double price)
+        {
+            new DataProvider().AddSpecialPrice(good, client, price);
+        }
+
         public IEnumerable<Invoice> GenerateInvoicesByDate(DateTime date)
         {
             IEnumerable<Sale> sales = new DataProvider().GetSales(date);
@@ -74,6 +85,11 @@ namespace Nakladna.Core
         public IEnumerable<GoodType> GetGoods()
         {
             return new DataProvider().GetGoods();
+        }
+
+        public async Task<IEnumerable<GoodType>> GetGoodsAsync()
+        {
+            return await new DataProvider().GetGoodsAsync();
         }
 
         public void ExportToDoc(DateTime startDate, DateTime endDate, string savePath, string runningPath)
@@ -151,16 +167,20 @@ namespace Nakladna.Core
                     if (!salesByCustomer.Any())
                         continue;
 
+                    var specialPrices = GetSpecialPrices().Where(sp => sp.Customer == c);
+
                     var invoice = new Invoice();
                     invoice.Customer = c;
                     invoice.Producer = producer;
                     invoice.DateTime = d;
-                    invoice.Supplies = new Dictionary<GoodType, int>();
+                    invoice.SoldItems = new List<SoldItem>();
 
                     foreach (var s in salesByCustomer)
                     {
                         var qt = (s.Quantity - s.Return) > 0 ? (s.Quantity - s.Return) : 0;
-                        invoice.Supplies.Add(s.GoodType, qt);
+                        var sPrice = specialPrices.FirstOrDefault(sp => sp.GoodType == s.GoodType);
+
+                        invoice.SoldItems.Add(new SoldItem(s.GoodType, qt, sPrice?.Price));
                     }
 
                     list.Add(invoice);
@@ -168,6 +188,11 @@ namespace Nakladna.Core
 
             }
             return list;
+        }
+
+        public IEnumerable<SpecialPrice> GetSpecialPrices()
+        {
+            return new DataProvider().GetSpecialSales();
         }
 
         public void SaveGoodType(GoodType goodType)
