@@ -213,7 +213,7 @@ namespace Nakladna.Core
 
         public void SaveDataChanges()
         {
-            new DataProvider().SaveEntitiesChanges();
+            new DataProvider().SaveChanges();
         }
 
         public void ClearSales()

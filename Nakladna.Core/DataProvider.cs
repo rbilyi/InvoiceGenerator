@@ -11,7 +11,7 @@ namespace Nakladna.Core
 {
     class DataProvider
     {
-        public void SaveEntitiesChanges()
+        public void SaveChanges()
         {
             Repository.Instance.SaveChanges();
         }
@@ -91,6 +91,8 @@ namespace Nakladna.Core
             var sales = Repository.Instance.GetAll<Sale>();
             foreach (var s in sales)
                 s.IsDeleted = true;
+
+            SaveChanges();
         }
 
         internal IEnumerable<SpecialPrice> GetSpecialSales()
