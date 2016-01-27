@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nakladna.CommonData
 {
-	public abstract class EntityBase
+	public abstract partial class EntityBase
 	{
 		public int? Id { get; set; }
 		public bool IsDeleted { get; set; }

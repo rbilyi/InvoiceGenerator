@@ -59,7 +59,7 @@ namespace Nakladna
             {
                 new StartingStep("База даних",
                 ()=> {
-                    InvoiceCore.Instance.GetGoods().ToList();
+                    InvoiceCore.Instance.GetGoods(new DbScope()).ToList();
                     return true; }),
 
                 new StartingStep("Шаблон накладної",

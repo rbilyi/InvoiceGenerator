@@ -16,7 +16,7 @@ namespace Nakladna.Core
         private static InvoiceCore _instance;
         protected InvoiceCore()
         {
-            Repository.Instance.DbNotification += (s, e) => { OnInitializationNotification(e); };
+            //Repository.Instance.DbNotification += (s, e) => { OnInitializationNotification(e); };
         }
 
         public static InvoiceCore Instance
@@ -40,12 +40,12 @@ namespace Nakladna.Core
             return new ExcellImporter().GetSheets(filePath);
         }
 
-        public IEnumerable<Invoice> GetInvoicesByDatesRange(DateTime startDate, DateTime endDate)
+        public IEnumerable<Invoice> GetInvoicesByDatesRange(DbScope scope, DateTime startDate, DateTime endDate)
         {
-            return GenerateInvoices(GetSales(startDate, endDate), Settings.Producer);
+            return GenerateInvoices(scope, GetSales(scope, startDate, endDate), Settings.Producer);
         }
 
-        public IEnumerable<Sale> GetSales(DateTime startDate, DateTime endDate)
+        public IEnumerable<Sale> GetSales(DbScope scope, DateTime startDate, DateTime endDate)
         {
             startDate = startDate.Date;
             endDate = endDate.Date.AddDays(1).AddSeconds(-1);
@@ -56,55 +56,50 @@ namespace Nakladna.Core
                 startDate = t;
             }
 
-            return new DataProvider().GetSales(startDate, endDate);
+            return scope.DataProvider.GetSales(startDate, endDate);
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<Customer> GetCustomers(DbScope scope)
         {
-            return new DataProvider().GetCustomers();
+            return scope.DataProvider.GetCustomers();
         }
 
-        public void AddSpecialPrice(GoodType good, Customer client, double price)
+        public void AddSpecialPrice(DbScope scope, GoodType good, Customer client, double price)
         {
-            new DataProvider().AddSpecialPrice(good, client, price);
+            scope.DataProvider.AddSpecialPrice(good, client, price);
         }
 
-        public IEnumerable<Invoice> GenerateInvoicesByDate(DateTime date)
+        public IEnumerable<Invoice> GenerateInvoicesByDate(DbScope scope, DateTime date)
         {
-            IEnumerable<Sale> sales = new DataProvider().GetSales(date);
+            IEnumerable<Sale> sales = scope.DataProvider.GetSales(date);
 
-            return GenerateInvoices(sales, Settings.Producer);
+            return GenerateInvoices(scope, sales, Settings.Producer);
         }
 
-        public void SaveInvoices(IEnumerable<Invoice> invoices, string path, string runningPath)
+        public void SaveInvoices(DbScope scope, IEnumerable<Invoice> invoices, string path, string runningPath)
         {
             var generator = new InvoiceGenerator();
             generator.CreateInOneDocument(invoices, path, runningPath);
         }
 
-        public IEnumerable<GoodType> GetGoods()
+        public IEnumerable<GoodType> GetGoods(DbScope scope)
         {
-            return new DataProvider().GetGoods();
+            return scope.DataProvider.GetGoods();
         }
 
-        public async Task<IEnumerable<GoodType>> GetGoodsAsync()
+        public void ExportToDoc(DbScope scope, DateTime startDate, DateTime endDate, string savePath, string runningPath)
         {
-            return await new DataProvider().GetGoodsAsync();
+                var inv = GetInvoicesByDatesRange(scope, startDate, endDate);
+
+                if (!inv.Any())
+                    throw new NoSalesException();
+
+                SaveInvoices(scope, inv, savePath, runningPath);
         }
 
-        public void ExportToDoc(DateTime startDate, DateTime endDate, string savePath, string runningPath)
+        public IEnumerable<Sale> ImportSalesFromXLS(DbScope scope, string path, IEnumerable<int> sheets, DateTime dateTime, bool saveToDb = true)
         {
-            var inv = GetInvoicesByDatesRange(startDate, endDate);
-
-            if (!inv.Any())
-                throw new NoSalesException();
-
-            SaveInvoices(inv, savePath, runningPath);
-        }
-
-        public IEnumerable<Sale> ImportSalesFromXLS(string path, IEnumerable<int> sheets, DateTime dateTime, bool saveToDb = true)
-        {
-            var goods = new DataProvider().GetGoods();
+            var goods = scope.DataProvider.GetGoods();
             var producer = Settings.Producer;
             var importer = new ExcellImporter();
             var sales = importer.ImportFromSheet(path, dateTime, sheets, goods, producer);
@@ -114,11 +109,11 @@ namespace Nakladna.Core
 
             foreach (var sale in sales)
             {
-                var salesByDay = sale.Value.Select(s => s.ToSale()).ToList();
+                var salesByDay = sale.Value.Select(s => s.ToSale(scope)).ToList();
                 NewCustomers += salesByDay.Count(s => !s.Customer.Id.HasValue);
 
                 if (saveToDb)
-                    new DataProvider().AddSales(salesByDay);
+                    scope.DataProvider.AddSales(salesByDay);
 
                 result.AddRange(salesByDay);
             }
@@ -152,7 +147,7 @@ namespace Nakladna.Core
             //updater.StartWatchingFile();
         }
 
-        private IEnumerable<Invoice> GenerateInvoices(IEnumerable<Sale> sales, string producer)
+        private IEnumerable<Invoice> GenerateInvoices(DbScope scope, IEnumerable<Sale> sales, string producer)
         {
             var list = new List<Invoice>();
 
@@ -167,7 +162,7 @@ namespace Nakladna.Core
                     if (!salesByCustomer.Any())
                         continue;
 
-                    var specialPrices = GetSpecialPrices().Where(sp => sp.Customer == c);
+                    var specialPrices =scope.DataProvider.GetSpecialPrices().Where(sp => sp.Customer == c);
 
                     var invoice = new Invoice();
                     invoice.Customer = c;
@@ -190,14 +185,14 @@ namespace Nakladna.Core
             return list;
         }
 
-        public IEnumerable<SpecialPrice> GetSpecialPrices()
+        public IEnumerable<SpecialPrice> GetSpecialPrices(DbScope scope)
         {
-            return new DataProvider().GetSpecialSales();
+            return scope.DataProvider.GetSpecialPrices();
         }
 
-        public void SaveGoodType(GoodType goodType)
+        public void SaveGoodType(DbScope scope, GoodType goodType)
         {
-            new DataProvider().SaveEntity(goodType);
+            scope.DataProvider.SaveEntity(goodType);
         }
 
         protected virtual void OnInitializationNotification(NotificationEventArgs e)
@@ -206,19 +201,49 @@ namespace Nakladna.Core
             if (handler != null) handler(this, e);
         }
 
-        public void RemoveGoodType(GoodType good)
+        public void RemoveGoodType(DbScope scope, GoodType good)
         {
-            new DataProvider().Remove(good);
+            scope.DataProvider.Remove(good);
         }
 
-        public void SaveDataChanges()
+        public void ClearSales(DbScope scope)
         {
-            new DataProvider().SaveChanges();
+            scope.DataProvider.ClearSales();
         }
 
-        public void ClearSales()
+        public async Task<IEnumerable<GoodType>> GetGoodsAsync(DbScope scope, bool includeDeleted = false)
         {
-            new DataProvider().ClearSales();
+            return await scope.DataProvider.GetAllAsync<GoodType>(includeDeleted);
+        }
+
+        public async Task<IEnumerable<Sale>> GetSalesAsync(DbScope scope, DateTime date1, DateTime date2)
+        {
+            return await scope.DataProvider.GetSalesAsync(date1, date2);
+        }
+
+        public async Task<IEnumerable<SpecialPrice>> GetSpecialPricesAsync(DbScope scope, bool includeDeleted = false)
+        {
+            return await scope.DataProvider.GetAllAsync<SpecialPrice>(includeDeleted);
+        }
+    }
+
+    public class DbScope: IDisposable
+    {
+        internal DataProvider DataProvider { get; private set; }
+
+        public DbScope()
+        {
+            DataProvider = new DataProvider();
+        }
+
+        public void Submit()
+        {
+            DataProvider.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            DataProvider.SaveChanges();
         }
     }
 }

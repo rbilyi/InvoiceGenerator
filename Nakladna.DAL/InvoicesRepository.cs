@@ -11,38 +11,21 @@ namespace Nakladna.DAL
 {
     public class Repository
     {
+        InvoicesContext _context;
         #region repository
-        private static readonly object _lock = new object();
-
-        private static volatile Repository _repository;
-        private static volatile InvoicesContext _context;
-
-        protected Repository()
+        public Repository()
         {
-            //CheckSqlServices();
-            _context = new InvoicesContext(/*Settings.ConnectionString*/);
+            _context = new InvoicesContext();
         }
 
-        public static Repository Instance
+        public async Task<IEnumerable<T>> GetAllAsync<T>(bool includeDeleted = false) where T : EntityBase
         {
-            get
-            {
-                lock (_lock)
-                {
-                    if (_repository != null)
-                        return _repository;
-
-                    if (_repository == null)
-                        _repository = new Repository();
-
-                    return _repository;
-                }
-            }
+            return await _context.Set<T>().Where(e => !e.IsDeleted || (e.IsDeleted && includeDeleted)).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : EntityBase
+        public async Task<IEnumerable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate, bool includeDeleted = false) where T : EntityBase
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().Where(e => !e.IsDeleted || (e.IsDeleted && includeDeleted)).Where(predicate).ToListAsync();
         }
 
         #endregion
@@ -77,21 +60,21 @@ namespace Nakladna.DAL
 
         public T Get<T>(int id, bool includeDeleted = false) where T : EntityBase
         {
-            return _context.Set<T>().FirstOrDefault(e => e.Id == id && (!e.IsDeleted || includeDeleted));
+            return _context.Set<T>().FirstOrDefault(e => e.Id == id && (!e.IsDeleted || (e.IsDeleted && includeDeleted)));
         }
 
         public IEnumerable<T> GetAll<T>(bool includeDeleted = false) where T : EntityBase
         {
-            return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted).ToList();
+            return _context.Set<T>().Where(e => !e.IsDeleted || (e.IsDeleted && includeDeleted)).ToList();
         }
 
         public IEnumerable<T> Get<T>(Func<T, bool> predicate = null, bool includeDeleted = false) where T : EntityBase
         {
             if (predicate == null)
-                return _context.Set<T>().Where(e => !e.IsDeleted || includeDeleted).ToList();
+                return _context.Set<T>().Where(e => !e.IsDeleted || (e.IsDeleted && includeDeleted)).ToList();
 
             return _context.Set<T>()
-                .Where(e => !e.IsDeleted || includeDeleted).ToList().Where(predicate);
+                .Where(e => !e.IsDeleted || (e.IsDeleted && includeDeleted)).ToList().Where(predicate);
         }
 
         public void AddSale(Sale s, bool saveChanges = true)
@@ -117,15 +100,16 @@ namespace Nakladna.DAL
                 _context.SaveChanges();
         }
 
-        public void Delete<T>(T t) where T : EntityBase
+        public void SaveChanges()
         {
-            //_context.Set(t.GetType()).Remove(t);
-            t.IsDeleted = true;
             _context.SaveChanges();
         }
 
-        public void SaveChanges()
+        public void Delete<T>(T t) where T : EntityBase
         {
+            EntityBase e = (EntityBase)_context.Set(t.GetType()).Find(t.Id);
+            //_context.Set(t.GetType()).Remove(e);
+            e.IsDeleted = true;
             _context.SaveChanges();
         }
 

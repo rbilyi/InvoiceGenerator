@@ -9,64 +9,57 @@ using Nakladna.DAL;
 
 namespace Nakladna.Core
 {
-    class DataProvider
+    internal class DataProvider
     {
-        public void SaveChanges()
-        {
-            Repository.Instance.SaveChanges();
-        }
+        Repository repository;
 
+        public DataProvider()
+        {
+            repository = new Repository();
+        }
         public void Remove(EntityBase entity)
         {
-            Repository.Instance.Delete(entity);
+            repository.Delete(entity);
         }
 
         public IEnumerable<GoodType> GetGoods()
         {
-            var rep = Repository.Instance;
+            var rep = repository;
             return rep.GetAll<GoodType>();
-        }
-
-        public Task<IEnumerable<GoodType>> GetGoodsAsync()
-        {
-            var rep = Repository.Instance;
-            return rep.GetAllAsync<GoodType>();
         }
 
         public IEnumerable<Customer> GetCustomers()
         {
-            var rep = Repository.Instance;
+            var rep = repository;
             return rep.GetAll<Customer>();
         }
 
         public IEnumerable<Customer> GetCustomers(Func<Customer, bool> predicate)
         {
-            var rep = Repository.Instance;
+            var rep = repository;
             return rep.Get(predicate);
         }
 
         public Customer GetCustomer(Func<Customer, bool> predicate)
         {
-            return Repository.Instance.Get(predicate).FirstOrDefault();
+            return repository.Get(predicate).FirstOrDefault();
         }
 
         public void AddSales(IEnumerable<Sale> sales)
         {
             foreach (var s in sales)
-                Repository.Instance.AddSale(s, false);
-
-            Repository.Instance.SaveChanges();
+                repository.AddSale(s, false);
         }
 
         public IEnumerable<Sale> GetSales(DateTime startDate, DateTime endDate)
         {
-            return Repository.Instance
+            return repository
                 .Get<Sale>(s => s.DateTime >= startDate && s.DateTime <= endDate);
         }
 
         public IEnumerable<Sale> GetSales(DateTime date)
         {
-            return Repository.Instance
+            return repository
                 .Get<Sale>(s => s.DateTime.Day == date.Day
                 && s.DateTime.Month == date.Month
                 && s.DateTime.Year == date.Year);
@@ -83,21 +76,48 @@ namespace Nakladna.Core
 
         internal void SaveEntity(EntityBase entity)
         {
-            Repository.Instance.SaveEntity(entity);
+            repository.SaveEntity(entity);
         }
 
         internal void ClearSales()
         {
-            var sales = Repository.Instance.GetAll<Sale>();
+            var sales = repository.GetAll<Sale>();
             foreach (var s in sales)
                 s.IsDeleted = true;
-
-            SaveChanges();
         }
 
-        internal IEnumerable<SpecialPrice> GetSpecialSales()
+        internal IEnumerable<SpecialPrice> GetSpecialPrices()
         {
-            return Repository.Instance.GetAll<SpecialPrice>();
+            return repository.GetAll<SpecialPrice>();
+        }
+
+        public async Task<IEnumerable<Sale>> GetSalesAsync(DateTime startDate, DateTime endDate)
+        {
+            return await repository
+                .GetAllAsync<Sale>(s => s.DateTime >= startDate && s.DateTime <= endDate);
+        }
+
+        public async Task<IEnumerable<Sale>> GetSalesAsync(DateTime date)
+        {
+            return await repository
+                .GetAllAsync<Sale>(s => s.DateTime.Day == date.Day
+                && s.DateTime.Month == date.Month
+                && s.DateTime.Year == date.Year);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>(bool includeDeleted = false) where T : EntityBase
+        {
+            return await repository.GetAllAsync<T>(includeDeleted);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate, bool includeDeleted = false) where T : EntityBase
+        {
+            return await repository.GetAllAsync<T>(predicate, includeDeleted);
+        }
+
+        internal void SaveChanges()
+        {
+            repository.SaveChanges();
         }
     }
 }

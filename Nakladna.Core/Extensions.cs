@@ -4,9 +4,9 @@ namespace Nakladna.Core
 {
     public static class Extensions
     {
-        public static Sale ToSale(this SaleParsed s)
+        public static Sale ToSale(this SaleParsed s, DbScope scope)
         {
-            var customer =  new DataProvider()
+            var customer =  scope.DataProvider
                 .GetCustomer(c => c.Name == s.Customer);
 
             if (customer == null)

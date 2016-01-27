@@ -5,7 +5,8 @@ namespace Nakladna.DAL
 {
 	public class InvoicesContext: DbContext
 	{
-        public InvoicesContext():base()
+        public InvoicesContext()
+            :base()
         {
             Configuration.ProxyCreationEnabled = true;
             Configuration.LazyLoadingEnabled = true;

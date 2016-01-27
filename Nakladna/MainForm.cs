@@ -17,6 +17,7 @@ namespace Nakladna
     {
         private Action GoodTypesLoaded;
         List<GoodType> goodTypes;
+        DbScope scope;
 
         public MainForm()
         {
@@ -26,6 +27,9 @@ namespace Nakladna
 
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
+
+            scope = new DbScope();
+
             InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
             GoodTypesLoaded = () => BindGrid();
 
@@ -35,7 +39,9 @@ namespace Nakladna
 
         private async void RefreshGrid()
         {
-            var g = await InvoiceCore.Instance.GetGoodsAsync();
+            scope.Submit();
+            scope = new DbScope();
+            var g = await InvoiceCore.Instance.GetGoodsAsync(scope);
 
             if (g == null)
             {
@@ -77,11 +83,13 @@ namespace Nakladna
 
         private async void toDocButton_Click(object sender, EventArgs e)
         {
-            var startDate = dateTimePicker1.Value;
-            var endDate = dateTimePicker2.Value;
+            var startDate = dateTimePicker1.Value.Date;
+            var endDate = dateTimePicker2.Value.Date;
 
             try
             {
+                scope.Submit();
+                scope = new DbScope();
                 var saveDlg = new SaveFileDialog();
                 saveDlg.Filter = ".docx|*.docx";
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
@@ -90,7 +98,7 @@ namespace Nakladna
                     statusProgress("Генеримо документ...", true);
 
                     await Task.Run(() =>
-                    InvoiceCore.Instance.ExportToDoc(startDate, endDate, saveDlg.FileName, runningPath));
+                    InvoiceCore.Instance.ExportToDoc(scope, startDate, endDate, saveDlg.FileName, runningPath));
 
                     statusProgress("Документ готовий", false);
                     return;
@@ -115,10 +123,12 @@ namespace Nakladna
                 var sheetDialog = new SelectSheetsDialog();
                 if (sheetDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-
-                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(sheetDialog.FilePath, sheetDialog.Sheets, sheetDialog.DateTime);
+                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(scope, sheetDialog.FilePath, sheetDialog.Sheets, sheetDialog.DateTime);
                     MessageBox.Show(string.Format("Імпортовано {0} продажів. {1} нових клієнтів.",
                         inv.Count(), InvoiceCore.Instance.NewCustomers));
+
+                    scope.Submit();
+                    scope = new DbScope();
                 }
             }
             catch (Exception ex)
@@ -159,7 +169,7 @@ namespace Nakladna
 
             if (form.GoodType != null)
             {
-                InvoiceCore.Instance.SaveGoodType(form.GoodType);
+                InvoiceCore.Instance.SaveGoodType(scope, form.GoodType);
                 RefreshGrid();
             }
         }
@@ -185,43 +195,41 @@ namespace Nakladna
             {
                 if (MessageBox.Show("Видалити " + good.Name + "?", "Видалення", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    InvoiceCore.Instance.RemoveGoodType(good);
-                    BindGrid();
+                    InvoiceCore.Instance.RemoveGoodType(scope, good);
+                    RefreshGrid();
                 }
             }
             else if (e.ColumnIndex == ColumnSpecialPrice.Index)
             {
                 var form = new SpecialPricesForm();
-                form.Show();
                 form.Init(good);
+                form.ShowDialog();
+                RefreshGrid();
             }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            InvoiceCore.Instance.SaveDataChanges();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Очистити всі продажі?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                InvoiceCore.Instance.ClearSales();
+                InvoiceCore.Instance.ClearSales(scope);
             }
         }
 
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        private async void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            //var date1 = dateTimePicker1.Value;
-            //var date2 = dateTimePicker2.Value;
-            //statusProgress("Пошук продажів за " + date1.ToShortDateString()
-            //    + " -- " + date2.ToShortDateString(), true);
+            var date1 = dateTimePicker1.Value.Date;
+            var date2 = dateTimePicker2.Value.Date;
+            statusProgress("Пошук продажів за " + date1.ToShortDateString()
+                + " -- " + date2.ToShortDateString(), true);
 
+            var salesCount = await InvoiceCore.Instance.GetSalesAsync(new DbScope(), date1, date2);
 
-            //var salesCount = await Task.Run(() =>
-            //InvoiceCore.Instance.GetSales(date1, date2));
-
-            //statusProgress("Знайдено " + salesCount.Count() + " продажів.", false);
+            statusProgress("Знайдено " + salesCount.Count() + " продажів.", false);
         }
 
         private void statusProgress(string text, bool showProgress)

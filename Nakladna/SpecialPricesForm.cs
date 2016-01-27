@@ -16,6 +16,7 @@ namespace Nakladna
     {
         IEnumerable<GoodType> goods;
         IEnumerable<SpecialPrice> specialPrices;
+        DbScope scope;
 
         public SpecialPricesForm()
         {
@@ -24,7 +25,8 @@ namespace Nakladna
 
         public async void Init(GoodType goodType)
         {
-            goods = await InvoiceCore.Instance.GetGoodsAsync();
+            scope = new DbScope();
+            goods = await InvoiceCore.Instance.GetGoodsAsync(scope);
             cmbGoodType.DataSource = goods.Select(g => g.Name).ToList();
             cmbGoodType.SelectedItem = goodType.Name;
 
@@ -35,17 +37,17 @@ namespace Nakladna
 
         private async Task RebindGrid(GoodType goodType)
         {
-            specialPrices = InvoiceCore.Instance.GetSpecialPrices()
-                .Where(p => p.GoodType == goodType);
+            specialPrices = await InvoiceCore.Instance.GetSpecialPricesAsync(scope);
+            var source = specialPrices.ToList().Where(p => p.GoodTypeId == goodType.Id);
 
             dataGridView1.AutoGenerateColumns = false;
             ColumnPrice.DataPropertyName = "Price";
             СolumnClinetName.DataPropertyName = "CustomerName";
-            dataGridView1.DataSource = specialPrices.ToList();
+            dataGridView1.DataSource = source.ToList();
 
-            var clients = InvoiceCore.Instance.GetCustomers();
+            var clients = InvoiceCore.Instance.GetCustomers(scope);
             cmbClient.DataSource = clients
-                .Where(c => !specialPrices.Any(sp => sp.Customer.Name == c.Name))
+                .Where(c => !source.Any(sp => sp.Customer.Name == c.Name))
                 .Select(c => c.Name).ToList();
         }
 
@@ -58,8 +60,8 @@ namespace Nakladna
         private async void btnAdd_Click(object sender, EventArgs e)
         {
             var good = goods.First(g => g.Name == cmbGoodType.SelectedItem.ToString());
-            var client = InvoiceCore.Instance.GetCustomers().First(c => c.Name == cmbClient.SelectedItem.ToString());
-            InvoiceCore.Instance.AddSpecialPrice(good, client, good.Price);
+            var client = InvoiceCore.Instance.GetCustomers(scope).First(c => c.Name == cmbClient.SelectedItem.ToString());
+            InvoiceCore.Instance.AddSpecialPrice(scope, good, client, good.Price);
             await RebindGrid(good);
         }
 

@@ -8,8 +8,12 @@ namespace Nakladna.CommonData
 {
     public partial class SpecialPrice : EntityBase
     {
-        public Customer Customer { get; set; }
-        public GoodType GoodType { get; set; }
         public double Price { get; set; }
+
+        public int CustomerId { get; set; }
+        public int GoodTypeId { get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public virtual GoodType GoodType { get; set; }
     }
 }
