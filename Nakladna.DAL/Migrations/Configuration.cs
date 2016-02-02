@@ -5,11 +5,11 @@ namespace Nakladna.DAL.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<Nakladna.DAL.InvoicesContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Nakladna.DAL.InvoicesContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Nakladna.DAL.InvoicesContext context)

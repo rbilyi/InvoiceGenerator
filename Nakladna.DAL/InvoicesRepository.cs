@@ -15,7 +15,7 @@ namespace Nakladna.DAL
         #region repository
         public Repository()
         {
-            _context = new InvoicesContext();
+            _context = new InvoicesContext(Settings.ConnectionString);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<T>(bool includeDeleted = false) where T : EntityBase
