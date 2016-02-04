@@ -103,7 +103,7 @@ namespace Nakladna.DataSheetImporter
                     break;
 
                 var customerCell = row.GetCell(customerColumn);
-                if (customerCell == null)
+                if (customerCell == null || string.IsNullOrWhiteSpace(customerCell.StringCellValue))
                     break;
 
                 var customer = customerCell.StringCellValue.Trim();
