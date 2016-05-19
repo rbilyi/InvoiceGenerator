@@ -238,5 +238,10 @@ namespace Nakladna
             toolStripStatusLabel.Visible = !(string.IsNullOrWhiteSpace(text));
             toolStripProgressBar.Visible = showProgress;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new SalesForm().Show();
+        }
     }
 }

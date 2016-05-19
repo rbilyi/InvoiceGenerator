@@ -26,6 +26,7 @@ namespace Nakladna.Core
                 return _instance ?? (_instance = new InvoiceCore());
             }
         }
+
         #endregion Singleton
 
         public Action<GoodType, string, string> FileRenamed;
@@ -219,6 +220,11 @@ namespace Nakladna.Core
         public async Task<IEnumerable<Sale>> GetSalesAsync(DbScope scope, DateTime date1, DateTime date2)
         {
             return await scope.DataProvider.GetSalesAsync(date1, date2);
+        }
+
+        public async Task<IEnumerable<Sale>> GetSalesAsync(DbScope scope, DateTime day)
+        {
+            return await scope.DataProvider.GetSalesAsync(day, day);
         }
 
         public async Task<IEnumerable<SpecialPrice>> GetSpecialPricesAsync(DbScope scope, bool includeDeleted = false)

@@ -30,12 +30,12 @@ namespace Nakladna
             cmbGoodType.DataSource = goods.Select(g => g.Name).ToList();
             cmbGoodType.SelectedItem = goodType.Name;
 
-            await RebindGrid(goodType);
+            await RebindGridAsync(goodType);
 
             cmbGoodType.SelectedIndexChanged += CmbGoodType_SelectedIndexChanged;
         }
 
-        private async Task RebindGrid(GoodType goodType)
+        private async Task RebindGridAsync(GoodType goodType)
         {
             specialPrices = await InvoiceCore.Instance.GetSpecialPricesAsync(scope);
             var source = specialPrices.ToList().Where(p => p.GoodTypeId == goodType.Id);
@@ -54,7 +54,7 @@ namespace Nakladna
         private async void CmbGoodType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var good = goods.First(g => g.Name == (string)((ComboBox)sender).SelectedItem);
-            await RebindGrid(good);
+            await RebindGridAsync(good);
         }
 
         private async void btnAdd_Click(object sender, EventArgs e)
@@ -62,11 +62,12 @@ namespace Nakladna
             var good = goods.First(g => g.Name == cmbGoodType.SelectedItem.ToString());
             var client = InvoiceCore.Instance.GetCustomers(scope).First(c => c.Name == cmbClient.SelectedItem.ToString());
             InvoiceCore.Instance.AddSpecialPrice(scope, good, client, good.Price);
-            await RebindGrid(good);
+            await RebindGridAsync(good);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            scope.Dispose();
             Close();
         }
     }
