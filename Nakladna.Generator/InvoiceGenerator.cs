@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using Nakladna.CommonData;
@@ -43,19 +44,21 @@ namespace Innvoice.Generator
 
                     var itemsTable = t.Tables[1];
 
+                    for (int i = 0; i < invoice.SoldItems.Count - 1; i++) //+3 = +head +footer + one prepared row
+                    {
+                        itemsTable.InsertRow(2);
+                    }
+
                     int row = 1;
                     foreach (var s in invoice.SoldItems)
                     {
-                        if (row <= itemsTable.RowCount)
-                        {
-                            var c = itemsTable.Rows[row].Cells;
-                            c[0].Paragraphs.First().InsertText(row.ToString());
-                            c[1].Paragraphs.First().InsertText(s.GoodType.Name);
-                            c[3].Paragraphs.First().InsertText(s.Qty.ToString());
-                            c[4].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Price));
-                            c[5].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Price * s.Qty));
-                            row++;
-                        }
+                        var c = itemsTable.Rows[row].Cells;
+                        c[0].Paragraphs.First().InsertText(row.ToString());
+                        c[1].Paragraphs.First().InsertText(s.GoodType.Name);
+                        c[3].Paragraphs.First().InsertText(s.Qty.ToString());
+                        c[4].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Price));
+                        c[5].Paragraphs.First().InsertText(string.Format("{0:f2}", s.Price * s.Qty));
+                        row++;
                     }
 
                     t.ReplaceText("#totPrc", string.Format("{0:f2}", invoice.TotalPrice));

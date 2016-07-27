@@ -110,6 +110,9 @@ namespace Nakladna
             try
             {
                 var sheetDialog = new SelectSheetsDialog();
+                if (string.IsNullOrEmpty(sheetDialog.FilePath))
+                    return;
+
                 if (sheetDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     if (!sheetDialog.Sheets.Any())

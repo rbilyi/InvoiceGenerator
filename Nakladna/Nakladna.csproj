@@ -207,10 +207,6 @@
       <Project>{fe45be50-a0e0-4aee-a525-001d986ac4fc}</Project>
       <Name>Nakladna.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nakladna.Goc\Nakladna.Gdoc.csproj">
-      <Project>{5673c54c-a132-4887-a087-f714c14fdd37}</Project>
-      <Name>Nakladna.Gdoc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nakladna.Updater\Nakladna.Updater.csproj">
       <Project>{ad37a4dd-5dc4-421f-a5ee-ec1ae126dc67}</Project>
       <Name>Nakladna.Updater</Name>
