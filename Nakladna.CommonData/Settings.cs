@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InnerSettings = Nakladna.CommonData.Settings;
+﻿using InnerSettings = Nakladna.CommonData.Settings;
 
 namespace Nakladna
 {
@@ -28,6 +23,12 @@ namespace Nakladna
         {
             get { return InnerSettings.Default.StartRow; }
             set { InnerSettings.Default.StartRow = value; }
+        }
+
+        public static string CustomerStopPhrase
+        {
+            get { return InnerSettings.Default.CustomerStopPhrase; }
+            set { InnerSettings.Default.CustomerStopPhrase = value; }
         }
 
         public static int CustomersColumn

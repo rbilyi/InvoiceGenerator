@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Nakladna
@@ -20,8 +13,10 @@ namespace Nakladna
             {
                 connectionStringTxt.Text = Settings.ConnectionString;
                 custColTxt.Text = Settings.CustomersColumn.ToString();
+                customerStopPhraseTxt.Text = Settings.CustomerStopPhrase;
                 custRowTxt.Text = Settings.CustomersRow.ToString();
                 producerTxt.Text = Settings.Producer;
+                templtePathTxt.Text = Settings.TemplateFileName;
             }
             catch
             {
@@ -34,16 +29,19 @@ namespace Nakladna
             try
             {
                 Settings.ConnectionString = connectionStringTxt.Text;
+                Settings.CustomerStopPhrase = customerStopPhraseTxt.Text;
                 Settings.CustomersColumn = int.Parse(custColTxt.Text);
                 Settings.CustomersRow = int.Parse(custRowTxt.Text);
+                Settings.TemplateFileName = templtePathTxt.Text;
                 Settings.Producer = producerTxt.Text;
+
+                Settings.Save();
+                DialogResult = DialogResult.OK;
             }
             catch
             {
                 MessageBox.Show("Error while loading settings");
             }
-            Settings.Save();
-            this.Close();
         }
 
         private void reloadBtn_Click(object sender, EventArgs e)

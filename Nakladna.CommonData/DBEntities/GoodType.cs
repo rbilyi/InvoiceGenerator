@@ -13,10 +13,5 @@ namespace Nakladna.CommonData
         public virtual IEnumerable<Sale> Sales { get; set; }
 
         public virtual IEnumerable<SpecialPrice> SpecialPrices { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Nakladna
@@ -15,7 +14,6 @@ namespace Nakladna
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
-            Application.Run(new StartForm());
             Application.Run(new MainForm());
         }
     }

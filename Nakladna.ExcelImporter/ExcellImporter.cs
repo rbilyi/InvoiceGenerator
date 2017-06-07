@@ -13,10 +13,8 @@ namespace Nakladna.DataSheetImporter
         private IEnumerable<GoodType> goodTypes;
         private string producer;
 
-        public Dictionary<int, string> GetSheets(string path)
+        public IEnumerable<SheetItem> GetSheets(string path)
         {
-            var result = new Dictionary<int, string>();
-
             using (var fs = File.OpenRead(path))
             {
                 var workbook = new XSSFWorkbook(fs);
@@ -24,11 +22,10 @@ namespace Nakladna.DataSheetImporter
                 for (int sheetIdx = 0; sheetIdx < workbook.NumberOfSheets; sheetIdx++)
                 {
                     ISheet sheet = workbook.GetSheetAt(sheetIdx);
-                    result.Add(sheetIdx, sheet.SheetName);
+
+                    yield return new SheetItem(sheetIdx, sheet.SheetName);
                 }
             }
-
-            return result;
         }
 
         public Dictionary<DateTime, List<SaleParsed>> ImportFromSheet(string path, DateTime dateTime, IEnumerable<int> sheetNumbers, IEnumerable<GoodType> goodTypes, string producer)
@@ -69,10 +66,11 @@ namespace Nakladna.DataSheetImporter
 
             int customerColumn = Settings.CustomersColumn;
             int startRow = Settings.StartRow;
+            string custStopPhrase = string.IsNullOrEmpty(Settings.CustomerStopPhrase) ? null : Settings.CustomerStopPhrase;
 
             foreach (var good in goodTypes)
             {
-                var dSales = ParseGoodSale(sheet, good, dateTime, customerColumn, startRow).ToList();
+                var dSales = ParseGoodSale(sheet, good, dateTime, customerColumn, startRow, custStopPhrase).ToList();
 
                 if (dSales.Any())
                 {
@@ -92,51 +90,65 @@ namespace Nakladna.DataSheetImporter
             return sales;
         }
 
-        private IEnumerable<SaleParsed> ParseGoodSale(ISheet sheet, GoodType good, DateTime dateTime, int customerColumn, int startRow)
+        private IEnumerable<SaleParsed> ParseGoodSale(ISheet sheet, GoodType good, DateTime dateTime, int customerColumn, int startRow, string customerStopPhrase)
         {
             var sales = new List<SaleParsed>();
+            int columnIndex = -1, rowIndex = -1;
 
-            for (int r = startRow; ; r++)
+            try
             {
-                var row = sheet.GetRow(r);
-                if (row == null)
-                    break;
 
-                var customerCell = row.GetCell(customerColumn);
-                if (customerCell == null || string.IsNullOrWhiteSpace(customerCell.StringCellValue))
-                    break;
-
-                var customer = customerCell.StringCellValue.Trim();
-
-                int qty = 0, ret = 0;
-                var qtyCell = sheet.GetRow(r).GetCell(good.ColumnInDocument - 1);
-                if (qtyCell != null && qtyCell.CellType == CellType.Numeric
-                    && qtyCell.NumericCellValue > 0)
+                for (rowIndex = startRow; ; rowIndex++)
                 {
-                    qty = (int)qtyCell.NumericCellValue;
-                }
+                    columnIndex = -1;
+                    var row = sheet.GetRow(rowIndex);
+                    if (row == null)
+                        break;
 
-                if (good.HasReturn)
-                {
-                    var retCell = sheet.GetRow(r).GetCell(good.ReturnColumn.Value - 1);
-                    if (retCell != null && retCell.CellType == CellType.Numeric
-                        && retCell.NumericCellValue > 0)
+                    columnIndex = customerColumn;
+                    var customerCell = row.GetCell(columnIndex);
+                    if (customerCell == null || customerCell.CellType != CellType.String || string.IsNullOrWhiteSpace(customerCell.StringCellValue)
+                        || (customerStopPhrase != null && string.Equals(customerCell.StringCellValue, customerStopPhrase, StringComparison.InvariantCultureIgnoreCase))) //last chance
+                        break;
+
+                    var customer = customerCell.StringCellValue.Trim();
+
+                    int qty = 0, ret = 0;
+                    columnIndex = good.ColumnInDocument - 1;
+                    var qtyCell = sheet.GetRow(rowIndex).GetCell(columnIndex);
+                    if (qtyCell != null && qtyCell.CellType == CellType.Numeric
+                        && qtyCell.NumericCellValue > 0)
                     {
-                        ret = (int)retCell.NumericCellValue;
+                        qty = (int)qtyCell.NumericCellValue;
+                    }
+
+                    if (good.HasReturn)
+                    {
+                        columnIndex = good.ReturnColumn.Value - 1;
+                        var retCell = sheet.GetRow(rowIndex).GetCell(columnIndex);
+                        if (retCell != null && retCell.CellType == CellType.Numeric
+                            && retCell.NumericCellValue > 0)
+                        {
+                            ret = (int)retCell.NumericCellValue;
+                        }
+                    }
+
+                    if (qty > 0 && qty > ret)
+                    {
+                        var sale = new SaleParsed();
+                        sale.GoodType = good;
+                        sale.DateTime = dateTime;
+                        sale.Customer = customer;
+                        sale.Producer = producer;
+                        sale.Quantity = qty;
+                        sale.Return = ret;
+                        sales.Add(sale);
                     }
                 }
-
-                if (qty > 0 && qty > ret)
-                {
-                    var sale = new SaleParsed();
-                    sale.GoodType = good;
-                    sale.DateTime = dateTime;
-                    sale.Customer = customer;
-                    sale.Producer = producer;
-                    sale.Quantity = qty;
-                    sale.Return = ret;
-                    sales.Add(sale);
-                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("Не правильне значення в комірці {0}{1}", Utils.Excell.GetExcelColumnName(columnIndex), rowIndex.ToString()), ex);
             }
 
             return sales;

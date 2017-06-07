@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Innvoice.Generator;
 using Nakladna.CommonData;
-using Nakladna.DAL;
 using Nakladna.DataSheetImporter;
 
 namespace Nakladna.Core
@@ -36,7 +34,7 @@ namespace Nakladna.Core
 
         public event EventHandler<NotificationEventArgs> InitializationNotification;
 
-        public IReadOnlyDictionary<int, string> GetSheets(string filePath)
+        public IEnumerable<SheetItem> GetSheets(string filePath)
         {
             return new ExcellImporter().GetSheets(filePath);
         }
@@ -88,14 +86,19 @@ namespace Nakladna.Core
             return scope.DataProvider.GetGoods();
         }
 
+        public Task<IEnumerable<GoodType>> GetGoodsAsync(DbScope scope)
+        {
+            return scope.DataProvider.GetAllAsync<GoodType>();
+        }
+
         public void ExportToDoc(DbScope scope, DateTime startDate, DateTime endDate, string savePath, string runningPath)
         {
-                var inv = GetInvoicesByDatesRange(scope, startDate, endDate);
+            var inv = GetInvoicesByDatesRange(scope, startDate, endDate);
 
-                if (!inv.Any())
-                    throw new NoSalesException();
+            if (!inv.Any())
+                throw new NoSalesException();
 
-                SaveInvoices(scope, inv, savePath, runningPath);
+            SaveInvoices(scope, inv, savePath, runningPath);
         }
 
         public IEnumerable<Sale> ImportSalesFromXLS(DbScope scope, string path, IEnumerable<int> sheets, DateTime dateTime, bool saveToDb = true)
@@ -163,7 +166,7 @@ namespace Nakladna.Core
                     if (!salesByCustomer.Any())
                         continue;
 
-                    var specialPrices =scope.DataProvider.GetSpecialPrices().Where(sp => sp.Customer == c);
+                    var specialPrices = scope.DataProvider.GetSpecialPrices().Where(sp => sp.Customer == c);
 
                     var invoice = new Invoice();
                     invoice.Customer = c;
@@ -233,7 +236,7 @@ namespace Nakladna.Core
         }
     }
 
-    public class DbScope: IDisposable
+    public class DbScope : IDisposable
     {
         internal DataProvider DataProvider { get; private set; }
 

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,16 +9,40 @@ namespace Nakladna
         public SalesForm()
         {
             InitializeComponent();
+        }
 
-            LoadSales();
+        public SalesForm(DateTime dateFrom, DateTime dateTo)
+            : this()
+        {
+            dateTimePickerFrom.Value = dateFrom;
+            dateTimePickerTo.Value = dateTo;
+
+            if (dateFrom == dateTo)
+                chkTo.Checked = false;
         }
 
         private async Task LoadSales()
         {
+            dataGridView1.Visible = !(progressBar1.Visible = true);
+
             using (var scope = new Core.DbScope())
             {
-                dataGridView1.DataSource = await Core.InvoiceCore.Instance.GetSalesAsync(scope, DateTime.Today);
+                var dateTo = chkTo.Checked ? dateTimePickerTo.Value.Date : dateTimePickerFrom.Value.Date;
+                dataGridView1.DataSource = await Core.InvoiceCore.Instance.GetSalesAsync(scope, dateTimePickerFrom.Value.Date, dateTo);
             }
+
+            dataGridView1.Visible = !(progressBar1.Visible = false);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePickerTo.Enabled = chkTo.Checked;
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            lblSelectDates.Visible = false;
+            LoadSales();
         }
     }
 }

@@ -13,6 +13,11 @@ namespace Nakladna.CommonData
         {
             return Name.GetHashCode() * 17;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public partial class SpecialPrice
@@ -73,6 +78,11 @@ namespace Nakladna.CommonData
                     ReturnColumn = Utils.Excell.GetColumnNumber(value);
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

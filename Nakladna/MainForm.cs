@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Innvoice.Generator;
 using Nakladna.CommonData;
 using Nakladna.Core;
 
@@ -15,42 +10,43 @@ namespace Nakladna
 {
     public partial class MainForm : Form
     {
-        private Action GoodTypesLoaded;
         List<GoodType> goodTypes;
         DbScope scope;
 
         public MainForm()
         {
             InitializeComponent();
-
-            this.Text += " " + Application.ProductVersion.ToString();
-
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
+            dateTimePicker1.ValueChanged += dateTimePicker_ValueChanged;
+            dateTimePicker2.ValueChanged += dateTimePicker_ValueChanged;
 
-            scope = new DbScope();
-
-            InvoiceCore.Instance.InitializationNotification += Instance_InitializationNotification;
-            GoodTypesLoaded = () => BindGrid();
-
-
-            RefreshGrid();
+            this.Text += " " + Application.ProductVersion.ToString();
         }
 
         private async void RefreshGrid()
         {
-            scope.Submit();
-            scope = new DbScope();
-            var g = await InvoiceCore.Instance.GetGoodsAsync(scope);
+            ShowInToolsStrip("Loading...", true);
 
-            if (g == null)
+            await Task.Run(async () =>
             {
-                MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
-                throw new ArgumentException("goodTypes");
-            }
+                if (scope != null)
+                    scope.Submit();
 
-            goodTypes = g.ToList();
-            GoodTypesLoaded();
+                scope = new DbScope();
+                var g = await InvoiceCore.Instance.GetGoodsAsync(scope);
+
+                if (g == null)
+                {
+                    MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
+                    throw new ArgumentException("goodTypes");
+                }
+
+                goodTypes = g.ToList();
+                BindGrid();
+            });
+
+            CleanToolStrip();
         }
 
         private void BindGrid()
@@ -67,18 +63,12 @@ namespace Nakladna
                 ColumnReturn.DataPropertyName = "ReturnColumnName";
                 ColumnHasReturn.DataPropertyName = "HasReturn";
 
-                dataGridView1.DataSource = goodTypes;
-                CleanToolStrip();
+                Invoke((Action)(() => dataGridView1.DataSource = goodTypes));
             }
             catch (Exception ex)
             {
                 ShowErrorBox(ex);
             }
-        }
-
-        void Instance_InitializationNotification(object sender, NotificationEventArgs e)
-        {
-            ShowInToolsStrip(e.Message);
         }
 
         private async void toDocButton_Click(object sender, EventArgs e)
@@ -95,36 +85,41 @@ namespace Nakladna
                 if (saveDlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     var runningPath = Application.StartupPath;
-                    statusProgress("Генеримо документ...", true);
+                    ShowInToolsStrip("Генеримо документ...", true);
 
                     await Task.Run(() =>
                     InvoiceCore.Instance.ExportToDoc(scope, startDate, endDate, saveDlg.FileName, runningPath));
 
-                    statusProgress("Документ готовий", false);
+                    ShowInToolsStrip("Документ готовий");
                     return;
                 }
             }
             catch (NoSalesException)
             {
                 MessageBox.Show(string.Format("Немає продаж за {0}-{1}", startDate.ToShortDateString(), endDate.ToShortDateString()));
+                ShowInToolsStrip("Помилка");
             }
             catch (Exception ex)
             {
                 ShowErrorBox(ex);
             }
-
-            statusProgress("", false);
         }
 
-        private void importButton_Click(object sender, EventArgs e)
+        private async void importButton_Click(object sender, EventArgs e)
         {
             try
             {
                 var sheetDialog = new SelectSheetsDialog();
                 if (sheetDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    var inv = InvoiceCore.Instance.ImportSalesFromXLS(scope, sheetDialog.FilePath, sheetDialog.Sheets, sheetDialog.DateTime);
-                    MessageBox.Show(string.Format("Імпортовано {0} продажів. {1} нових клієнтів.",
+                    if (!sheetDialog.Sheets.Any())
+                        return;
+
+                    ShowInToolsStrip("Імпорутємо з файла ...", true);
+
+                    var inv = await Task.Run(() => InvoiceCore.Instance.ImportSalesFromXLS(scope, sheetDialog.FilePath, sheetDialog.Sheets, sheetDialog.DateTime));
+
+                    ShowInToolsStrip(string.Format("Імпортовано {0} продажів. {1} нових клієнтів.",
                         inv.Count(), InvoiceCore.Instance.NewCustomers));
 
                     scope.Submit();
@@ -134,6 +129,7 @@ namespace Nakladna
             catch (Exception ex)
             {
                 ShowErrorBox(ex);
+                ShowInToolsStrip("Помилка");
             }
         }
 
@@ -150,6 +146,14 @@ namespace Nakladna
 
         protected void ShowInToolsStrip(string message)
         {
+            toolStripProgressBar.Visible = false;
+            toolStripStatusLabel.Text = message;
+            toolStripStatusLabel.Visible = true;
+        }
+
+        protected void ShowInToolsStrip(string message, bool continuous)
+        {
+            toolStripProgressBar.Style = continuous ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
             toolStripProgressBar.Visible = true;
             toolStripProgressBar.Step = 1;
             toolStripStatusLabel.Text = message;
@@ -165,7 +169,8 @@ namespace Nakladna
         private void btnAddGood_Click(object sender, EventArgs e)
         {
             var form = new GoodTypeForm();
-            form.ShowDialog();
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
 
             if (form.GoodType != null)
             {
@@ -224,24 +229,22 @@ namespace Nakladna
         {
             var date1 = dateTimePicker1.Value.Date;
             var date2 = dateTimePicker2.Value.Date;
-            statusProgress("Пошук продажів за " + date1.ToShortDateString()
+            ShowInToolsStrip("Пошук продажів за " + date1.ToShortDateString()
                 + " -- " + date2.ToShortDateString(), true);
 
             var salesCount = await InvoiceCore.Instance.GetSalesAsync(new DbScope(), date1, date2);
 
-            statusProgress("Знайдено " + salesCount.Count() + " продажів.", false);
-        }
-
-        private void statusProgress(string text, bool showProgress)
-        {
-            toolStripStatusLabel.Text = text;
-            toolStripStatusLabel.Visible = !(string.IsNullOrWhiteSpace(text));
-            toolStripProgressBar.Visible = showProgress;
+            ShowInToolsStrip("Знайдено " + salesCount.Count() + " продажів.");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new SalesForm().Show();
+            new SalesForm(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date).Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            RefreshGrid();
         }
     }
 }
