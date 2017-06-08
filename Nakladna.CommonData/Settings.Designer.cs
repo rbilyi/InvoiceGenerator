@@ -110,7 +110,7 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/tree/master/Version.cs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/master/Version.cs")]
         public string UpdateVersionFile {
             get {
                 return ((string)(this["UpdateVersionFile"]));
@@ -122,7 +122,7 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/tree/master/Setup/Release/Setup.msi")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/master/Setup/Release/Setup.msi")]
         public string SetupFile {
             get {
                 return ((string)(this["SetupFile"]));

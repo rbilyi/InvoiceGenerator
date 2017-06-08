@@ -4,7 +4,6 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Nakladna.Updater
@@ -13,29 +12,32 @@ namespace Nakladna.Updater
     {
         private const string AssemblyVersionStart = @"\[assembly\: AssemblyVersion\(""(\d+\.\d+\.\d+\.\d+)""\)\]";
 
-        public static async Task<bool> IsUpdateNeeded()
+        public static bool IsUpdateNeeded()
         {
             var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            var availableVersion = await GetAvailableVersion();
+            var availableVersion = GetAvailableVersion();
 
             return currentVersion < availableVersion && MessageBox.Show("Є нова версія. Оновити зараз?", "Є нова версія", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes;
         }
-        public static async Task UpdateToNewVersion()
+
+        public static Form UpdateForm()
         {
-            var filePath = Path.GetTempPath() + Path.GetTempFileName();
+            var filePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
+            var progressForm = new DownloadProgressForm();
             try
             {
                 using (WebClient wc = new WebClient())
-                using (var progressForm = new DownloadProgressForm())
                 {
-                    progressForm.Show();
                     wc.DownloadProgressChanged += (s, e) =>
                     {
                         progressForm.ProgressBar.Value = e.ProgressPercentage;
                     };
 
-                    await wc.DownloadFileTaskAsync(new Uri(Settings.SetupFile), filePath);
+                    wc.DownloadFileCompleted += (s, e) => progressForm.Close();
+
+                    wc.DownloadFileAsync(new Uri(Settings.SetupFile), filePath);
+                    progressForm.ShowDialog();
                 }
 
                 if (File.Exists(filePath))
@@ -45,29 +47,35 @@ namespace Nakladna.Updater
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
             finally
             {
                 File.Delete(filePath);
+                Application.Exit();
             }
+            return progressForm;
         }
 
-        public static async Task<Version> GetAvailableVersion()
+        public static Version GetAvailableVersion()
         {
-            var filePath = Path.GetTempPath() + Path.GetTempFileName();
+            var filePath = Path.GetTempFileName();
+            var progressForm = new DownloadProgressForm();
             try
             {
+                progressForm.Text = "Перевірка оновлень";
+
                 using (WebClient wc = new WebClient())
-                using (var progressForm = new DownloadProgressForm())
                 {
-                    progressForm.Text = "Перевірка оновлень";
-                    progressForm.Show();
                     wc.DownloadProgressChanged += (s, e) =>
                     {
                         progressForm.ProgressBar.Value = e.ProgressPercentage;
                     };
 
-                    await wc.DownloadFileTaskAsync(new System.Uri(Settings.UpdateVersionFile), filePath);
+                    wc.DownloadFileCompleted += (s, e) => progressForm.Close();
+
+                    wc.DownloadFileAsync(new System.Uri(Settings.UpdateVersionFile), filePath);
+                    progressForm.ShowDialog();
                 }
 
                 if (File.Exists(filePath))
@@ -79,10 +87,12 @@ namespace Nakladna.Updater
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
             finally
             {
                 File.Delete(filePath);
+                progressForm.Close();
             }
             return null;
         }
