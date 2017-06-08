@@ -23,5 +23,11 @@
     <Setting Name="CustomerStopPhrase" Type="System.String" Scope="User">
       <Value Profile="(Default)">всього</Value>
     </Setting>
+    <Setting Name="UpdateVersionFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/tree/master/Version.cs</Value>
+    </Setting>
+    <Setting Name="SetupFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/tree/master/Setup/Release/Setup.msi</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

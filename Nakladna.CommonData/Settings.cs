@@ -84,5 +84,17 @@ namespace Nakladna
             get { return InnerSettings.Default.LastImportedXLS; }
             set { InnerSettings.Default.LastImportedXLS = value; }
         }
+
+        public static string UpdateVersionFile
+        {
+            get { return InnerSettings.Default.UpdateVersionFile; }
+            set { InnerSettings.Default.UpdateVersionFile = value; }
+        }
+
+        public static string SetupFile
+        {
+            get { return InnerSettings.Default.SetupFile; }
+            set { InnerSettings.Default.SetupFile = value; }
+        }
     }
 }

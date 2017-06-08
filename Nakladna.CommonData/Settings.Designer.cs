@@ -107,5 +107,29 @@ namespace Nakladna.CommonData {
                 this["CustomerStopPhrase"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/tree/master/Version.cs")]
+        public string UpdateVersionFile {
+            get {
+                return ((string)(this["UpdateVersionFile"]));
+            }
+            set {
+                this["UpdateVersionFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/tree/master/Setup/Release/Setup.msi")]
+        public string SetupFile {
+            get {
+                return ((string)(this["SetupFile"]));
+            }
+            set {
+                this["SetupFile"] = value;
+            }
+        }
     }
 }

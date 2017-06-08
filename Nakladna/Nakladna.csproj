@@ -211,6 +211,10 @@
       <Project>{5673c54c-a132-4887-a087-f714c14fdd37}</Project>
       <Name>Nakladna.Gdoc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nakladna.Updater\Nakladna.Updater.csproj">
+      <Project>{ad37a4dd-5dc4-421f-a5ee-ec1ae126dc67}</Project>
+      <Name>Nakladna.Updater</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\trash_can_delete3.png" />
@@ -224,7 +228,8 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)Version.cs $(SolutionDir)Setup\Release\Version.cs</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

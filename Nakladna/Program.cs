@@ -14,6 +14,12 @@ namespace Nakladna
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+
+            if (Updater.Updater.IsUpdateNeeded().Result)
+            {
+                Updater.Updater.UpdateToNewVersion();
+                Application.Exit();
+            }
             Application.Run(new MainForm());
         }
     }
