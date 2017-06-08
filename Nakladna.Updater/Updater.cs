@@ -21,7 +21,7 @@ namespace Nakladna.Updater
                 == DialogResult.Yes;
         }
 
-        public static Form UpdateForm()
+        public static void Update()
         {
             var filePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
             var progressForm = new DownloadProgressForm();
@@ -38,23 +38,18 @@ namespace Nakladna.Updater
 
                     wc.DownloadFileAsync(new Uri(Settings.SetupFile), filePath);
                     progressForm.ShowDialog();
+                    progressForm.Close();
                 }
 
                 if (File.Exists(filePath))
                 {
-                    Process.Start(filePath);
+                    Process.Start("msiexec", " /i " + filePath).WaitForExit();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                File.Delete(filePath);
-                Application.Exit();
-            }
-            return progressForm;
         }
 
         public static Version GetAvailableVersion()

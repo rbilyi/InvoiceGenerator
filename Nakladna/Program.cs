@@ -17,7 +17,7 @@ namespace Nakladna
 
             if (Updater.Updater.IsUpdateNeeded())
             {
-                Application.Run(Updater.Updater.UpdateForm());
+                Updater.Updater.Update();
             }
             else
             {
