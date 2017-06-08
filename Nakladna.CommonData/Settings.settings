@@ -18,7 +18,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\invoice_db.mdf;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=True;</Value>
+      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\invoice_db.mdf;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=True;</Value>
     </Setting>
     <Setting Name="CustomerStopPhrase" Type="System.String" Scope="User">
       <Value Profile="(Default)">всього</Value>

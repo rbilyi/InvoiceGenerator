@@ -85,8 +85,8 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\invoice_db.md" +
-            "f;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\invoice_db.mdf;Integ" +
+            "rated Security=True;Connect Timeout=30;MultipleActiveResultSets=True;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
