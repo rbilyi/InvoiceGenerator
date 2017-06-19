@@ -10,7 +10,7 @@ namespace Nakladna.Updater
 {
     public class Updater
     {
-        private const string AssemblyVersionStart = @"\[assembly\: AssemblyVersion\(""(\d+\.\d+\.\d+\.\d+)""\)\]";
+        private const string AssemblyVersionStart = @"\[assembly\: AssemblyVersion\(""(\d+\.\d+(\.\d)*(\.\d)*)""\)\]";
 
         public static bool IsUpdateNeeded()
         {
