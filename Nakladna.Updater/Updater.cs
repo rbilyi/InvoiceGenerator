@@ -43,7 +43,11 @@ namespace Nakladna.Updater
 
                 if (File.Exists(filePath))
                 {
-                    Process.Start("msiexec", " /i " + filePath).WaitForExit();
+                    Process.Start(new ProcessStartInfo()
+                    {
+                        FileName = filePath,
+                        UseShellExecute = true,
+                    }).WaitForExit();
                 }
             }
             catch (Exception ex)
