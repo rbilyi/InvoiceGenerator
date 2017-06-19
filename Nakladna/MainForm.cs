@@ -12,6 +12,8 @@ namespace Nakladna
     {
         List<GoodType> goodTypes;
         DbScope scope;
+        int rowIndexFromMouseDown;
+        DataGridViewRow rowFromMouseDown;
 
         public MainForm()
         {
@@ -59,6 +61,8 @@ namespace Nakladna
                 dataGridView1.AutoGenerateColumns = false;
                 ColumnGoodType.DataPropertyName = "Name";
                 ColumnGoodPrice.DataPropertyName = "Price";
+                ColumnGoodPrice.ValueType = typeof(double);
+                ColumnGoodPrice.DefaultCellStyle.Format = "0.##";
                 ColumnColumn.DataPropertyName = "ColumnName";
                 ColumnReturn.DataPropertyName = "ReturnColumnName";
                 ColumnHasReturn.DataPropertyName = "HasReturn";
@@ -248,6 +252,13 @@ namespace Nakladna
         private void MainForm_Load(object sender, EventArgs e)
         {
             RefreshGrid();
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+            MessageBox.Show("Не правильні дані. Спробуй число чреез кому, або крапку. \"Esc\" щоб відмінити. ");
+            dataGridView1.BeginEdit(true);
         }
     }
 }
