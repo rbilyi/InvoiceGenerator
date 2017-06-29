@@ -15,14 +15,20 @@ namespace Nakladna
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
 
-            if (Updater.Updater.IsUpdateNeeded())
+            try
             {
-                Updater.Updater.Update();
+                if (Updater.Updater.IsUpdateNeeded())
+                {
+                    Updater.Updater.Update();
+                    return;
+                }
             }
-            else
+            catch
             {
-                Application.Run(new MainForm());
+                MessageBox.Show("Оновлення не вдалось.");
             }
+
+            Application.Run(new MainForm());
         }
     }
 }
