@@ -12,8 +12,6 @@ namespace Nakladna
     {
         List<GoodType> goodTypes;
         DbScope scope;
-        int rowIndexFromMouseDown;
-        DataGridViewRow rowFromMouseDown;
 
         public MainForm()
         {

@@ -42,7 +42,7 @@ namespace Nakladna
         private void btnShow_Click(object sender, EventArgs e)
         {
             lblSelectDates.Visible = false;
-            LoadSales();
+            Task t = LoadSales();
         }
     }
 }
