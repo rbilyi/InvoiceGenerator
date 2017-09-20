@@ -17,8 +17,8 @@ namespace Nakladna.Updater
             var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
             var availableVersion = GetAvailableVersion();
 
-            return currentVersion < availableVersion 
-                && MessageBox.Show("Є нова версія. Оновити зараз?", "Є нова версія", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            return currentVersion < availableVersion
+                && MessageBox.Show("Є нова версія програми (" + availableVersion + "). Оновити зараз?", "Є нова версія", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes;
         }
 
@@ -26,7 +26,7 @@ namespace Nakladna.Updater
         {
             var setupFileUrl = Configuration.Develop ? Settings.SetupFile_Develop : Settings.SetupFile;
             var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
-            var progressForm = new DownloadProgressForm();
+            var progressForm = new DownloadProgressForm("Скачую нову версію програми...");
             try
             {
                 using (WebClient wc = new WebClient())
@@ -36,6 +36,7 @@ namespace Nakladna.Updater
                         progressForm.ProgressBar.Value = e.ProgressPercentage;
                     };
 
+                    progressForm.ProgressBar.Style = ProgressBarStyle.Blocks;
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
 
                     wc.DownloadFileAsync(new Uri(setupFileUrl), tempFilePath);
@@ -62,18 +63,12 @@ namespace Nakladna.Updater
         {
             var remoteVersionFile = Configuration.Develop ? Settings.UpdateVersionFile_Develop : Settings.UpdateVersionFile;
             var filePath = Path.GetTempFileName();
-            var progressForm = new DownloadProgressForm();
+            var progressForm = new DownloadProgressForm("Перевірка оновлень");
             try
             {
-                progressForm.Text = "Перевірка оновлень";
-
                 using (WebClient wc = new WebClient())
                 {
-                    wc.DownloadProgressChanged += (s, e) =>
-                    {
-                        progressForm.ProgressBar.Value = e.ProgressPercentage;
-                    };
-
+                    progressForm.ProgressBar.Style = ProgressBarStyle.Marquee;
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
 
                     wc.DownloadFileAsync(new System.Uri(remoteVersionFile), filePath);

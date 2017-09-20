@@ -65,10 +65,12 @@
             // 
             // templtePathTxt
             // 
+            this.templtePathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.templtePathTxt.Location = new System.Drawing.Point(13, 148);
             this.templtePathTxt.Margin = new System.Windows.Forms.Padding(4);
             this.templtePathTxt.Name = "templtePathTxt";
-            this.templtePathTxt.Size = new System.Drawing.Size(369, 22);
+            this.templtePathTxt.Size = new System.Drawing.Size(633, 22);
             this.templtePathTxt.TabIndex = 7;
             // 
             // label4
@@ -101,10 +103,12 @@
             // 
             // producerTxt
             // 
+            this.producerTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.producerTxt.Location = new System.Drawing.Point(13, 195);
             this.producerTxt.Margin = new System.Windows.Forms.Padding(4);
             this.producerTxt.Name = "producerTxt";
-            this.producerTxt.Size = new System.Drawing.Size(369, 22);
+            this.producerTxt.Size = new System.Drawing.Size(633, 22);
             this.producerTxt.TabIndex = 15;
             // 
             // label8
@@ -119,11 +123,14 @@
             // 
             // connectionStringTxt
             // 
+            this.connectionStringTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.connectionStringTxt.Location = new System.Drawing.Point(91, 232);
             this.connectionStringTxt.Margin = new System.Windows.Forms.Padding(4);
             this.connectionStringTxt.Multiline = true;
             this.connectionStringTxt.Name = "connectionStringTxt";
-            this.connectionStringTxt.Size = new System.Drawing.Size(294, 67);
+            this.connectionStringTxt.Size = new System.Drawing.Size(558, 56);
             this.connectionStringTxt.TabIndex = 17;
             // 
             // label9
@@ -138,7 +145,8 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(15, 307);
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveBtn.Location = new System.Drawing.Point(15, 296);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 28);
@@ -149,7 +157,8 @@
             // 
             // reloadBtn
             // 
-            this.reloadBtn.Location = new System.Drawing.Point(123, 307);
+            this.reloadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.reloadBtn.Location = new System.Drawing.Point(123, 296);
             this.reloadBtn.Margin = new System.Windows.Forms.Padding(4);
             this.reloadBtn.Name = "reloadBtn";
             this.reloadBtn.Size = new System.Drawing.Size(100, 28);
@@ -160,7 +169,8 @@
             // 
             // resetBtn
             // 
-            this.resetBtn.Location = new System.Drawing.Point(292, 307);
+            this.resetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetBtn.Location = new System.Drawing.Point(556, 296);
             this.resetBtn.Margin = new System.Windows.Forms.Padding(4);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(100, 28);
@@ -180,17 +190,19 @@
             // 
             // customerStopPhraseTxt
             // 
+            this.customerStopPhraseTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.customerStopPhraseTxt.Location = new System.Drawing.Point(13, 101);
             this.customerStopPhraseTxt.Margin = new System.Windows.Forms.Padding(4);
             this.customerStopPhraseTxt.Name = "customerStopPhraseTxt";
-            this.customerStopPhraseTxt.Size = new System.Drawing.Size(369, 22);
+            this.customerStopPhraseTxt.Size = new System.Drawing.Size(633, 22);
             this.customerStopPhraseTxt.TabIndex = 22;
             // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 348);
+            this.ClientSize = new System.Drawing.Size(662, 337);
             this.Controls.Add(this.customerStopPhraseTxt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.resetBtn);
@@ -207,6 +219,7 @@
             this.Controls.Add(this.custRowTxt);
             this.Controls.Add(this.label2);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(367, 384);
             this.Name = "SettingsWindow";
             this.Text = "Settings";
             this.ResumeLayout(false);

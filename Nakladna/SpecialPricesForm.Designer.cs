@@ -47,9 +47,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 67);
+            this.groupBox1.Location = new System.Drawing.Point(16, 82);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(303, 215);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(404, 265);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Клієнти";
@@ -62,9 +64,10 @@
             this.СolumnClinetName,
             this.ColumnPrice});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 19);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(297, 196);
+            this.dataGridView1.Size = new System.Drawing.Size(396, 242);
             this.dataGridView1.TabIndex = 0;
             // 
             // СolumnClinetName
@@ -80,9 +83,10 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(240, 288);
+            this.btnOk.Location = new System.Drawing.Point(320, 354);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(100, 28);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -93,16 +97,18 @@
             this.cmbGoodType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbGoodType.FormattingEnabled = true;
-            this.cmbGoodType.Location = new System.Drawing.Point(74, 12);
+            this.cmbGoodType.Location = new System.Drawing.Point(99, 15);
+            this.cmbGoodType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbGoodType.Name = "cmbGoodType";
-            this.cmbGoodType.Size = new System.Drawing.Size(241, 21);
+            this.cmbGoodType.Size = new System.Drawing.Size(320, 24);
             this.cmbGoodType.TabIndex = 4;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(15, 39);
+            this.btnAdd.Location = new System.Drawing.Point(20, 48);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 22);
+            this.btnAdd.Size = new System.Drawing.Size(100, 27);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Додати";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -111,31 +117,34 @@
             // cmbClient
             // 
             this.cmbClient.FormattingEnabled = true;
-            this.cmbClient.Location = new System.Drawing.Point(96, 41);
+            this.cmbClient.Location = new System.Drawing.Point(128, 50);
+            this.cmbClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbClient.Name = "cmbClient";
-            this.cmbClient.Size = new System.Drawing.Size(216, 21);
+            this.cmbClient.Size = new System.Drawing.Size(287, 24);
             this.cmbClient.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(16, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Товар";
             // 
             // SpecialPricesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 323);
+            this.ClientSize = new System.Drawing.Size(436, 398);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbClient);
             this.Controls.Add(this.cmbGoodType);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SpecialPricesForm";
             this.Text = "SpecialPrice";
             this.groupBox1.ResumeLayout(false);

@@ -9,6 +9,15 @@ namespace Nakladna.Updater
             InitializeComponent();
         }
 
+        public DownloadProgressForm(string message) : this()
+        {
+            if (DesignMode)
+                return;
+
+            if (!string.IsNullOrEmpty(message))
+                label1.Text = message;
+        }
+
         public ProgressBar ProgressBar
         {
             get

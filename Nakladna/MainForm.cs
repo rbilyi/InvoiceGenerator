@@ -21,12 +21,12 @@ namespace Nakladna
             dateTimePicker1.ValueChanged += dateTimePicker_ValueChanged;
             dateTimePicker2.ValueChanged += dateTimePicker_ValueChanged;
 
-            this.Text += " " + Application.ProductVersion.ToString();
+            this.Text += " | Версія: " + Application.ProductVersion.ToString();
         }
 
         private async void RefreshGrid()
         {
-            ShowInToolsStrip("Loading...", true);
+            ShowInToolsStrip("Підклюення до бази даних...", true);
 
             await Task.Run(async () =>
             {
@@ -38,7 +38,7 @@ namespace Nakladna
 
                 if (g == null)
                 {
-                    MessageBox.Show("Шото пішло не так. Типи товару не підгрузились.");
+                    MessageBox.Show("Щось пішло не так. Типи товару не підгрузились.");
                     throw new ArgumentException("goodTypes");
                 }
 

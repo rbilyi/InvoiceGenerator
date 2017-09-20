@@ -45,6 +45,8 @@
             // 
             // txtTitle
             // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitle.Location = new System.Drawing.Point(76, 7);
             this.txtTitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitle.Name = "txtTitle";
@@ -63,6 +65,7 @@
             // 
             // bl
             // 
+            this.bl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bl.AutoSize = true;
             this.bl.Location = new System.Drawing.Point(16, 43);
             this.bl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -73,6 +76,7 @@
             // 
             // txtPrice
             // 
+            this.txtPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPrice.Location = new System.Drawing.Point(63, 39);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrice.Name = "txtPrice";
@@ -81,6 +85,7 @@
             // 
             // lblColumn
             // 
+            this.lblColumn.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblColumn.AutoSize = true;
             this.lblColumn.Location = new System.Drawing.Point(188, 43);
             this.lblColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -91,6 +96,7 @@
             // 
             // txtColumn
             // 
+            this.txtColumn.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtColumn.Location = new System.Drawing.Point(263, 39);
             this.txtColumn.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumn.Name = "txtColumn";
@@ -99,6 +105,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtReturnColumn);
             this.groupBox1.Controls.Add(this.checkBox1);
@@ -143,6 +152,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(153, 134);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
@@ -154,6 +164,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(261, 133);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
