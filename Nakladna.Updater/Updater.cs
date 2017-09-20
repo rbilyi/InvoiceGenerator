@@ -17,13 +17,15 @@ namespace Nakladna.Updater
             var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
             var availableVersion = GetAvailableVersion();
 
-            return currentVersion < availableVersion && MessageBox.Show("Є нова версія. Оновити зараз?", "Є нова версія", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            return currentVersion < availableVersion 
+                && MessageBox.Show("Є нова версія. Оновити зараз?", "Є нова версія", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes;
         }
 
         public static void Update()
         {
-            var filePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
+            var setupFileUrl = Configuration.Debug ? Settings.SetupFile_Debug : Settings.SetupFile;
+            var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
             var progressForm = new DownloadProgressForm();
             try
             {
@@ -36,18 +38,18 @@ namespace Nakladna.Updater
 
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
 
-                    wc.DownloadFileAsync(new Uri(Settings.SetupFile), filePath);
+                    wc.DownloadFileAsync(new Uri(setupFileUrl), tempFilePath);
                     progressForm.ShowDialog();
                     progressForm.Close();
                 }
 
-                if (File.Exists(filePath))
+                if (File.Exists(tempFilePath))
                 {
                     Process.Start(new ProcessStartInfo()
                     {
-                        FileName = filePath,
+                        FileName = tempFilePath,
                         UseShellExecute = true,
-                    }).WaitForExit();
+                    });
                 }
             }
             catch (Exception ex)
@@ -58,6 +60,7 @@ namespace Nakladna.Updater
 
         public static Version GetAvailableVersion()
         {
+            var remoteVersionFile = Configuration.Debug ? Settings.UpdateVersionFile_Debug : Settings.UpdateVersionFile;
             var filePath = Path.GetTempFileName();
             var progressForm = new DownloadProgressForm();
             try
@@ -73,7 +76,7 @@ namespace Nakladna.Updater
 
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
 
-                    wc.DownloadFileAsync(new System.Uri(Settings.UpdateVersionFile), filePath);
+                    wc.DownloadFileAsync(new System.Uri(remoteVersionFile), filePath);
                     progressForm.ShowDialog();
                 }
 

@@ -45,6 +45,7 @@
     <Compile Include="..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Configuration.cs" />
     <Compile Include="EntitiesExtensions.cs" />
     <Compile Include="DBEntities\Sale.cs" />
     <Compile Include="DBEntities\SpecialPrice.cs" />

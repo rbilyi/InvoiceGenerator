@@ -12,7 +12,7 @@ namespace Nakladna.CommonData {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -129,6 +129,30 @@ namespace Nakladna.CommonData {
             }
             set {
                 this["SetupFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/debug/Version.cs")]
+        public string UpdateVersionFile_Debug {
+            get {
+                return ((string)(this["UpdateVersionFile_Debug"]));
+            }
+            set {
+                this["UpdateVersionFile_Debug"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/debug/Setup/Release/Setup.msi")]
+        public string SetupFile_Debug {
+            get {
+                return ((string)(this["SetupFile_Debug"]));
+            }
+            set {
+                this["SetupFile_Debug"] = value;
             }
         }
     }
