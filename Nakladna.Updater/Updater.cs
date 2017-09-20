@@ -24,7 +24,7 @@ namespace Nakladna.Updater
 
         public static void Update()
         {
-            var setupFileUrl = Configuration.Debug ? Settings.SetupFile_Debug : Settings.SetupFile;
+            var setupFileUrl = Configuration.Develop ? Settings.SetupFile_Develop : Settings.SetupFile;
             var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
             var progressForm = new DownloadProgressForm();
             try
@@ -60,7 +60,7 @@ namespace Nakladna.Updater
 
         public static Version GetAvailableVersion()
         {
-            var remoteVersionFile = Configuration.Debug ? Settings.UpdateVersionFile_Debug : Settings.UpdateVersionFile;
+            var remoteVersionFile = Configuration.Develop ? Settings.UpdateVersionFile_Develop : Settings.UpdateVersionFile;
             var filePath = Path.GetTempFileName();
             var progressForm = new DownloadProgressForm();
             try

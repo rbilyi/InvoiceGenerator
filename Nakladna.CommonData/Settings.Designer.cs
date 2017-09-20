@@ -134,25 +134,25 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/debug/Version.cs")]
-        public string UpdateVersionFile_Debug {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/develop/Version.cs")]
+        public string UpdateVersionFile_Develop {
             get {
-                return ((string)(this["UpdateVersionFile_Debug"]));
+                return ((string)(this["UpdateVersionFile_Develop"]));
             }
             set {
-                this["UpdateVersionFile_Debug"] = value;
+                this["UpdateVersionFile_Develop"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/debug/Setup/Release/Setup.msi")]
-        public string SetupFile_Debug {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/develop/Setup/Release/Setup.msi")]
+        public string SetupFile_Develop {
             get {
-                return ((string)(this["SetupFile_Debug"]));
+                return ((string)(this["SetupFile_Develop"]));
             }
             set {
-                this["SetupFile_Debug"] = value;
+                this["SetupFile_Develop"] = value;
             }
         }
     }

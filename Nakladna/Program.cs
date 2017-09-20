@@ -14,7 +14,7 @@ namespace Nakladna
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "-d")
-                    Configuration.Debug = true;
+                    Configuration.Develop = true;
             }
 
             Application.EnableVisualStyles();

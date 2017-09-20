@@ -97,16 +97,16 @@ namespace Nakladna
             set { InnerSettings.Default.SetupFile = value; }
         }
 
-        public static string UpdateVersionFile_Debug
+        public static string UpdateVersionFile_Develop
         {
-            get { return InnerSettings.Default.UpdateVersionFile_Debug; }
-            set { InnerSettings.Default.UpdateVersionFile_Debug = value; }
+            get { return InnerSettings.Default.UpdateVersionFile_Develop; }
+            set { InnerSettings.Default.UpdateVersionFile_Develop = value; }
         }
 
-        public static string SetupFile_Debug
+        public static string SetupFile_Develop
         {
-            get { return InnerSettings.Default.SetupFile_Debug; }
-            set { InnerSettings.Default.SetupFile_Debug = value; }
+            get { return InnerSettings.Default.SetupFile_Develop; }
+            set { InnerSettings.Default.SetupFile_Develop = value; }
         }
     }
 }
