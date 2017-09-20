@@ -21,14 +21,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0203F9DF47DE9D2F9E0EB1800913C7BD"
+        "MsmKey" = "8:_0870E3C3FCC511F7D078A7129D4D4455"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0870E3C3FCC511F7D078A7129D4D4455"
+        "MsmKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
+        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
+        "OwnerKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -45,6 +57,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
+        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_203E3533894E27A9557C5158787256D4"
+        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_203E3533894E27A9557C5158787256D4"
+        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_203E3533894E27A9557C5158787256D4"
+        "OwnerKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_233CAA61863AA116D899BA3F1D35E7CF"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
         "MsmSig" = "8:_UNDEFINED"
@@ -57,7 +93,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2AA0C8DC7A8F2A227508DDDB789B06AC"
+        "MsmKey" = "8:_281DBB2EA4CF1635CF413B6F38E44F8C"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,24 +113,6 @@
         {
         "MsmKey" = "8:_2EA60FA50995A6BE7C69C2A4B11E894F"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2FB47B8D804ABD0701E7D4C21ACFF6B2"
-        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2FB47B8D804ABD0701E7D4C21ACFF6B2"
-        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2FB47B8D804ABD0701E7D4C21ACFF6B2"
-        "OwnerKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -119,36 +137,6 @@
         {
         "MsmKey" = "8:_3B8931E967ED2C6945DA923C4B7FD4F6"
         "OwnerKey" = "8:_32EF78FE440712D8E04AE25711E468BD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
-        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
-        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
-        "OwnerKey" = "8:_85778215A212872E568BB8687C280125"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
-        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
-        "OwnerKey" = "8:_85778215A212872E568BB8687C280125"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -191,72 +179,6 @@
         {
         "MsmKey" = "8:_47D5B9712173E1CC8BB4590719EA7331"
         "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_EB99EAE1445C45849B692AB136234663"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_2AA0C8DC7A8F2A227508DDDB789B06AC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_0203F9DF47DE9D2F9E0EB1800913C7BD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_85778215A212872E568BB8687C280125"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_BE3D68A0919D4EDBA53E4AE202619D8A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_B9D7C9F070874927810D9934CE611DC9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
-        "OwnerKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -435,12 +357,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_85778215A212872E568BB8687C280125"
-        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_861C1952DCEE4F739CA64299F0680EC1"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
         "MsmSig" = "8:_UNDEFINED"
@@ -485,6 +401,72 @@
         {
         "MsmKey" = "8:_8E6B627EF43FF91272A241BE797AD6F5"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_EB99EAE1445C45849B692AB136234663"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_B1B09D4A98AD89B7F672C0D68A3D1108"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_281DBB2EA4CF1635CF413B6F38E44F8C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_BE3D68A0919D4EDBA53E4AE202619D8A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_B9D7C9F070874927810D9934CE611DC9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
+        "OwnerKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -597,6 +579,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B1B09D4A98AD89B7F672C0D68A3D1108"
+        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B5CC8A4AAC55BF039FBF662FF54B9543"
         "OwnerKey" = "8:_E5EAFFF8F859D277CFC3F238B05F95EC"
         "MsmSig" = "8:_UNDEFINED"
@@ -693,6 +681,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
+        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
+        "OwnerKey" = "8:_EB99EAE1445C45849B692AB136234663"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
+        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
+        "OwnerKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CA45DA395E4D9547B4672D13281AA154"
         "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
         "MsmSig" = "8:_UNDEFINED"
@@ -700,7 +712,7 @@
         "Entry"
         {
         "MsmKey" = "8:_CA45DA395E4D9547B4672D13281AA154"
-        "OwnerKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
+        "OwnerKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -735,6 +747,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
+        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
+        "OwnerKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CD8963A35A6F472890D14963D744399C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -754,13 +778,13 @@
         "Entry"
         {
         "MsmKey" = "8:_D56D60DBB242E48254F6B2BBC1D4CC44"
-        "OwnerKey" = "8:_0203F9DF47DE9D2F9E0EB1800913C7BD"
+        "OwnerKey" = "8:_281DBB2EA4CF1635CF413B6F38E44F8C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D56D60DBB242E48254F6B2BBC1D4CC44"
-        "OwnerKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
+        "OwnerKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -791,30 +815,6 @@
         {
         "MsmKey" = "8:_D92ECE47C9737246116AABF2A388E645"
         "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
-        "OwnerKey" = "8:_785BBCE73BD343CCBF734975A2C1B25C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
-        "OwnerKey" = "8:_EB99EAE1445C45849B692AB136234663"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
-        "OwnerKey" = "8:_CD8963A35A6F472890D14963D744399C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
-        "OwnerKey" = "8:_85778215A212872E568BB8687C280125"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -850,13 +850,13 @@
         "Entry"
         {
         "MsmKey" = "8:_E285347D3D74822A623D8460F0C0115A"
-        "OwnerKey" = "8:_0203F9DF47DE9D2F9E0EB1800913C7BD"
+        "OwnerKey" = "8:_281DBB2EA4CF1635CF413B6F38E44F8C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E285347D3D74822A623D8460F0C0115A"
-        "OwnerKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
+        "OwnerKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -976,49 +976,49 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AA0C8DC7A8F2A227508DDDB789B06AC"
+        "OwnerKey" = "8:_B1B09D4A98AD89B7F672C0D68A3D1108"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0203F9DF47DE9D2F9E0EB1800913C7BD"
+        "OwnerKey" = "8:_281DBB2EA4CF1635CF413B6F38E44F8C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85778215A212872E568BB8687C280125"
+        "OwnerKey" = "8:_1DB37978153AEA9FEA56DEDE6BFFEE85"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_426C4DD104F20B2D7A158E4B2C6181E5"
+        "OwnerKey" = "8:_CC44AD08897C987A5D3EE910F51D530B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_40ABEB883185D4BDA81559624253FE3B"
+        "OwnerKey" = "8:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D96CC2FFF68E2FE544F430A55F3DDE13"
+        "OwnerKey" = "8:_C87D1A94F01CF098FF2402807262CDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4919C4E2C99800D1140D256E19A5EEA9"
+        "OwnerKey" = "8:_9684E57C618DC13CEF7AAB753BCD2CD2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2FB47B8D804ABD0701E7D4C21ACFF6B2"
+        "OwnerKey" = "8:_203E3533894E27A9557C5158787256D4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1626,20 +1626,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0203F9DF47DE9D2F9E0EB1800913C7BD"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0870E3C3FCC511F7D078A7129D4D4455"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.ExcelImporter, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_0203F9DF47DE9D2F9E0EB1800913C7BD"
+                    "_0870E3C3FCC511F7D078A7129D4D4455"
                     {
-                    "Name" = "8:Nakladna.ExcelImporter.dll"
+                    "Name" = "8:System.Net.Http.WebRequest.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Nakladna.ExcelImporter.dll"
+            "SourcePath" = "8:System.Net.Http.WebRequest.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -1657,20 +1657,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0870E3C3FCC511F7D078A7129D4D4455"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_15C3EBAC19E6CDEBB1DF80FB54C326AA"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:Nakladna.Generator, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0870E3C3FCC511F7D078A7129D4D4455"
+                    "_15C3EBAC19E6CDEBB1DF80FB54C326AA"
                     {
-                    "Name" = "8:System.Net.Http.WebRequest.dll"
+                    "Name" = "8:Nakladna.Generator.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Net.Http.WebRequest.dll"
+            "SourcePath" = "8:Nakladna.Generator.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -1750,6 +1750,68 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1DB37978153AEA9FEA56DEDE6BFFEE85"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Nakladna.Core, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1DB37978153AEA9FEA56DEDE6BFFEE85"
+                    {
+                    "Name" = "8:Nakladna.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Nakladna.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_203E3533894E27A9557C5158787256D4"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DocX, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_203E3533894E27A9557C5158787256D4"
+                    {
+                    "Name" = "8:DocX.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DocX.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_233CAA61863AA116D899BA3F1D35E7CF"
             {
             "AssemblyRegister" = "3:1"
@@ -1812,20 +1874,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2AA0C8DC7A8F2A227508DDDB789B06AC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_281DBB2EA4CF1635CF413B6F38E44F8C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.Updater, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Nakladna.ExcelImporter, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2AA0C8DC7A8F2A227508DDDB789B06AC"
+                    "_281DBB2EA4CF1635CF413B6F38E44F8C"
                     {
-                    "Name" = "8:Nakladna.Updater.dll"
+                    "Name" = "8:Nakladna.ExcelImporter.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Nakladna.Updater.dll"
+            "SourcePath" = "8:Nakladna.ExcelImporter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -1905,37 +1967,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2FB47B8D804ABD0701E7D4C21ACFF6B2"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DocX, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_2FB47B8D804ABD0701E7D4C21ACFF6B2"
-                    {
-                    "Name" = "8:DocX.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DocX.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_32EF78FE440712D8E04AE25711E468BD"
             {
             "AssemblyRegister" = "3:1"
@@ -1981,68 +2012,6 @@
                     }
                 }
             "SourcePath" = "8:System.Runtime.InteropServices.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_40ABEB883185D4BDA81559624253FE3B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.Generator, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_40ABEB883185D4BDA81559624253FE3B"
-                    {
-                    "Name" = "8:Nakladna.Generator.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Nakladna.Generator.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_426C4DD104F20B2D7A158E4B2C6181E5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.ExcelImporter, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_426C4DD104F20B2D7A158E4B2C6181E5"
-                    {
-                    "Name" = "8:Nakladna.ExcelImporter.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Nakladna.ExcelImporter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -2167,37 +2136,6 @@
                     }
                 }
             "SourcePath" = "8:NPOI.OpenXmlFormats.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4919C4E2C99800D1140D256E19A5EEA9"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.CommonData, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_4919C4E2C99800D1140D256E19A5EEA9"
-                    {
-                    "Name" = "8:Nakladna.CommonData.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Nakladna.CommonData.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -2762,37 +2700,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_85778215A212872E568BB8687C280125"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.Core, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_85778215A212872E568BB8687C280125"
-                    {
-                    "Name" = "8:Nakladna.Core.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Nakladna.Core.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_861C1952DCEE4F739CA64299F0680EC1"
             {
             "AssemblyRegister" = "3:1"
@@ -2900,6 +2807,37 @@
                     }
                 }
             "SourcePath" = "8:System.Collections.Concurrent.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9684E57C618DC13CEF7AAB753BCD2CD2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Nakladna.CommonData, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9684E57C618DC13CEF7AAB753BCD2CD2"
+                    {
+                    "Name" = "8:Nakladna.CommonData.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Nakladna.CommonData.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -3227,6 +3165,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B1B09D4A98AD89B7F672C0D68A3D1108"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Nakladna.Updater, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B1B09D4A98AD89B7F672C0D68A3D1108"
+                    {
+                    "Name" = "8:Nakladna.Updater.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Nakladna.Updater.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B5CC8A4AAC55BF039FBF662FF54B9543"
             {
             "AssemblyRegister" = "3:1"
@@ -3475,6 +3444,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C87D1A94F01CF098FF2402807262CDE0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Nakladna.DAL, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C87D1A94F01CF098FF2402807262CDE0"
+                    {
+                    "Name" = "8:Nakladna.DAL.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Nakladna.DAL.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA45DA395E4D9547B4672D13281AA154"
             {
             "AssemblyRegister" = "3:1"
@@ -3520,6 +3520,37 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.Threading.Tasks.Extensions.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CC44AD08897C987A5D3EE910F51D530B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Nakladna.ExcelImporter, Version=1.1.11.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_CC44AD08897C987A5D3EE910F51D530B"
+                    {
+                    "Name" = "8:Nakladna.ExcelImporter.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Nakladna.ExcelImporter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -3675,37 +3706,6 @@
                     }
                 }
             "SourcePath" = "8:System.Threading.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D96CC2FFF68E2FE544F430A55F3DDE13"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Nakladna.DAL, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D96CC2FFF68E2FE544F430A55F3DDE13"
-                    {
-                    "Name" = "8:Nakladna.DAL.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Nakladna.DAL.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -4244,15 +4244,15 @@
         {
         "Name" = "8:Invoice"
         "ProductName" = "8:Invoice"
-        "ProductCode" = "8:{652E45C2-5176-4E61-9918-79148392775B}"
-        "PackageCode" = "8:{230DE2CA-2972-4072-BB84-7927C997FF71}"
+        "ProductCode" = "8:{6806231D-7CC1-4817-BEBC-165F9FBD576A}"
+        "PackageCode" = "8:{0C661FB1-CA93-4CA0-A6F3-A2990DC23C80}"
         "UpgradeCode" = "8:{1160C808-56DB-4396-AAA5-94F6436C8964}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.11"
+        "ProductVersion" = "8:1.1.12"
         "Manufacturer" = "8:RB"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -4920,7 +4920,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_785BBCE73BD343CCBF734975A2C1B25C"
             {
-            "SourcePath" = "8:..\\Nakladna.Core\\obj\\Debug\\Nakladna.Core.dll"
+            "SourcePath" = "8:..\\Nakladna.Core\\obj\\Release\\Nakladna.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -4948,7 +4948,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B9D7C9F070874927810D9934CE611DC9"
             {
-            "SourcePath" = "8:..\\Nakladna.ExcelImporter\\obj\\Debug\\Nakladna.ExcelImporter.dll"
+            "SourcePath" = "8:..\\Nakladna.ExcelImporter\\obj\\Release\\Nakladna.ExcelImporter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -5004,7 +5004,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BC6594E3C4764AAE94372AE84E0E9AC4"
             {
-            "SourcePath" = "8:..\\Nakladna.CommonData\\obj\\Debug\\Nakladna.CommonData.dll"
+            "SourcePath" = "8:..\\Nakladna.CommonData\\obj\\Release\\Nakladna.CommonData.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -5060,7 +5060,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE3D68A0919D4EDBA53E4AE202619D8A"
             {
-            "SourcePath" = "8:..\\Nakladna.DAL\\obj\\Debug\\Nakladna.DAL.dll"
+            "SourcePath" = "8:..\\Nakladna.DAL\\obj\\Release\\Nakladna.DAL.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -5088,7 +5088,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CD8963A35A6F472890D14963D744399C"
             {
-            "SourcePath" = "8:..\\Nakladna\\obj\\Debug\\Nakladna.exe"
+            "SourcePath" = "8:..\\Nakladna\\obj\\Release\\Nakladna.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
@@ -5172,7 +5172,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EB99EAE1445C45849B692AB136234663"
             {
-            "SourcePath" = "8:..\\Nakladna.Generator\\obj\\Debug\\Nakladna.Generator.dll"
+            "SourcePath" = "8:..\\Nakladna.Generator\\obj\\Release\\Nakladna.Generator.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_90ECA9830E984FB49D3B4495CA9C3DC6"
