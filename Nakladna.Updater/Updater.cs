@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -25,7 +26,7 @@ namespace Nakladna.Updater
         public static void Update()
         {
             var setupFileUrl = Configuration.Develop ? Settings.SetupFile_Develop : Settings.SetupFile;
-            var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(Settings.SetupFile));
+            var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "msi");
             var progressForm = new DownloadProgressForm("Скачую нову версію програми...");
             try
             {
@@ -38,10 +39,9 @@ namespace Nakladna.Updater
 
                     progressForm.ProgressBar.Style = ProgressBarStyle.Blocks;
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
-
+                    wc.Headers.Add("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0)");
                     wc.DownloadFileAsync(new Uri(setupFileUrl), tempFilePath);
                     progressForm.ShowDialog();
-                    progressForm.Close();
                 }
 
                 if (File.Exists(tempFilePath))
@@ -70,7 +70,7 @@ namespace Nakladna.Updater
                 {
                     progressForm.ProgressBar.Style = ProgressBarStyle.Marquee;
                     wc.DownloadFileCompleted += (s, e) => progressForm.Close();
-
+                    wc.Headers.Add("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0)");
                     wc.DownloadFileAsync(new System.Uri(remoteVersionFile), filePath);
                     progressForm.ShowDialog();
                 }
@@ -93,5 +93,8 @@ namespace Nakladna.Updater
             }
             return null;
         }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        public static extern uint RegisterApplicationRestart(string pszCommandline, int dwFlags);
     }
 }

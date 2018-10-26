@@ -12,7 +12,7 @@ namespace Nakladna.CommonData {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -110,7 +110,7 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/master/Version.cs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/raw/master/Version.cs")]
         public string UpdateVersionFile {
             get {
                 return ((string)(this["UpdateVersionFile"]));
@@ -122,7 +122,8 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/master/Setup/Release/Setup.msi")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/master/Setup/Release/Se" +
+            "tup.msi")]
         public string SetupFile {
             get {
                 return ((string)(this["SetupFile"]));
@@ -134,7 +135,7 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/develop/Version.cs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/develop/Version.cs")]
         public string UpdateVersionFile_Develop {
             get {
                 return ((string)(this["UpdateVersionFile_Develop"]));
@@ -146,7 +147,8 @@ namespace Nakladna.CommonData {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/rbilyi/InvoiceGenerator/raw/develop/Setup/Release/Setup.msi")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/develop/Setup/Release/S" +
+            "etup.msi")]
         public string SetupFile_Develop {
             get {
                 return ((string)(this["SetupFile_Develop"]));

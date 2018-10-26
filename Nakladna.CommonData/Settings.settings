@@ -24,16 +24,16 @@
       <Value Profile="(Default)">всього</Value>
     </Setting>
     <Setting Name="UpdateVersionFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/raw/master/Version.cs</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/raw/master/Version.cs</Value>
     </Setting>
     <Setting Name="SetupFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/raw/master/Setup/Release/Setup.msi</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/master/Setup/Release/Setup.msi</Value>
     </Setting>
     <Setting Name="UpdateVersionFile_Develop" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/raw/develop/Version.cs</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/develop/Version.cs</Value>
     </Setting>
     <Setting Name="SetupFile_Develop" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/rbilyi/InvoiceGenerator/raw/develop/Setup/Release/Setup.msi</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/rbilyi/InvoiceGenerator/develop/Setup/Release/Setup.msi</Value>
     </Setting>
   </Settings>
 </SettingsFile>
